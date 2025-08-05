@@ -1,0 +1,201 @@
+---
+title: "Lecture 2: Embeddings"
+author: "Nicolai Berk"
+subtitle: "CUSO WS on Large Language Models"
+date: "2025-09-03"
+description: "This lecture covers the concept of embeddings in the context of large language models."
+keywords: ["embeddings", "large language models", "machine learning"]
+format:
+    revealjs:
+        theme: simple
+        slide-number: true
+        toc: false
+---
+
+## Recap: Bag-of Words and TF-IDF {auto-animate="true"}
+
+<br>
+
+<mark>Dance</mark> like nobody's watching
+
+## Recap: Bag-of Words and TF-IDF {auto-animate="true" auto-animate-duration="0"}
+
+<br>
+
+
+<mark>Move</mark> like nobody's watching
+
+## Recap: Bag-of Words and TF-IDF {auto-animate="true" auto-animate-duration="0"}
+
+<br>
+
+<mark>Steal</mark> like nobody's watching
+
+| dance | move | steal | like | nobody's | watching |
+|-------|------|-------|------|---------|---------|
+| 1     | 0    | 0     | 1    | 1       | 1       |
+| 0     | 1    | 0     | 1    | 1       | 1       |
+| 0     | 0    | 1     | 1    | 1       | 1       |
+
+. . .
+
+<br>
+
+#### What do we miss with this representation?
+
+## Distributional Hypothesis
+
+<br>
+
+#### Challenge: How can we measure *meaning*?
+
+<br>
+
+::: fragment
+::: callout-note
+### Distributional Hypothesis
+
+**A word's meaning can be inferred from the context it appears in.**
+
+
+:::
+
+<br>
+
+> @firth1957: "know a word by the company it keeps" 
+
+:::
+
+
+
+## Example: what is "ziti"?
+
+. . .
+
+![Source: [Your Dictionary](https://sentence.yourdictionary.com/ziti)](02_vis/ziti_context.png)
+
+::: fragment
+::: {.absolute top=100 left=200 width=800}
+![Source: Wikipedia](02_vis/ziti_image.jpg)
+:::
+:::
+
+## How can we conceptualize this?
+
+### Semantic Space
+
+```{r}
+
+library(ggplot2)
+library(dplyr)
+
+data.frame(
+        word = c("ziti", "pasta", "lasagna", "macaroni", "car", "bike", "carrot", "apple", "banana", "orange"),
+        dim1 = c(0.8, 0.9, 0.75, 0.7, 0.1, 0.2, 0.35, 0.3, 0.4, 0.35),
+        dim2 = c(0.1, 0.2, 0.15, 0.05, 0.9, 0.8, 0.15, 0.2, 0.1, 0.25),
+        highlight = c(TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE),
+        stringsAsFactors = FALSE
+    ) %>% 
+    ggplot(aes(x = dim1, y = dim2, label = word, color = !highlight)) +
+    geom_text(size = 5) +
+    theme_void() +
+    theme(legend.position = "none")
+
+
+
+```
+
+
+## How do we put this into numbers?
+
+### Two (and a half) approaches:
+
+::: incremental
+
+1. Train a **model** to predict (word2vec)
+   i. a word given its context (skip-gram)
+   ii. the context given a word (CBOW)
+2. **Co-occurrence matrix** (GloVe)
+    - assess how often do words appear together
+    - minimize the difference in representations of words that appear in similar contexts
+
+:::
+
+::: fragment
+
+### Identical result: word embeddings
+
+:::
+
+# `word2vec` (skip-gram)
+
+## 1. Identify word context^[The following slides are based on [Chris McCormick's excellent tutorial](https://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/).]
+
+![](http://mccormickml.com/assets/word2vec/training_data.png){height=450}
+
+::: {.absolute top=75 right=220}
+::: {data-id="box1" style="background: #ffffffff; width: 320px; height: 460px; margin: 10px;"}
+:::
+:::
+
+
+## 2. Build training data
+
+![](http://mccormickml.com/assets/word2vec/training_data.png){height=450}
+
+
+## 3. Train a model
+
+![](http://mccormickml.com/assets/word2vec/skip_gram_net_arch.png)
+
+## Result
+
+::: {.absolute top=75 left=150}
+![](http://mccormickml.com/assets/word2vec/word2vec_weight_matrix_lookup_table.png)
+:::
+
+::: {.fragment .absolute .fade-out top=75 right=150}
+::: {data-id="box1" style="background: #ffffffff; width: 420px; height: 800px; margin: 10px;"}
+:::
+:::
+
+::: {.fragment .absolute bottom=0}
+### <mark>Weight matrix = word embeddings!</mark>
+:::
+
+
+# Working with Embeddings
+
+## Words with similar contexts -> similar embeddings
+
+[Placeholder: Image of similar and dissimilar words in vector space]
+
+## This allows us to calculate with semantic meaning!
+
+### Example: Paris is to France as Berlin is to ...?
+
+[Code snippet]
+
+### Example: Men is to women as King is to ...?
+
+[Code snippet]
+
+## Cosine Similarity
+
+
+
+## Semantic Axes & Scaling
+
+
+## Document Embeddings
+
+
+## Embedding Regression
+
+
+# Let's check it out!
+
+
+[Notebook]()
+
+
