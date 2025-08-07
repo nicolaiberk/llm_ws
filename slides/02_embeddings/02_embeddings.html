@@ -30,7 +30,27 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-  </style>
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+      margin-bottom: 0em;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
   <link rel="stylesheet" href="02_embeddings_files/libs/revealjs/dist/theme/quarto-8f3eebe07241f08526c91a7e9cbef8fd.css">
   <link href="02_embeddings_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="02_embeddings_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -142,20 +162,72 @@ Nicolai Berk
 
   <p class="date">2025-09-03</p>
 </section>
-<section id="recap-bag-of-words-and-tf-idf" class="slide level2" data-auto-animate="true">
-<h2 data-id="quarto-animate-title">Recap: Bag-of Words and TF-IDF</h2>
+<section id="recap-bag-of-words" class="slide level2" data-auto-animate="true">
+<h2 data-id="quarto-animate-title">Recap: Bag-of Words</h2>
 <p><br></p>
-<p><mark>Dance</mark> like nobody’s watching</p>
+<h4 id="dance-like-nobodys-watching">Dance like nobody’s watching</h4>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>dance</th>
+<th>move</th>
+<th>steal</th>
+<th>like</th>
+<th>nobody’s</th>
+<th>watching</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="recap-bag-of-words-and-tf-idf-1" class="slide level2" data-auto-animate="true" data-auto-animate-duration="0">
-<h2 data-id="quarto-animate-title">Recap: Bag-of Words and TF-IDF</h2>
+<section id="recap-bag-of-words-1" class="slide level2" data-auto-animate="true" data-auto-animate-duration="0">
+<h2 data-id="quarto-animate-title">Recap: Bag-of Words</h2>
 <p><br></p>
-<p><mark>Move</mark> like nobody’s watching</p>
+<h4 id="move-like-nobodys-watching">Move like nobody’s watching</h4>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>dance</th>
+<th>move</th>
+<th>steal</th>
+<th>like</th>
+<th>nobody’s</th>
+<th>watching</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="recap-bag-of-words-and-tf-idf-2" class="slide level2" data-auto-animate="true" data-auto-animate-duration="0">
-<h2 data-id="quarto-animate-title">Recap: Bag-of Words and TF-IDF</h2>
+<section id="recap-bag-of-words-2" class="slide level2" data-auto-animate="true" data-auto-animate-duration="0">
+<h2 data-id="quarto-animate-title">Recap: Bag-of Words</h2>
 <p><br></p>
-<p><mark>Steal</mark> like nobody’s watching</p>
+<h4 id="steal-like-nobodys-watching">Steal like nobody’s watching</h4>
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -194,9 +266,71 @@ Nicolai Berk
 </tr>
 </tbody>
 </table>
+</section>
+<section id="recap-bag-of-words-3" class="slide level2" data-auto-animate="true" data-auto-animate-duration="0">
+<h2 data-id="quarto-animate-title">Recap: Bag-of Words</h2>
+<p><br></p>
+<h4 id="nobodys-watching-steal">Nobody’s watching: steal!</h4>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>dance</th>
+<th>move</th>
+<th>steal</th>
+<th>like</th>
+<th>nobody’s</th>
+<th>watching</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
 <div class="fragment">
 <p><br></p>
-<h4 id="what-do-we-miss-with-this-representation">What do we miss with this representation?</h4>
+<h3 id="what-do-we-miss-with-this-representation">What do we miss with this representation?</h3>
+</div>
+</section>
+<section id="limitations-of-bow-tf-idf" class="slide level2">
+<h2>Limitations of BoW &amp; Tf-IDF</h2>
+<p><br></p>
+<div>
+<ul>
+<li class="fragment">Ignores semantic meaning of words/tokens</li>
+<li class="fragment">Ignores order of words/tokens</li>
+<li class="fragment">High dimensionality &amp; sparsity</li>
+</ul>
 </div>
 </section>
 <section id="distributional-hypothesis" class="slide level2">
@@ -220,7 +354,7 @@ Nicolai Berk
 </div>
 <p><br></p>
 <blockquote>
-<p><span class="citation" data-cites="firth1957">@firth1957</span>: “know a word by the company it keeps”</p>
+<p><span class="citation" data-cites="firth1957studies">Firth (<a href="#/references" role="doc-biblioref" onclick="">1957</a>)</span>: “know a word by the company it keeps”</p>
 </blockquote>
 </div>
 </section>
@@ -229,7 +363,7 @@ Nicolai Berk
 <div class="fragment">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="02_vis/ziti_context.png"></p>
+<p><img data-src="vis/ziti_context.png"></p>
 <figcaption>Source: <a href="https://sentence.yourdictionary.com/ziti">Your Dictionary</a></figcaption>
 </figure>
 </div>
@@ -237,7 +371,7 @@ Nicolai Berk
 <div class="absolute" style="top: 100px; left: 200px; width: 800px; ">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="02_vis/ziti_image.jpg"></p>
+<p><img data-src="vis/ziti_image.jpg"></p>
 <figcaption>Source: Wikipedia</figcaption>
 </figure>
 </div>
@@ -274,7 +408,7 @@ Nicolai Berk
 <section>
 <section id="word2vec-skip-gram" class="title-slide slide level1 center">
 <h1><code>word2vec</code> (skip-gram)</h1>
-
+<p><span class="citation" data-cites="mikolov2013efficient">Mikolov et al. (<a href="#/references" role="doc-biblioref" onclick="">2013</a>)</span></p>
 </section>
 <section id="identify-word-context" class="slide level2">
 <h2>1. Identify word context<sup>1</sup></h2>
@@ -312,35 +446,263 @@ Nicolai Berk
 <h1>Working with Embeddings</h1>
 
 </section>
-<section id="words-with-similar-contexts---similar-embeddings" class="slide level2">
-<h2>Words with similar contexts -&gt; similar embeddings</h2>
-<p>[Placeholder: Image of similar and dissimilar words in vector space]</p>
+<section id="similar-context-rightarrow-similar-embeddings" class="slide level2">
+<h2>Similar context <span class="math inline">\(\rightarrow\)</span> similar embeddings</h2>
+
+<img data-src="vis/example_embs.png" class="r-stretch"></section>
+<section id="vector-basics" class="slide level2">
+<h2>Vector Basics</h2>
+
+<img data-src="vis/dir_mag.png" class="r-stretch quarto-figure-center"><p class="caption">Source: <a href="https://mathinsight.org/vector_introduction">Math Insight</a></p></section>
+<section id="vector-basics-1" class="slide level2">
+<h2>Vector Basics</h2>
+<p><br></p>
+<p>Magnitude: length of a vector</p>
+<p><br></p>
+<p><span class="math display">\[||\mathbf{a}|| = \sqrt{a_1^2 + a_2^2 + \ldots + a_n^2}\]</span></p>
 </section>
-<section id="this-allows-us-to-calculate-with-semantic-meaning" class="slide level2">
-<h2>This allows us to calculate with semantic meaning!</h2>
-<h3 id="example-paris-is-to-france-as-berlin-is-to">Example: Paris is to France as Berlin is to …?</h3>
-<p>[Code snippet]</p>
-<h3 id="example-men-is-to-women-as-king-is-to">Example: Men is to women as King is to …?</h3>
-<p>[Code snippet]</p>
+<section id="vector-addition" class="slide level2">
+<h2>Vector Addition</h2>
+<p><br></p>
+<p><span class="math display">\[\mathbf{a} + \mathbf{b} = a_1 + b_1, a_2 + b_2 + \ldots, a_n + b_n\]</span></p>
+<p><br></p>
+<div class="fragment">
+<p><span class="math display">\[
+\mathbf{a} + \mathbf{b} = [1,3] + [3,2] = [4,5]
+\]</span></p>
+</div>
 </section>
+<section id="vector-addition-1" class="slide level2">
+<h2>Vector Addition</h2>
+<h3 id="visually">Visually</h3>
+
+<img data-src="02_embeddings_files/figure-revealjs/unnamed-chunk-2-1.png" class="quarto-figure quarto-figure-center r-stretch" width="384"></section>
+<section id="vector-addition-2" class="slide level2">
+<h2>Vector Addition</h2>
+<h3 id="visually-1">Visually</h3>
+
+<img data-src="02_embeddings_files/figure-revealjs/unnamed-chunk-3-1.png" class="quarto-figure quarto-figure-center r-stretch" width="384"></section>
+<section id="vector-addition-3" class="slide level2">
+<h2>Vector Addition</h2>
+<h3 id="visually-2">Visually</h3>
+
+<img data-src="02_embeddings_files/figure-revealjs/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center r-stretch" width="384"></section>
+<section id="basic-operations-examples" class="slide level2">
+<h2>Basic Operations: Examples</h2>
+<p><br></p>
+<h4 id="paris-is-to-france-as-x-is-to-germany">Paris is to France as X is to Germany</h4>
+<p><span class="math inline">\(WV_{Paris} - WV_{France} + WV_{Germany} = WV_{X}\)</span></p>
+<div class="fragment">
+<p><img data-src="vis/example_embs_2.png"></p>
+</div>
+</section></section>
+<section id="minute-break" class="title-slide slide level1 center">
+<h1>5 minute break</h1>
+<p>Then we get our hands dirty!</p>
+</section>
+
+<section>
+<section id="embeddings-tutorial-1" class="title-slide slide level1 center">
+<h1>Embeddings: Tutorial 1</h1>
+<p><a href="">Notebook</a></p>
+</section>
+<section id="advanced-operations-projection" class="slide level2">
+<h2>Advanced Operations: Projection</h2>
+<h3 id="example-from-kozlowski2019geometry">Example from <span class="citation" data-cites="kozlowski2019geometry">Kozlowski, Taddy, and Evans (<a href="#/references" role="doc-biblioref" onclick="">2019</a>)</span></h3>
+
+<img data-src="vis/projection_example.png" class="r-stretch"></section>
+<section id="advanced-operations-projection-1" class="slide level2">
+<h2>Advanced Operations: Projection</h2>
+<h3 id="visually-3">Visually</h3>
+
+<img data-src="vis/projection.png" class="r-stretch quarto-figure-center"><p class="caption">Neat interactive visualization: <a href="https://mathinsight.org/dot_product">Math Insight</a></p></section>
+<section id="advanced-operations-projection-2" class="slide level2">
+<h2>Advanced Operations: Projection</h2>
+<h3 id="dot-product">Dot Product</h3>
+<p><span class="math display">\[\mathbf{a} \cdot \mathbf{b} = \sum_{i=1}^{n} a_i b_i = a_1 b_1 + a_2 b_2 + \ldots + a_n b_n\]</span></p>
+<div class="fragment">
+<p><span class="math display">\[\mathbf{a} \cdot \mathbf{b} = 1 * 3 + 3 * 2 = 3 + 6 = 9\]</span></p>
+</div>
+</section>
+<section id="advanced-operations-projection-3" class="slide level2">
+<h2>Advanced Operations: Projection</h2>
+<h3 id="normalize-by-magnitude-of-mathbfb">Normalize by magnitude of <span class="math inline">\(\mathbf{b}\)</span></h3>
+<p><br></p>
+<p><span class="math display">\[\frac{9}{||\mathbf{b}||} = \frac{9}{\sqrt{3^2 + 2^2}} = \frac{9}{\sqrt{13}} \approx 2.5\]</span></p>
+</section>
+<section id="advanced-operations-projection-4" class="slide level2">
+<h2>Advanced Operations: Projection</h2>
+<h3 id="visually-4">Visually</h3>
+
+<img data-src="02_embeddings_files/figure-revealjs/unnamed-chunk-5-1.png" class="quarto-figure quarto-figure-center r-stretch" width="384"></section>
 <section id="cosine-similarity" class="slide level2">
 <h2>Cosine Similarity</h2>
+<p><span class="math display">\[\cos(\theta) = \frac{\mathbf{a} \cdot \mathbf{b}}{|\mathbf{a}| |\mathbf{b}|} \]</span></p>
+<div class="fragment">
+<p>Seems familiar? Remember Projection:</p>
+<p><span class="math display">\[\cos(\theta) = \frac{\mathbf{a} \cdot \mathbf{b}}{|\mathbf{b}|} \]</span></p>
+<p>Difference: normalization by magnitude of <em>both</em> vectors.</p>
+</div>
+<div class="fragment">
+<h4 id="hence-bounded-in-interval--1-1">Hence bounded in interval <span class="math inline">\([-1, 1]\)</span></h4>
+</div>
 </section>
-<section id="semantic-axes-scaling" class="slide level2">
-<h2>Semantic Axes &amp; Scaling</h2>
+<section id="cosine-similarity-1" class="slide level2">
+<h2>Cosine Similarity</h2>
+<p><span class="math display">\[\cos(\theta) = \frac{\mathbf{a} \cdot \mathbf{b}}{|\mathbf{a}| |\mathbf{b}|} \]</span></p>
+<h4 id="what-is-theta">What is <span class="math inline">\(\theta\)</span>?</h4>
+<p>Neat feature: <span class="math inline">\(\theta\)</span> is the angle between our two vectors!</p>
+</section>
+<section id="cosine-similarity-intuition" class="slide level2">
+<h2>Cosine Similarity: Intuition</h2>
+
+<img data-src="02_embeddings_files/figure-revealjs/unnamed-chunk-6-1.png" class="quarto-figure quarto-figure-centre r-stretch" width="576"></section>
+<section id="cosine-similarity-intuition-1" class="slide level2">
+<h2>Cosine Similarity: Intuition</h2>
+
+<img data-src="02_embeddings_files/figure-revealjs/unnamed-chunk-7-1.png" class="quarto-figure quarto-figure-centre r-stretch" width="576"></section>
+<section id="cosine-similarity-intuition-2" class="slide level2">
+<h2>Cosine Similarity: Intuition</h2>
+
+<img data-src="02_embeddings_files/figure-revealjs/unnamed-chunk-8-1.png" class="quarto-figure quarto-figure-centre r-stretch" width="576"></section>
+<section id="defining-semantic-axes" class="slide level2">
+<h2>Defining Semantic Axes</h2>
+<p>Nice feature of all this algebra: you can define semantic <em>axes</em> simply by substracting vectors of polar opposites!</p>
+<p><span class="math display">\[WV_{frenchness} = WV_{french} - WV_{german}\]</span></p>
+<div class="fragment">
+<div class="columns">
+<div class="column">
+<p>The <strong>projection</strong> of a term on this vector tells us which pole it is more associated with!</p>
+</div><div class="column">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Term</th>
+<th>Frenchness</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Paris</td>
+<td>0.298</td>
+</tr>
+<tr class="even">
+<td>Lausanne</td>
+<td>0.073</td>
+</tr>
+<tr class="odd">
+<td>Bern</td>
+<td>-0.177</td>
+</tr>
+<tr class="even">
+<td>Berlin</td>
+<td>-0.333</td>
+</tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section></section>
+<section>
+<section id="second-tutorial-here" class="title-slide slide level1 center">
+<h1>Second Tutorial here</h1>
+
+</section>
+<section id="tracking-changes-in-meaning-over-time" class="slide level2">
+<h2>Tracking Changes in Meaning over Time</h2>
+<h4 id="chronologically-trained-embeddings-rodman2020timely">Chronologically trained embeddings <span class="citation" data-cites="rodman2020timely">(<a href="#/references" role="doc-biblioref" onclick="">Rodman 2020</a>)</span></h4>
+<ul>
+<li>Train new model on each time slice</li>
+<li>Initialize training for time slice <span class="math inline">\(t\)</span> with embeddings from time slice <span class="math inline">\(t-1\)</span></li>
+</ul>
+<div class="fragment">
+<h4 id="embedding-regression-rodriguez2023embedding">Embedding regression <span class="citation" data-cites="rodriguez2023embedding">(<a href="#/references" role="doc-biblioref" onclick="">Rodriguez, Spirling, and Stewart 2023</a>)</span></h4>
+<ul>
+<li>Uses a multivariate regression framework to model embeddings.</li>
+<li>Makes efficient use of scarce data.</li>
+<li>Allows for hypothesis testing <span class="math inline">\(\rightarrow\)</span> many use cases!</li>
+</ul>
+</div>
 </section>
 <section id="document-embeddings" class="slide level2">
 <h2>Document Embeddings</h2>
+<blockquote>
+<p>“The paragraph token can be thought of as another word.” (p.3)</p>
+</blockquote>
+
+<img data-src="vis/paragraph_vector.png" class="r-stretch quarto-figure-center"><p class="caption">Figure 2 from <span class="citation" data-cites="le2014distributed">Le and Mikolov (<a href="#/references" role="doc-biblioref" onclick="">2014</a>)</span></p></section>
+<section id="other-embeddings" class="slide level2">
+<h2>Other Embeddings</h2>
+<p><br></p>
+<h4 id="any-collection-of-texts-can-be-a-document">Any collection of texts can be a document!</h4>
+<ul>
+<li>Paragraphs</li>
+<li>Documents</li>
+<li>Speakers <span class="citation" data-cites="rheault2020word">(<a href="#/references" role="doc-biblioref" onclick="">Rheault and Cochrane 2020</a>)</span></li>
+<li>Countries</li>
+<li>…</li>
+</ul>
 </section>
-<section id="embedding-regression" class="slide level2">
-<h2>Embedding Regression</h2>
+<section id="state-of-the-art-embeddings" class="slide level2">
+<h2>State of the Art Embeddings</h2>
+<p><br></p>
+<h4 id="sentence-transformers">Sentence Transformers</h4>
+<ul>
+<li>Based on the Transformer architecture.</li>
+<li>Pre-trained on large corpora.</li>
+<li>Fine-tuned for specific tasks.</li>
+</ul>
+<h3 id="tomorrow">Tomorrow!</h3>
+</section>
+<section id="note-of-caution-validation" class="slide level2">
+<h2>Note of Caution: Validation</h2>
+<ul>
+<li>Many researcher degrees of freedom: seed words, hyperparameters, etc.</li>
+<li>Risk of accommodating own biases and cherry picking</li>
+</ul>
+<p><span class="math inline">\(\rightarrow\)</span> <strong>Validation is essential!</strong></p>
+<ul>
+<li>Precise method will depend on the task at hand.</li>
+<li>Correlate with established measures</li>
+<li>Gold standard remains human assessment</li>
+</ul>
+<h3 id="also-more-tomorrow">Also more tomorrow!</h3>
+</section>
+<section id="further-reading" class="slide level2">
+<h2>Further reading</h2>
 </section></section>
-<section id="lets-check-it-out" class="title-slide slide level1 center">
-<h1>Let’s check it out!</h1>
-<p><a href="">Notebook</a></p>
+<section>
+<section id="see-you-tomorrow" class="title-slide slide level1 center">
+<h1>See you tomorrow!</h1>
 
-</section>
+<img data-src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDloNmo0MzVjdTZheXczcm43a3M0ZW1raTk5M2tvN253eWpzb2NxbCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3o6Mb3PGeR7EufOgYo/giphy.gif" class="r-stretch"></section>
+<section id="references" class="slide level2 unnumbered smaller scrollable">
+<h2>References</h2>
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-firth1957studies" class="csl-entry" role="listitem">
+Firth, John Rupert. 1957. <em>Studies in Linguistic Analysis</em>. Oxford: Wiley-Blackwell.
+</div>
+<div id="ref-kozlowski2019geometry" class="csl-entry" role="listitem">
+Kozlowski, Austin C, Matt Taddy, and James A Evans. 2019. <span>“The Geometry of Culture: Analyzing the Meanings of Class Through Word Embeddings.”</span> <em>American Sociological Review</em> 84 (5): 905–49.
+</div>
+<div id="ref-le2014distributed" class="csl-entry" role="listitem">
+Le, Quoc, and Tomas Mikolov. 2014. <span>“Distributed Representations of Sentences and Documents.”</span> In <em>International Conference on Machine Learning</em>, 1188–96. PMLR.
+</div>
+<div id="ref-mikolov2013efficient" class="csl-entry" role="listitem">
+Mikolov, Tomas, Kai Chen, Greg Corrado, and Jeffrey Dean. 2013. <span>“Efficient Estimation of Word Representations in Vector Space.”</span> <em>arXiv Preprint arXiv:1301.3781</em>.
+</div>
+<div id="ref-rheault2020word" class="csl-entry" role="listitem">
+Rheault, Ludovic, and Christopher Cochrane. 2020. <span>“Word Embeddings for the Analysis of Ideological Placement in Parliamentary Corpora.”</span> <em>Political Analysis</em> 28 (1): 112–33.
+</div>
+<div id="ref-rodman2020timely" class="csl-entry" role="listitem">
+Rodman, Emma. 2020. <span>“A Timely Intervention: Tracking the Changing Meanings of Political Concepts with Word Vectors.”</span> <em>Political Analysis</em> 28 (1): 87–111.
+</div>
+<div id="ref-rodriguez2023embedding" class="csl-entry" role="listitem">
+Rodriguez, Pedro L, Arthur Spirling, and Brandon M Stewart. 2023. <span>“Embedding Regression: Models for Context-Specific Description and Inference.”</span> <em>American Political Science Review</em> 117 (4): 1255–74.
+</div>
+</div>
+</section></section>
 
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
