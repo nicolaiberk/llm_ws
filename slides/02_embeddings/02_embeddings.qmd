@@ -206,11 +206,12 @@ data.frame(
 
 ## Training Data and Bias
 
-[explain how embeddings simply reflect data - all biases in the data will be reflected in the embeddings]
+- Embeddings simply reflect the data they are trained on
+- If biases exist in the data, they will be reflected in the embeddings
+- This is a problem, e.g. when using embeddings for downstream tasks
+- However, this also enables us to study these biases [@kozlowski2019geometry; @kroon2021guilty]
 
-[but that also enables us to study these biases (eg kroon 2020, geometry of culture)]
-
-[thinking about the input data is key!]
+#### Thinking about the data we use is essential!
 
 # Working with Embeddings
 
