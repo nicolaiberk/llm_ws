@@ -173,7 +173,7 @@ data.frame(
 
 ## 1. Identify word context^[The following slides are based on [Chris McCormick's excellent tutorial](https://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/).]
 
-![](http://mccormickml.com/assets/word2vec/training_data.png){height=450}
+![](vis/training_data.png){height=450}
 
 ::: {.absolute top=75 right=220}
 ::: {data-id="box1" style="background: #ffffffff; width: 320px; height: 460px; margin: 10px;"}
@@ -182,17 +182,17 @@ data.frame(
 
 ## 2. Build training data
 
-![](http://mccormickml.com/assets/word2vec/training_data.png){height=450}
+![](vis/training_data.png){height=450}
 
 
 ## 3. Train a model
 
-![](http://mccormickml.com/assets/word2vec/skip_gram_net_arch.png)
+![](vis/skip_gram_net_arch.png)
 
 ## Result
 
 ::: {.absolute top=75 left=150}
-![](http://mccormickml.com/assets/word2vec/word2vec_weight_matrix_lookup_table.png)
+![](vis/word2vec_weight_matrix_lookup_table.png)
 :::
 
 ::: {.fragment .absolute .fade-out top=75 right=150}
