@@ -357,7 +357,7 @@ Then we get our hands dirty!
 
 # Embeddings: Tutorial 1
 
-[Notebook](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/02_embeddings_2.ipynb)
+[Notebook](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/02_embeddings_1.ipynb)
 
 # Advanced Embeddings
 
