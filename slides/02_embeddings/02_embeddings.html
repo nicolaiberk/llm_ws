@@ -162,6 +162,11 @@ Nicolai Berk
 
   <p class="date">2025-09-03</p>
 </section>
+<section>
+<section id="introduction-to-embeddings" class="title-slide slide level1 center">
+<h1>Introduction to Embeddings</h1>
+
+</section>
 <section id="recap-bag-of-words" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Recap: Bag-of Words</h2>
 <p><br></p>
@@ -404,7 +409,7 @@ Nicolai Berk
 <div class="fragment">
 <h3 id="identical-result-word-embeddings">Identical result: word embeddings</h3>
 </div>
-</section>
+</section></section>
 <section>
 <section id="word2vec-skip-gram" class="title-slide slide level1 center">
 <h1><code>word2vec</code> (skip-gram)</h1>
@@ -412,7 +417,7 @@ Nicolai Berk
 </section>
 <section id="identify-word-context" class="slide level2">
 <h2>1. Identify word context<sup>1</sup></h2>
-<p><img data-src="http://mccormickml.com/assets/word2vec/training_data.png" height="450"></p>
+<p><img data-src="vis/training_data.png" height="450"></p>
 <div class="absolute" style="top: 75px; right: 220px; ">
 <div data-id="box1" style="background: #ffffffff; width: 320px; height: 460px; margin: 10px;">
 
@@ -421,16 +426,16 @@ Nicolai Berk
 <aside><ol class="aside-footnotes"><li id="fn1"><p>The following slides are based on <a href="https://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/">Chris McCormick’s excellent tutorial</a>.</p></li></ol></aside></section>
 <section id="build-training-data" class="slide level2">
 <h2>2. Build training data</h2>
-<p><img data-src="http://mccormickml.com/assets/word2vec/training_data.png" height="450"></p>
+<p><img data-src="vis/training_data.png" height="450"></p>
 </section>
 <section id="train-a-model" class="slide level2">
 <h2>3. Train a model</h2>
 
-<img data-src="http://mccormickml.com/assets/word2vec/skip_gram_net_arch.png" class="r-stretch"></section>
+<img data-src="vis/skip_gram_net_arch.png" class="r-stretch"></section>
 <section id="result" class="slide level2">
 <h2>Result</h2>
 <div class="absolute" style="top: 75px; left: 150px; ">
-<p><img data-src="http://mccormickml.com/assets/word2vec/word2vec_weight_matrix_lookup_table.png"></p>
+<p><img data-src="vis/word2vec_weight_matrix_lookup_table.png"></p>
 </div>
 <div class="fragment absolute fade-out" style="top: 75px; right: 150px; ">
 <div data-id="box1" style="background: #ffffffff; width: 420px; height: 800px; margin: 10px;">
@@ -533,10 +538,16 @@ Nicolai Berk
 <div class="fragment">
 <p><span class="math display">\[\mathbf{a} \cdot \mathbf{b} = 1 * 3 + 3 * 2 = 3 + 6 = 9\]</span></p>
 </div>
+</section></section>
+<section>
+<section id="advanced-embeddings" class="title-slide slide level1 center">
+<h1>Advanced Embeddings</h1>
+
 </section>
 <section id="advanced-operations-projection-3" class="slide level2">
 <h2>Advanced Operations: Projection</h2>
 <h3 id="normalize-by-magnitude-of-mathbfb">Normalize by magnitude of <span class="math inline">\(\mathbf{b}\)</span></h3>
+<p>(to get magnitude of projection)</p>
 <p><br></p>
 <p><span class="math display">\[\frac{9}{||\mathbf{b}||} = \frac{9}{\sqrt{3^2 + 2^2}} = \frac{9}{\sqrt{13}} \approx 2.5\]</span></p>
 </section>
@@ -549,16 +560,17 @@ Nicolai Berk
 <h2>Cosine Similarity</h2>
 <p><span class="math display">\[\cos(\theta) = \frac{\mathbf{a} \cdot \mathbf{b}}{|\mathbf{a}| |\mathbf{b}|} \]</span></p>
 <div class="fragment">
-<p>Seems familiar? Remember Projection:</p>
-<p><span class="math display">\[\cos(\theta) = \frac{\mathbf{a} \cdot \mathbf{b}}{|\mathbf{b}|} \]</span></p>
-<p>Difference: normalization by magnitude of <em>both</em> vectors.</p>
+<p>Seems familiar? Remember magnitude of the projection:</p>
+<p><span class="math display">\[\frac{\mathbf{a} \cdot \mathbf{b}}{|\mathbf{b}|} \]</span></p>
+<p><strong>Difference: normalization by magnitude of <em>both</em> vectors.</strong></p>
 </div>
 <div class="fragment">
-<h4 id="hence-bounded-in-interval--1-1">Hence bounded in interval <span class="math inline">\([-1, 1]\)</span></h4>
+<h4 id="hence-bound-in-interval--1-1">Hence bound in interval <span class="math inline">\([-1, 1]\)</span></h4>
 </div>
 </section>
 <section id="cosine-similarity-1" class="slide level2">
 <h2>Cosine Similarity</h2>
+<p><br></p>
 <p><span class="math display">\[\cos(\theta) = \frac{\mathbf{a} \cdot \mathbf{b}}{|\mathbf{a}| |\mathbf{b}|} \]</span></p>
 <h4 id="what-is-theta">What is <span class="math inline">\(\theta\)</span>?</h4>
 <p>Neat feature: <span class="math inline">\(\theta\)</span> is the angle between our two vectors!</p>
@@ -612,27 +624,6 @@ Nicolai Berk
 </table>
 </div></div>
 </div>
-</section></section>
-<section>
-<section id="second-tutorial-here" class="title-slide slide level1 center">
-<h1>Second Tutorial here</h1>
-
-</section>
-<section id="tracking-changes-in-meaning-over-time" class="slide level2">
-<h2>Tracking Changes in Meaning over Time</h2>
-<h4 id="chronologically-trained-embeddings-rodman2020timely">Chronologically trained embeddings <span class="citation" data-cites="rodman2020timely">(<a href="#/references" role="doc-biblioref" onclick="">Rodman 2020</a>)</span></h4>
-<ul>
-<li>Train new model on each time slice</li>
-<li>Initialize training for time slice <span class="math inline">\(t\)</span> with embeddings from time slice <span class="math inline">\(t-1\)</span></li>
-</ul>
-<div class="fragment">
-<h4 id="embedding-regression-rodriguez2023embedding">Embedding regression <span class="citation" data-cites="rodriguez2023embedding">(<a href="#/references" role="doc-biblioref" onclick="">Rodriguez, Spirling, and Stewart 2023</a>)</span></h4>
-<ul>
-<li>Uses a multivariate regression framework to model embeddings.</li>
-<li>Makes efficient use of scarce data.</li>
-<li>Allows for hypothesis testing <span class="math inline">\(\rightarrow\)</span> many use cases!</li>
-</ul>
-</div>
 </section>
 <section id="document-embeddings" class="slide level2">
 <h2>Document Embeddings</h2>
@@ -652,6 +643,37 @@ Nicolai Berk
 <li>Countries</li>
 <li>…</li>
 </ul>
+</section></section>
+<section id="minute-break-1" class="title-slide slide level1 center">
+<h1>5 minute break</h1>
+
+</section>
+
+<section id="embeddings-tutorial-2" class="title-slide slide level1 center">
+<h1>Embeddings: Tutorial 2</h1>
+<p><a href="">Notebook</a></p>
+</section>
+
+<section>
+<section id="more-advanced-topics" class="title-slide slide level1 center">
+<h1>More Advanced Topics</h1>
+
+</section>
+<section id="tracking-changes-in-meaning-over-time" class="slide level2">
+<h2>Tracking Changes in Meaning over Time</h2>
+<h4 id="chronologically-trained-embeddings-rodman2020timely">Chronologically trained embeddings <span class="citation" data-cites="rodman2020timely">(<a href="#/references" role="doc-biblioref" onclick="">Rodman 2020</a>)</span></h4>
+<ul>
+<li>Train new model on each time slice</li>
+<li>Initialize training for time slice <span class="math inline">\(t\)</span> with embeddings from time slice <span class="math inline">\(t-1\)</span></li>
+</ul>
+<div class="fragment">
+<h4 id="embedding-regression-rodriguez2023embedding">Embedding regression <span class="citation" data-cites="rodriguez2023embedding">(<a href="#/references" role="doc-biblioref" onclick="">Rodriguez, Spirling, and Stewart 2023</a>)</span></h4>
+<ul>
+<li>Uses a multivariate regression framework to model embeddings.</li>
+<li>Makes efficient use of scarce data.</li>
+<li>Allows for hypothesis testing <span class="math inline">\(\rightarrow\)</span> many use cases!</li>
+</ul>
+</div>
 </section>
 <section id="state-of-the-art-embeddings" class="slide level2">
 <h2>State of the Art Embeddings</h2>
@@ -677,9 +699,6 @@ Nicolai Berk
 <li>Gold standard remains human assessment</li>
 </ul>
 <h3 id="also-more-tomorrow">Also more tomorrow!</h3>
-</section>
-<section id="further-reading" class="slide level2">
-<h2>Further reading</h2>
 </section></section>
 <section>
 <section id="see-you-tomorrow" class="title-slide slide level1 center">

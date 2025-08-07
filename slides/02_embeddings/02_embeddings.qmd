@@ -13,6 +13,8 @@ format:
 bibliography: "../references.bib"
 ---
 
+# Introduction to Embeddings
+
 ## Recap: Bag-of Words {auto-animate="true"}
 
 <br>
@@ -381,10 +383,13 @@ $$\mathbf{a} \cdot \mathbf{b} = 1 * 3 + 3 * 2 = 3 + 6 = 9$$
 
 :::
 
+# Advanced Embeddings
 
 ## Advanced Operations: Projection
 
-### Normalize by magnitude of $\mathbf{b}$
+### Normalize by magnitude of $\mathbf{b}$ 
+
+(to get magnitude of projection)
 
 <br>
 
@@ -429,21 +434,23 @@ $$\cos(\theta) = \frac{\mathbf{a} \cdot \mathbf{b}}{|\mathbf{a}| |\mathbf{b}|} $
 
 ::: fragment
 
-Seems familiar? Remember Projection:
+Seems familiar? Remember magnitude of the projection:
 
-$$\cos(\theta) = \frac{\mathbf{a} \cdot \mathbf{b}}{|\mathbf{b}|} $$
+$$\frac{\mathbf{a} \cdot \mathbf{b}}{|\mathbf{b}|} $$
 
-Difference: normalization by magnitude of *both* vectors.
+**Difference: normalization by magnitude of *both* vectors.**
 
 :::
 
 ::: fragment
 
-####  Hence bounded in interval $[-1, 1]$
+####  Hence bound in interval $[-1, 1]$
 
 :::
 
 ## Cosine Similarity
+
+<br>
 
 $$\cos(\theta) = \frac{\mathbf{a} \cdot \mathbf{b}}{|\mathbf{a}| |\mathbf{b}|} $$
 
@@ -536,24 +543,6 @@ The **projection** of a term on this vector tells us which pole it is more assoc
 ::::
 :::
 
-# Second Tutorial here
-
-## Tracking Changes in Meaning over Time
-
-#### Chronologically trained embeddings [@rodman2020timely]
-
-- Train new model on each time slice
-- Initialize training for time slice $t$ with embeddings from time slice $t-1$
-
-::: fragment
-
-#### Embedding regression [@rodriguez2023embedding]
-
-- Uses a multivariate regression framework to model embeddings.
-- Makes efficient use of scarce data.
-- Allows for hypothesis testing $\rightarrow$ many use cases!
-
-:::
 
 ## Document Embeddings
 
@@ -572,6 +561,32 @@ The **projection** of a term on this vector tells us which pole it is more assoc
 - Speakers [@rheault2020word]
 - Countries
 - ...
+
+# 5 minute break
+
+# Embeddings: Tutorial 2
+
+[Notebook]()
+
+# Closing Remarks
+
+## Tracking Changes in Meaning over Time
+
+#### Chronologically trained embeddings [@rodman2020timely]
+
+- Train new model on each time slice
+- Initialize training for time slice $t$ with embeddings from time slice $t-1$
+
+::: fragment
+
+#### Embedding regression [@rodriguez2023embedding]
+
+- Uses a multivariate regression framework to model embeddings.
+- Makes efficient use of scarce data.
+- Allows for hypothesis testing $\rightarrow$ many use cases!
+
+:::
+
 
 ## State of the Art Embeddings
 
@@ -598,8 +613,6 @@ $\rightarrow$ **Validation is essential!**
 - Gold standard remains human assessment
 
 ### Also more tomorrow!
-
-## Further reading
 
 # See you tomorrow!
 
