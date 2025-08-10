@@ -1,0 +1,62 @@
+---
+title: "CUSO WS on LLMs"
+subtitle: "Session 3: ML"
+author: "Nicolai Berk"
+date: "2025-09-03"
+description: "This lecture gives a brief introduction for machine learning."
+keywords: ["ml", "bag of words", "machine learning", "nlp"]
+format:
+    revealjs:
+        theme: simple
+        slide-number: true
+        toc: false
+bibliography: "../references.bib"
+---
+
+## Today
+
+- ML
+- What is a Neural Network?
+
+# Machine Learning
+
+# What is a Neural Network?
+
+## A Single Node
+
+![](vis/perceptron.png)
+
+## A Single Node
+
+![](vis/perceptron.png)
+
+$$\hat{y} = g(w_0 + \sum_{i=1}^{m} w_i x_i)$$
+
+## A Single Node
+
+![](vis/perceptron_example.png)
+
+
+## Deep Neural Networks
+
+![Source: [IBM](https://www.ibm.com/think/topics/neural-networks)](vis/deep_neural_network.png)
+
+## The Activation Function
+
+![](vis/activation_functions.png)
+
+## The Activation Function
+
+![](vis/activation_functions.png)
+
+**Important: non-linear!** (why do you think that is?)
+
+## How does it learn?
+
+![](Figure1_6/8_Deep Learning)
+
+### Loss Function
+
+### Backpropagation
+
+### Gradient Descent
