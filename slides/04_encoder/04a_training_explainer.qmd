@@ -1,0 +1,37 @@
+---
+title: "Training vs. Fine-tuning"
+author: "Nicolai Berk, Claude"
+subtitle: "CUSO WS on Large Language Models"
+date: "2025-08-31"
+description: "A quick explainer on the distinction of pre-training and fine-tuning for LLM applications."
+keywords: ["large language models", "transfer learning", "pre-training", "fine-tuning", "nlp"]
+format: html
+---
+
+# Understanding LLM Training
+
+Modern LLMs are developed through a two-stage process: pre-training, which builds foundational language understanding, and fine-tuning, which adapts this foundation for specific tasks. This brief overview explains how each stage works and why this approach has proven so effective.
+
+## Pre-training: Building Foundation Models
+
+Pre-training is the computationally intensive first stage where models learn the fundamental structure and patterns of language. This process involves training on massive text corpora—often hundreds of billions or trillions of tokens drawn from books, websites, academic papers, and other text sources. To use a metaphor, pre-training is like teaching a child the basic rules of language.
+
+### The Masked Language Modeling Objective
+
+The core mechanism of pre-training is **masked language modeling** (MLM), also known as masked token prediction. During training, the model receives text sequences where certain tokens have been randomly masked or hidden. A token typically represents a word, subword, or punctuation mark—the basic units into which text is divided for processing.
+
+For example, given the sentence "The researcher analyzed the survey data carefully," the training process might mask it as "The researcher [MASK] the survey [MASK] carefully." The model must predict the original tokens ("analyzed" and "data") based on the surrounding context. This requires understanding syntax (what types of words can appear in each position), semantics (what makes sense given the context), and world knowledge (what researchers typically do with survey data).
+
+The scale of pre-training is enormous. Even 'older' models like GPT-3 were trained on datasets containing hundreds of billions of tokens, requiring thousands of GPUs running for weeks or months. The computational cost can reach millions of dollars, but the result is a model with broad linguistic competence that understands grammar, factual relationships, reasoning patterns, and stylistic conventions across many domains.
+
+## Fine-tuning: Specializing Pre-trained Models
+
+Fine-tuning takes the broad linguistic competence developed during pre-training and adapts it for specific tasks or domains. This stage represents a form of **transfer learning**—leveraging knowledge acquired in one context (general language understanding) to excel in another (specific applications). Returning to our metaphor, this could be conceived of training someone who already knows how to speak English to identify different topics in tweets or write a novel.
+
+The pre-trained model arrives at the fine-tuning stage with its parameters already encoding vast linguistic information. Rather than learning language from scratch, fine-tuning modifies these existing parameters to better serve particular objectives. This is computationally efficient because the model already describes fundamental properties of language; it just needs to learn how to apply this "understanding" to new tasks.
+
+Fine-tuning typically uses much smaller datasets than pre-training - thousands or tens of thousands of examples rather than billions. These datasets are usually carefully curated and task-specific. For instance, a model being fine-tuned for sentiment analysis might train on examples of text paired with sentiment labels, while one being adapted for question-answering could use question-context-answer triplets.
+
+In addition to using less data, fine-tuning can be made more efficient by updating only parts of a model - only training a classification head on given embeddings or only some layers of the model ("freezing" the remaining layers). Alternatively, so-called *adapters* can be used to reduce the number of trainable parameters while still allowing the model to adapt to new tasks.
+
+Before task-specific fine-tuning, researchers sometimes perform additional pre-training on domain-specific corpora. For example, a model intended for biomedical applications might undergo continued pre-training on medical literature, while one for social science research might be exposed to academic papers and survey data. This domain adaptation helps the model learn specialized vocabulary, concepts, and reasoning patterns relevant to the target field, often leading to improved performance on downstream tasks within that domain.
