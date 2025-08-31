@@ -4,7 +4,7 @@ author: "Nicolai Berk"
 subtitle: "CUSO WS on Large Language Models"
 date: "2025-09-03"
 description: "This lecture covers the concept of embeddings in the context of large language models."
-keywords: ["embeddings", "large language models", "machine learning"]
+keywords: ["embeddings", "large language models", "machine learning", "nlp"]
 format:
     revealjs:
         theme: simple
