@@ -1,9 +1,9 @@
 ---
 title: "CUSO WS on LLMs"
-subtitle: "Session 3: ML"
+subtitle: "Session 3: Intro to Supervised Machine Learning"
 author: "Nicolai Berk"
 date: "2025-09-03"
-description: "This lecture gives a brief introduction for machine learning."
+description: "This lecture gives a brief introduction to machine learning for NLP."
 keywords: ["ml", "bag of words", "machine learning", "nlp"]
 format:
     revealjs:
@@ -15,10 +15,363 @@ bibliography: "../references.bib"
 
 ## Today
 
-- ML
-- What is a Neural Network?
+- The basics of supervised machine learning
+- Model evaluation
+- Intro to neural networks
+- Training neural networks
+- Debiasing model predictions
 
-# Machine Learning
+## Examples
+
+![Netflix recommendations](vis/netflix.png)
+
+## Examples
+
+![Drug Development (Source: [Catacutan et al. 2024](https://www.nature.com/articles/s41589-024-01679-1))](vis/drug_dev_ml.png)
+
+## Examples
+
+![ChatGPT](vis/chatgpt.png)
+
+## ML Overview
+
+#### Many different forms!
+
+- Regression
+- Classification
+- Clustering/Unsupervised ML
+- Generative Models
+
+### Focus here on classification/supervised ML!
+
+------------------------------------------------------------------------
+
+<br>
+
+
+### Supervised learning (A **very** precise definition):
+
+<br> <br>
+
+> We know stuff about some documents and want to know the same stuff about other documents.
+
+#### Core Challenge: Prediction
+
+## Some Lingo
+
+<br>
+
+| Term | Meaning |
+|:-----------------|:-----------------------------------------------------|
+| **Classifier** | a statistical model fitted to some data to make predictions about different data. |
+| **Training** | The process of fitting the classifier to the data. |
+| **Train and test set** | Datasets used to train and evaluate the classifier. |
+| **Vectorizer** | A tool used to translate text into numbers. |
+
+## The Classic Pipeline for Text Classification
+
+<br>
+
+::: incremental
+0.  Annotate subset.
+1.  Divide into training- and test-set.
+2.  Transform text into numerical features.
+3.  Fit model.
+4.  Predict.
+5.  Evaluate.
+:::
+
+. . .
+
+![](https://scikit-learn.org/stable/_static/scikit-learn-logo-small.png){.absolute bottom="130" right="250" height="100"}
+
+
+# The Classic Pipeline
+
+## 0. Annotation
+
+<br>
+
+-   We need data from which to learn.
+-   Assign labels to documents.
+-   **Usually** randomly sampled.
+
+
+## 0. Annotation
+
+![](vis/annotations.png)
+
+
+## 1. Divide into train and test (and val)
+
+<br>
+
+- Usually randomly sampled (not always!)
+- Customary: 90-10/80-10-10 split
+- Only consideration for test/validation set size: precision of metrics - for large datasets 10% test split not sensible
+
+## 2. Transformation
+
+<br>
+
+Statistical models can only read numbers
+
+$\rightarrow$ we need to **translate!**
+
+. . .
+
+### Classic DFM
+
+::::: columns
+::: {.column width="50%"}
+| ID  | Text            |
+|-----|-----------------|
+| 1   | This is a text  |
+| 2   | This is no text |
+:::
+
+::: {.column width="50%"}
+| ID  | This | is  | a   | text | no  |
+|-----|------|-----|-----|------|-----|
+| 1   | 1    | 1   | 1   | 1    | 0   |
+| 2   | 1    | 1   | 0   | 1    | 1   |
+:::
+:::::
+
+## 3. Fit model.
+
+<br>
+
+::: incremental
+
+- Many different models: OLS, logistic regression
+- Other common models: Naïve Bayes, SVM, XGBoost
+
+:::
+
+. . .
+
+### Not delving into different models today!
+
+## 4. Predict.
+
+### Use trained model to generate labels for unlabeled cases.
+
+```{r}
+library(dplyr)
+
+data.frame(
+  review = c("great movie!", 
+             "what a bunch of cr*p",
+             "I lost all faith in humanity after watching this"),
+  label = c("?", "?", "?")
+) %>% 
+  knitr::kable()
+
+```
+
+## 5. Evaluation
+
+<br>
+
+### Confusion Matrix
+
+```{r confusion}
+
+actual <- as.logical(rbinom(1000, 1, 0.3))
+pred <- actual
+pred[sample(1:1000, 50)] <- F
+pred[sample(1:1000, 50)] <- T
+
+knitr::kable(table(pred, actual))
+
+```
+
+## 5. Evaluation {.smaller}
+
+::::: columns
+::: {.column width="30%"}
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Precisionrecall.svg/525px-Precisionrecall.svg.png)
+:::
+
+::: {.column width="70%"}
+<br>
+
+| Term          | Meaning                                      |
+|:--------------|:---------------------------------------------|
+| **Accuracy**  | How much does it get right overall?          |
+| **Recall**    | How much of the relevant cases does it find? |
+| **Precision** | How many of the found cases are relevant?    |
+| **F1 Score**  | Weighted average of precision and recall.    |
+:::
+:::::
+
+## Issues with Common Metrics
+
+```{r acc}
+
+library(tidyverse)
+
+base_rate <- seq(0, 1, 0.01)
+
+accuracy <- function(base_rate, pred_rate) {
+    (base_rate * pred_rate + (1 - base_rate) * (1 - pred_rate)) /
+        (base_rate * pred_rate + (1 - base_rate) * (1 - pred_rate) + (1 - base_rate) * pred_rate + base_rate * (1 - pred_rate))
+}
+
+df <- expand.grid(base_rate = base_rate)
+df$pred_rate <- df$base_rate
+df$accuracy <- accuracy(df$base_rate, df$pred_rate)
+
+ggplot(df, aes(x = base_rate, y = accuracy)) +
+    geom_line() +
+    labs(title = "Accuracy of uninformative classifier as a function of prevalence",
+         x = "Prevalence",
+         y = "Accuracy") +
+    theme_minimal()
+
+```
+
+::: aside
+Optimal random guess is random guess using base rate as prediction probability.
+:::
+
+
+## Issues with Common Metrics
+
+```{r prf}
+
+precision <- function(base_rate, pred_rate) {
+    (base_rate * pred_rate) / ((base_rate*pred_rate) + ((1 - base_rate) * pred_rate))
+}
+
+recall <- function(base_rate, pred_rate) {
+    (base_rate*pred_rate) / (base_rate * pred_rate + base_rate * (1 - pred_rate))
+}
+
+f1 <- function(base_rate, pred_rate) {
+    2 * precision(base_rate, pred_rate) * recall(base_rate, pred_rate) / (precision(base_rate, pred_rate) + recall(base_rate, pred_rate))
+}
+
+f1_macro <- function(base_rate, pred_rate) {
+    f1_pos <- f1(base_rate, pred_rate)
+    f1_neg <- f1(1 - base_rate, 1 - pred_rate)
+    (f1_pos + f1_neg) / 2
+}
+
+f1_wtd <- function(base_rate, pred_rate) {
+    f1_pos <- f1(base_rate, pred_rate)
+    f1_neg <- f1(1 - base_rate, 1 - pred_rate)
+    (base_rate * f1_pos + (1 - base_rate) * f1_neg)
+}
+
+df <- expand.grid(base_rate = base_rate, pred_rate = seq(0.25, 0.75, 0.25))
+
+df$Precision <- precision(df$base_rate, df$pred_rate)
+df$Recall <- recall(df$base_rate, df$pred_rate)
+df$F1 <- f1(df$base_rate, df$pred_rate)
+
+df %>%
+    pivot_longer(
+        cols = c(Precision, Recall, F1), 
+        names_to = "metric", values_to = "value"
+        ) %>%
+    ggplot(aes(x = base_rate, y = value)) +
+    geom_line(aes(color = metric)) +
+    labs(title = "Metrics as a Function of Outcome and Prediction Prevalence",
+         x = "Prevalence",
+         y = "Prediction Rate") +
+    theme_minimal() +
+    theme(legend.position = "None") +
+    facet_grid(pred_rate~metric)
+
+```
+
+## Issues with Common Metrics
+
+
+```{r f1adv}
+
+df <- expand.grid(base_rate = base_rate, pred_rate = seq(0.1, 0.9, 0.1))
+
+df$`F1 macro` <- f1_macro(df$base_rate, df$pred_rate)
+df$`F1 weighted` <- f1_wtd(df$base_rate, df$pred_rate)
+
+df %>%
+    pivot_longer(
+        cols = c(`F1 macro`, `F1 weighted`), 
+        names_to = "metric", values_to = "value"
+        ) %>%
+    ggplot(aes(x = base_rate, y = value, group = pred_rate)) +
+    geom_line(aes(color = pred_rate)) +
+    labs(title = "F1 Macro and F1 Weighted as a Function of Outcome and Prediction Prevalence",
+         x = "Prevalence",
+         y = "Value") +
+    theme_minimal() +
+    facet_grid(~metric)
+
+```
+
+
+
+## Best Practice Evaluation
+
+::: incremental
+
+- Compare against informative baselines
+  - Random prediction at prevalence rate
+  - Simple classifier, e.g. Logistic Regression
+- Think about metric of interest (cancer detection vs. ad targeting)
+- Use prevalence-insensitive metrics:
+  - Matthew's correlation coefficient (MCC)
+  - Youden's J/Bookmakers informedness (BM)
+
+:::
+
+
+# Finding the perfect match
+
+## Mean Squared Error (MSE)
+
+![](vis/mse.png)
+
+## Mean Squared Error (MSE)
+
+<br><br>
+
+$$MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2$$
+
+
+## The bias-variance tradeoff
+
+- Read [this short explainer](https://mlu-explain.github.io/bias-variance/) (stop when you reach LOESS)
+- Together with 1-2 colleagues, explain to each other
+  - What is underfitting?
+  - What is overfitting?
+  - What is bias?
+  - What is variance?
+  - How do you balance bias and variance in ML?
+
+
+## The bias-variance tradeoff
+
+![](vis/bvt1.png)
+
+## The bias-variance tradeoff
+
+![](vis/bvt2.png)
+
+## The bias-variance tradeoff
+
+![](vis/bvt3.png)
+
+# Break
+
+
+# Tutorial I
+
+[Training a simple text classifier]()
+
 
 # What is a Neural Network?
 
@@ -51,6 +404,23 @@ $$\hat{y} = g(w_0 + \sum_{i=1}^{m} w_i x_i)$$
 
 **Important: non-linear!** (why do you think that is?)
 
+# Training Deep Learning Models
+
+## What is "Training" ?
+
+<br>
+
+- Remember from ML course: **Training** is the process of optimizing a model's parameters on a specific task using labeled data.
+- In regression framework, this is called **fitting** the model to the training data.
+
+## Three Essential Steps
+
+<br>
+
+- **Forward pass**: The process of passing input data through the model to obtain predictions.
+- **Loss**: A measure of how well the model's predictions match the ground truth.
+- **Backward pass**: The process of updating model parameters based on the loss.
+
 ## How does it learn?
 
 ![](Figure1_6/8_Deep Learning)
@@ -60,3 +430,59 @@ $$\hat{y} = g(w_0 + \sum_{i=1}^{m} w_i x_i)$$
 ### Backpropagation
 
 ### Gradient Descent
+
+### Hyperparameters
+
+![Play around with a neural network](https://playground.tensorflow.org/)
+
+
+## Training a Deep Learning Model
+
+> How can we fit billions of parameters efficiently?
+
+### Gradient Descent
+
+
+
+## Fine-tuning a Transformer Model
+
+## Training Hyperparameters
+
+### Choose one of the hyperparameters and read the associated explainer - then explain to us what the hyperparameter does!
+
+- **Number of Epochs**: The number of complete passes through the training dataset.
+- **Learning Rate**: The step size at each iteration while moving toward a minimum of the loss function.
+- **Batch Size**: The number of training examples utilized in one iteration.
+- **Weight Decay**: A regularization technique to prevent overfitting by penalizing large weights.
+- Dropout
+- ...
+
+## Typology
+
+- Fit more closely: epochs, learning rate, 
+- Generalize better/regularization: dropout, regularization, batch size, weight decay
+
+
+## Tracking Training Progress
+
+### The Process of Hyperparameter Tuning
+
+[Weights and Biases](https://wandb.ai/) - "experiment" tracking and visualization
+
+## Understanding Training Dynamics
+
+<br>
+
+[Understanding learning curves](https://huggingface.co/learn/llm-course/chapter3/5)
+
+- read, do quiz
+- exchange insights
+- test them here:
+
+[Visualizing training dynamics](https://playground.tensorflow.org/)
+
+# Debiasing Model Predictions
+
+# Tutorial II
+
+[sentence embeddings? issues with common metrics under imbalance? debiasing!!!]

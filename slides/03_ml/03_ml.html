@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="03_ml_files/libs/clipboard/clipboard.min.js"></script>
+<script src="03_ml_files/libs/quarto-html/tabby.min.js"></script>
+<script src="03_ml_files/libs/quarto-html/popper.min.js"></script>
+<script src="03_ml_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="03_ml_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="03_ml_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="03_ml_files/libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.42">
+
+  <meta name="author" content="Nicolai Berk">
+  <meta name="dcterms.date" content="2025-09-03">
+  <meta name="keywords" content="ml, bag of words, machine learning, nlp">
+  <title>CUSO WS on LLMs</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="03_ml_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="03_ml_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="03_ml_files/libs/revealjs/dist/theme/quarto-8f3eebe07241f08526c91a7e9cbef8fd.css">
+  <link href="03_ml_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="03_ml_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="03_ml_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="03_ml_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">CUSO WS on LLMs</h1>
+  <p class="subtitle">Session 3: Intro to Supervised Machine Learning</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Nicolai Berk 
+</div>
+</div>
+</div>
+
+  <p class="date">2025-09-03</p>
+</section>
+<section id="today" class="slide level2">
+<h2>Today</h2>
+<ul>
+<li>The basics of supervised machine learning</li>
+<li>Model evaluation</li>
+<li>Intro to neural networks</li>
+<li>Training neural networks</li>
+<li>Debiasing model predictions</li>
+</ul>
+</section>
+<section id="examples" class="slide level2">
+<h2>Examples</h2>
+
+<img data-src="vis/netflix.png" class="r-stretch quarto-figure-center"><p class="caption">Netflix recommendations</p></section>
+<section id="examples-1" class="slide level2">
+<h2>Examples</h2>
+
+<img data-src="vis/drug_dev_ml.png" class="r-stretch quarto-figure-center"><p class="caption">Drug Development (Source: <a href="https://www.nature.com/articles/s41589-024-01679-1">Catacutan et al.&nbsp;2024</a>)</p></section>
+<section id="examples-2" class="slide level2">
+<h2>Examples</h2>
+
+<img data-src="vis/chatgpt.png" class="r-stretch quarto-figure-center"><p class="caption">ChatGPT</p></section>
+<section id="ml-overview" class="slide level2">
+<h2>ML Overview</h2>
+<h4 id="many-different-forms">Many different forms!</h4>
+<ul>
+<li>Regression</li>
+<li>Classification</li>
+<li>Clustering/Unsupervised ML</li>
+<li>Generative Models</li>
+</ul>
+<h3 id="focus-here-on-classificationsupervised-ml">Focus here on classification/supervised ML!</h3>
+</section>
+<section class="slide level2">
+
+<p><br></p>
+<h3 id="supervised-learning-a-very-precise-definition">Supervised learning (A <strong>very</strong> precise definition):</h3>
+<p><br> <br></p>
+<blockquote>
+<p>We know stuff about some documents and want to know the same stuff about other documents.</p>
+</blockquote>
+<h4 id="core-challenge-prediction">Core Challenge: Prediction</h4>
+</section>
+<section id="some-lingo" class="slide level2">
+<h2>Some Lingo</h2>
+<p><br></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 75%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Term</th>
+<th style="text-align: left;">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Classifier</strong></td>
+<td style="text-align: left;">a statistical model fitted to some data to make predictions about different data.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Training</strong></td>
+<td style="text-align: left;">The process of fitting the classifier to the data.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Train and test set</strong></td>
+<td style="text-align: left;">Datasets used to train and evaluate the classifier.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Vectorizer</strong></td>
+<td style="text-align: left;">A tool used to translate text into numbers.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="the-classic-pipeline-for-text-classification" class="slide level2">
+<h2>The Classic Pipeline for Text Classification</h2>
+<p><br></p>
+<div>
+<ol start="0" type="1">
+<li class="fragment">Annotate subset.</li>
+<li class="fragment">Divide into training- and test-set.</li>
+<li class="fragment">Transform text into numerical features.</li>
+<li class="fragment">Fit model.</li>
+<li class="fragment">Predict.</li>
+<li class="fragment">Evaluate.</li>
+</ol>
+</div>
+<div class="fragment">
+<p><img data-src="https://scikit-learn.org/stable/_static/scikit-learn-logo-small.png" class="absolute" style="bottom: 130px; right: 250px; height: 100px; "></p>
+</div>
+</section>
+<section>
+<section id="the-classic-pipeline" class="title-slide slide level1 center">
+<h1>The Classic Pipeline</h1>
+
+</section>
+<section id="annotation" class="slide level2">
+<h2>0. Annotation</h2>
+<p><br></p>
+<ul>
+<li>We need data from which to learn.</li>
+<li>Assign labels to documents.</li>
+<li><strong>Usually</strong> randomly sampled.</li>
+</ul>
+</section>
+<section id="annotation-1" class="slide level2">
+<h2>0. Annotation</h2>
+
+<img data-src="vis/annotations.png" class="r-stretch"></section>
+<section id="divide-into-train-and-test-and-val" class="slide level2">
+<h2>1. Divide into train and test (and val)</h2>
+<p><br></p>
+<ul>
+<li>Usually randomly sampled (not always!)</li>
+<li>Customary: 90-10/80-10-10 split</li>
+<li>Only consideration for test/validation set size: precision of metrics - for large datasets 10% test split not sensible</li>
+</ul>
+</section>
+<section id="transformation" class="slide level2">
+<h2>2. Transformation</h2>
+<p><br></p>
+<p>Statistical models can only read numbers</p>
+<p><span class="math inline">\(\rightarrow\)</span> we need to <strong>translate!</strong></p>
+<div class="fragment">
+<h3 id="classic-dfm">Classic DFM</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>Text</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>This is a text</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>This is no text</td>
+</tr>
+</tbody>
+</table>
+</div><div class="column" style="width:50%;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>ID</th>
+<th>This</th>
+<th>is</th>
+<th>a</th>
+<th>text</th>
+<th>no</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="fit-model." class="slide level2">
+<h2>3. Fit model.</h2>
+<p><br></p>
+<div>
+<ul>
+<li class="fragment">Many different models: OLS, logistic regression</li>
+<li class="fragment">Other common models: Naïve Bayes, SVM, XGBoost</li>
+</ul>
+</div>
+<div class="fragment">
+<h3 id="not-delving-into-different-models-today">Not delving into different models today!</h3>
+</div>
+</section>
+<section id="predict." class="slide level2">
+<h2>4. Predict.</h2>
+<h3 id="use-trained-model-to-generate-labels-for-unlabeled-cases.">Use trained model to generate labels for unlabeled cases.</h3>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">review</th>
+<th style="text-align: left;">label</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">great movie!</td>
+<td style="text-align: left;">?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">what a bunch of cr*p</td>
+<td style="text-align: left;">?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">I lost all faith in humanity after watching this</td>
+<td style="text-align: left;">?</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="evaluation" class="slide level2">
+<h2>5. Evaluation</h2>
+<p><br></p>
+<h3 id="confusion-matrix">Confusion Matrix</h3>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">FALSE</th>
+<th style="text-align: right;">TRUE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">649</td>
+<td style="text-align: right;">18</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: right;">35</td>
+<td style="text-align: right;">298</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="evaluation-1" class="slide level2 smaller">
+<h2>5. Evaluation</h2>
+<div class="columns">
+<div class="column" style="width:30%;">
+<p><img data-src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Precisionrecall.svg/525px-Precisionrecall.svg.png"></p>
+</div><div class="column" style="width:70%;">
+<p><br></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Term</th>
+<th style="text-align: left;">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Accuracy</strong></td>
+<td style="text-align: left;">How much does it get right overall?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Recall</strong></td>
+<td style="text-align: left;">How much of the relevant cases does it find?</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Precision</strong></td>
+<td style="text-align: left;">How many of the found cases are relevant?</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>F1 Score</strong></td>
+<td style="text-align: left;">Weighted average of precision and recall.</td>
+</tr>
+</tbody>
+</table>
+</div></div>
+</section>
+<section id="issues-with-common-metrics" class="slide level2">
+<h2>Issues with Common Metrics</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="03_ml_files/figure-revealjs/acc-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+
+<aside><div>
+<p>Optimal random guess is random guess using base rate as prediction probability.</p>
+</div></aside></section>
+<section id="issues-with-common-metrics-1" class="slide level2">
+<h2>Issues with Common Metrics</h2>
+
+<img data-src="03_ml_files/figure-revealjs/prf-1.png" width="960" class="r-stretch"></section>
+<section id="issues-with-common-metrics-2" class="slide level2">
+<h2>Issues with Common Metrics</h2>
+
+<img data-src="03_ml_files/figure-revealjs/f1adv-1.png" width="960" class="r-stretch"></section>
+<section id="best-practice-evaluation" class="slide level2">
+<h2>Best Practice Evaluation</h2>
+<div>
+<ul>
+<li class="fragment">Compare against informative baselines
+<ul>
+<li class="fragment">Random prediction at prevalence rate</li>
+<li class="fragment">Simple classifier, e.g.&nbsp;Logistic Regression</li>
+</ul></li>
+<li class="fragment">Think about metric of interest (cancer detection vs.&nbsp;ad targeting)</li>
+<li class="fragment">Use prevalence-insensitive metrics:
+<ul>
+<li class="fragment">Matthew’s correlation coefficient (MCC)</li>
+<li class="fragment">Youden’s J/Bookmakers informedness (BM)</li>
+</ul></li>
+</ul>
+</div>
+</section></section>
+<section>
+<section id="finding-the-perfect-match" class="title-slide slide level1 center">
+<h1>Finding the perfect match</h1>
+
+</section>
+<section id="mean-squared-error-mse" class="slide level2">
+<h2>Mean Squared Error (MSE)</h2>
+
+<img data-src="vis/mse.png" class="r-stretch"></section>
+<section id="mean-squared-error-mse-1" class="slide level2">
+<h2>Mean Squared Error (MSE)</h2>
+<p><br><br></p>
+<p><span class="math display">\[MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2\]</span></p>
+</section>
+<section id="the-bias-variance-tradeoff" class="slide level2">
+<h2>The bias-variance tradeoff</h2>
+<ul>
+<li>Read <a href="https://mlu-explain.github.io/bias-variance/">this short explainer</a> (stop when you reach LOESS)</li>
+<li>Together with 1-2 colleagues, explain to each other
+<ul>
+<li>What is underfitting?</li>
+<li>What is overfitting?</li>
+<li>What is bias?</li>
+<li>What is variance?</li>
+<li>How do you balance bias and variance in ML?</li>
+</ul></li>
+</ul>
+</section>
+<section id="the-bias-variance-tradeoff-1" class="slide level2">
+<h2>The bias-variance tradeoff</h2>
+
+<img data-src="vis/bvt1.png" class="r-stretch"></section>
+<section id="the-bias-variance-tradeoff-2" class="slide level2">
+<h2>The bias-variance tradeoff</h2>
+
+<img data-src="vis/bvt2.png" class="r-stretch"></section>
+<section id="the-bias-variance-tradeoff-3" class="slide level2">
+<h2>The bias-variance tradeoff</h2>
+
+<img data-src="vis/bvt3.png" class="r-stretch"></section></section>
+<section id="break" class="title-slide slide level1 center">
+<h1>Break</h1>
+
+</section>
+
+<section id="tutorial-i" class="title-slide slide level1 center">
+<h1>Tutorial I</h1>
+<p><a href="">Training a simple text classifier</a></p>
+</section>
+
+<section>
+<section id="what-is-a-neural-network" class="title-slide slide level1 center">
+<h1>What is a Neural Network?</h1>
+
+</section>
+<section id="a-single-node" class="slide level2">
+<h2>A Single Node</h2>
+
+<img data-src="vis/perceptron.png" class="r-stretch"></section>
+<section id="a-single-node-1" class="slide level2">
+<h2>A Single Node</h2>
+
+<img data-src="vis/perceptron.png" class="r-stretch"><p><span class="math display">\[\hat{y} = g(w_0 + \sum_{i=1}^{m} w_i x_i)\]</span></p>
+</section>
+<section id="a-single-node-2" class="slide level2">
+<h2>A Single Node</h2>
+
+<img data-src="vis/perceptron_example.png" class="r-stretch"></section>
+<section id="deep-neural-networks" class="slide level2">
+<h2>Deep Neural Networks</h2>
+
+<img data-src="vis/deep_neural_network.png" class="r-stretch quarto-figure-center"><p class="caption">Source: <a href="https://www.ibm.com/think/topics/neural-networks">IBM</a></p></section>
+<section id="the-activation-function" class="slide level2">
+<h2>The Activation Function</h2>
+
+<img data-src="vis/activation_functions.png" class="r-stretch"></section>
+<section id="the-activation-function-1" class="slide level2">
+<h2>The Activation Function</h2>
+
+<img data-src="vis/activation_functions.png" class="r-stretch"><p><strong>Important: non-linear!</strong> (why do you think that is?)</p>
+</section></section>
+<section>
+<section id="training-deep-learning-models" class="title-slide slide level1 center">
+<h1>Training Deep Learning Models</h1>
+
+</section>
+<section id="what-is-training" class="slide level2">
+<h2>What is “Training” ?</h2>
+<p><br></p>
+<ul>
+<li>Remember from ML course: <strong>Training</strong> is the process of optimizing a model’s parameters on a specific task using labeled data.</li>
+<li>In regression framework, this is called <strong>fitting</strong> the model to the training data.</li>
+</ul>
+</section>
+<section id="three-essential-steps" class="slide level2">
+<h2>Three Essential Steps</h2>
+<p><br></p>
+<ul>
+<li><strong>Forward pass</strong>: The process of passing input data through the model to obtain predictions.</li>
+<li><strong>Loss</strong>: A measure of how well the model’s predictions match the ground truth.</li>
+<li><strong>Backward pass</strong>: The process of updating model parameters based on the loss.</li>
+</ul>
+</section>
+<section id="how-does-it-learn" class="slide level2">
+<h2>How does it learn?</h2>
+<p><img data-src="Figure1_6/8_Deep%20Learning.png"></p>
+<h3 id="loss-function">Loss Function</h3>
+<h3 id="backpropagation">Backpropagation</h3>
+<h3 id="gradient-descent">Gradient Descent</h3>
+<h3 id="hyperparameters">Hyperparameters</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="https://playground.tensorflow.org/.png"></p>
+<figcaption>Play around with a neural network</figcaption>
+</figure>
+</div>
+</section>
+<section id="training-a-deep-learning-model" class="slide level2">
+<h2>Training a Deep Learning Model</h2>
+<blockquote>
+<p>How can we fit billions of parameters efficiently?</p>
+</blockquote>
+<h3 id="gradient-descent-1">Gradient Descent</h3>
+</section>
+<section id="fine-tuning-a-transformer-model" class="slide level2">
+<h2>Fine-tuning a Transformer Model</h2>
+</section>
+<section id="training-hyperparameters" class="slide level2">
+<h2>Training Hyperparameters</h2>
+<h3 id="choose-one-of-the-hyperparameters-and-read-the-associated-explainer---then-explain-to-us-what-the-hyperparameter-does">Choose one of the hyperparameters and read the associated explainer - then explain to us what the hyperparameter does!</h3>
+<ul>
+<li><strong>Number of Epochs</strong>: The number of complete passes through the training dataset.</li>
+<li><strong>Learning Rate</strong>: The step size at each iteration while moving toward a minimum of the loss function.</li>
+<li><strong>Batch Size</strong>: The number of training examples utilized in one iteration.</li>
+<li><strong>Weight Decay</strong>: A regularization technique to prevent overfitting by penalizing large weights.</li>
+<li>Dropout</li>
+<li>…</li>
+</ul>
+</section>
+<section id="typology" class="slide level2">
+<h2>Typology</h2>
+<ul>
+<li>Fit more closely: epochs, learning rate,</li>
+<li>Generalize better/regularization: dropout, regularization, batch size, weight decay</li>
+</ul>
+</section>
+<section id="tracking-training-progress" class="slide level2">
+<h2>Tracking Training Progress</h2>
+<h3 id="the-process-of-hyperparameter-tuning">The Process of Hyperparameter Tuning</h3>
+<p><a href="https://wandb.ai/">Weights and Biases</a> - “experiment” tracking and visualization</p>
+</section>
+<section id="understanding-training-dynamics" class="slide level2">
+<h2>Understanding Training Dynamics</h2>
+<p><br></p>
+<p><a href="https://huggingface.co/learn/llm-course/chapter3/5">Understanding learning curves</a></p>
+<ul>
+<li>read, do quiz</li>
+<li>exchange insights</li>
+<li>test them here:</li>
+</ul>
+<p><a href="https://playground.tensorflow.org/">Visualizing training dynamics</a></p>
+</section></section>
+<section id="debiasing-model-predictions" class="title-slide slide level1 center">
+<h1>Debiasing Model Predictions</h1>
+
+</section>
+
+<section id="tutorial-ii" class="title-slide slide level1 center">
+<h1>Tutorial II</h1>
+<p>[sentence embeddings? issues with common metrics under imbalance? debiasing!!!]</p>
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="03_ml_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="03_ml_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="03_ml_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="03_ml_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="03_ml_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="03_ml_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="03_ml_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="03_ml_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="03_ml_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="03_ml_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
+        }
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    
+
+</body></html>
