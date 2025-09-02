@@ -1,0 +1,404 @@
+---
+title: "Lecture 1: Introduction to NLP & Text Representation"
+author: "Nicolai Berk"
+subtitle: "CUSO WS on Large Language Models"
+date: "2025-09-03"
+description: "This lecture introduces students to the course, as well as python and text representation techniques."
+keywords: ["bag-of-words", "large language models", "nlp"]
+format:
+    revealjs:
+        theme: simple
+        slide-number: true
+        toc: false
+        callout-icon: false
+bibliography: "../references.bib"
+---
+
+# Introductions
+
+## Hi, my name is Nico
+
+<br>
+
+- I am a political scientist working on media and democracy
+- Working a lot with political text, especially news
+- Research areas:
+  - Effects of media framing
+  - Content moderation and hate speech
+  - Media pluralism & democratic backsliding
+- Heavy use of NLP & LLMs in all areas
+
+## And you?
+
+<br>
+
+#### Please introduce yourself:
+
+- What is your name and affiliation?
+- What are your research interests?
+- What is your experience with NLP & programming?
+- Why are you interested in NLP?
+- Do you have a specific application in mind?
+
+## Why Natural Language Processing (NLP)?
+
+### Social interactions happen through text:
+
+- Political campaigns
+- Legislation
+- News articles
+- Social media interactions
+- ...
+
+## Why NLP?
+
+<br>
+
+- Research questions often require measurement from millions of documents
+- Reading & annotating would take a lifetime
+- Our (or our RA's) definitions might be inconsistent
+- Not a great use of our time
+
+. . .
+
+### We need scalable methods!
+
+## Examples
+
+<br>
+
+![@gentzkow2010drives measuring media bias with word prevalence](vis/gentzkow_dems.png)
+
+## Examples
+
+![@monroe2008fightin exploring differences in partisan language use](vis/monroe.png)
+
+## Examples
+
+![@kroon2021guilty studying stereotypes with word embeddings](vis/kroon.jpg)
+
+## Examples
+
+![@rheault2020word scaling politicians with document embeddings](vis/rheault.png)
+
+## Examples
+
+![@berk2025impact studying migration coverage with BERT models](vis/berk.png)
+
+## Examples
+
+![@le2025positioning positioning political texts with large language models](vis/llm_annots.png)
+
+## Summary
+
+<br>
+
+- NLP methods offer powerful ways to study language at scale
+- Many different methods and tasks
+- Focus of this course:
+  - Text representation (today)
+  - Machine learning (tomorrow)
+  - Transformer models (tomorrow & Friday)
+
+## NLP? I signed up for LLMs!
+
+<br>
+
+- LLMs are highly complex
+- Intuition about them requires understanding of embeddings, machine learning, and neural networks
+- Course introduces each
+- These methods are powerful in their own right
+- We will also cover use of LLMs
+
+## Course Structure
+
+::: callout-tip
+
+### Today
+
+#### Morning: Intro to Python & Text Representation
+
+#### Afternoon: Embeddings
+
+:::
+::: callout-warning
+
+### Thursday
+
+#### Morning: Machine Learning
+
+#### Afternoon: Intro to Transformer Models
+
+:::
+::: callout-important
+
+### Friday
+
+#### Morning: Generative Transformers
+
+#### Afternoon: Using LLMs in your research/tbd
+
+:::
+
+## Course Structure
+
+- Each session consists of a lecture and a hands-on coding tutorial.
+- It makes sense to exchange with your neighbor about coding problems.
+- Use of AI is explicitly encouraged - course should teach you to understand the code, not make you an expert programmer.
+- Please ask lots of questions & interrupt me!
+
+## Course Materials
+
+Only relevant source: [github.com/nicolaiberk/llm_ws](https://github.com/nicolaiberk/llm_ws)
+
+### Contains
+
+- Syllabus
+- Links to slides
+- Notebooks for each session
+- Additional materials
+
+::: fragment
+
+#### Content will be added every day
+
+:::
+
+# Intro to Python
+
+## Why Python?
+
+<br>
+
+- Python is a versatile programming language with many, many applications.
+- Simple syntax, versatile tool.
+- Less statistics focus than R (more 'practical')
+- Rich ecosystem of libraries for text processing, machine learning, and LLMs.
+
+::: {.absolute right=0 bottom=0}
+![](vis/python-logo.png)
+:::
+
+## Google Colab
+
+<br>
+
+- You can download python and use it locally on your computer
+- But simpler if we all use the same (better) infrastructure
+- [Google Colab](https://colab.research.google.com/) is a free cloud service where we can execute python code.
+- Crucial: provides access to GPUs for training LLMs.
+
+# Break
+
+# Tutorial I
+
+Intro to Colab & Python Basics
+
+[Notebook]()
+
+# Representing Text
+
+## The lingo
+
+<br>
+
+- **Corpus**: a collection of texts used for analysis
+- **Document**: a single text within a corpus
+- **Token**: a single unit of text (e.g. a word or punctuation mark)
+- **Vocabulary**: the set of unique tokens in a corpus
+
+## Text analysis: how?
+
+<br>
+
+
+- For most research questions, our unit of analysis is the document (though we explore alternatives)
+- But computers cannot read
+- We need to transform our text into numbers
+
+# Quantifying Text
+
+## Most Basic: Count Words
+
+<br>
+
+::: incremental
+
+- **Dictionary approach**: count occurrences of each token, use directly as outcome
+- **Bag-of-Words (BoW)**: represents text as a **vector** of token counts
+  - Each unique token in the text becomes a feature
+  - Allows comparing text similarity and using it in models (tomorrow)
+
+:::
+
+## Bag-of Words {auto-animate="true"}
+
+<br>
+
+### How would you encode the following sentence?
+
+#### Dance like nobody is watching
+
+## Bag-of Words {auto-animate="true"}
+
+<br>
+
+#### Dance like nobody is watching
+
+| dance | like | nobody   | is | watching |
+|-------|------|----------|----|----------|
+| 1     | 1    | 1        | 1  | 1        |
+
+
+## Bag-of Words {auto-animate="true" auto-animate-duration="0"}
+
+<br>
+
+#### Move like nobody is watching
+
+| dance | like | nobody | is | watching | move |
+|-------|------|----------|----|----------|------|
+| 1     | 1    | 1        | 1  | 1        | 0    |
+| 0     | 1    | 1        | 1  | 1        | 1    |
+
+
+## Bag-of Words {auto-animate="true" auto-animate-duration="0"}
+
+<br>
+
+#### I like nobody
+
+| dance | like | nobody | is | watching | move | I |
+|-------|------|---------|---|---------|------|---|
+| 1     | 1    | 1       | 1 | 1       | 0    | 0 |
+| 0     | 1    | 1       | 1 | 0       | 1    | 0 |
+| 0     | 1    | 1       | 0 | 0       | 0    | 1 |
+
+::: aside
+This is called the "document-term matrix" (DTM)
+:::
+
+## Bag-of-Words: use cases
+
+Intuition: same words - similar meaning
+
+- Sentiment analysis: compare use of negative and positive terms (e.g. Vader)
+- Compare similarity of texts
+- Clustering/topic modelling
+- Can be used as input for machine learning models (tomorrow)
+
+::: fragment
+
+### Which limitations do you see with this approach?
+
+:::
+
+## One limitation of BoW
+
+- BoW assigns similar importance to all words
+- But: not all words are equally informative!
+
+::: fragment
+
+#### Example: news topics
+
+Importance of very common terms like 'the', 'news', or 'politics' is the same as for 'climate' or 'gaza'.
+
+:::
+
+::: fragment
+
+#### Solution: weight by prevalence across documents
+
+:::
+
+## TF-IDF
+
+> Term Frequency-Inverse Document Frequency
+
+Idea: **specificity** of word given by inverse document frequency (how many documents contain the word)
+
+::: fragment
+$$TFIDF = \frac{f_{t,d}}{log\frac{n_t}{N}} $$
+
+$f_{t,d}$: Frequency of Term in Document
+
+$n_t$: Total Number of Documents Containing Term
+
+$N$: Total Number of Documents
+
+:::
+
+## Intuition
+
+#### Dance like nobody is watching
+
+#### Move like nobody is watching
+
+<br>
+
+| dance | like | nobody | is | watching | move |
+|-------|------|----------|----|----------|------|
+| 1     | 1    | 1        | 1  | 1        | 0    |
+| 0     | 1    | 1        | 1  | 1        | 1    |
+
+
+# Tokenization
+
+What is a word?
+
+## How can we split our text?
+
+- Natural unit usually is the word
+- In some research far harder (e.g. genetics)
+- Most basic form: split on spaces and punctuation
+- Alternatives:
+  - stemming/lemmatization
+  - selection
+  - n-grams: include two- or three-word phrases
+
+
+::: aside
+
+**Tokenization**: the process of splitting text into individual tokens
+
+:::
+
+## Stemming
+
+<br>
+
+- Reduces words to base words by removing common suffixes and prefixes
+- This reduces vocabulary size
+- Usually based on strict rules (e.g. "running" -> "run")
+- Advanced version: lemmatization (uses dictionary form)
+
+## Selection
+
+<br>
+
+### Several ways to reduce dictionary size further
+
+- Stopword removal (e.g. "the", "is", "in")
+- Removal of very rare words
+- Sometimes also very frequent words removed
+
+::: fragment
+
+#### Why is it useful to reduce our vocabulary size?
+
+:::
+
+::: fragment
+
+#### Why might it nevertheless be useful to retain common n-grams?
+
+:::
+
+
+# Tutorial II
+
+Pandas & basic text representation
+
+
+## Resources
