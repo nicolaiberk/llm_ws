@@ -33,7 +33,7 @@ Generative Transformers
 
 ### Afternoon Session (13:30 - 16:30)
 
-Using LLMs in Social Science Research
+Using LLMs in Social Science Research/tbd
 
 <!-- 
 
