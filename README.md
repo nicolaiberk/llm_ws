@@ -2,7 +2,7 @@
 
 3-5 September 2025, UNIL Lausanne
 
-This workshop provides an introduction to fundamentals of NLP and LLMs for social scientists. It covers basic and advanced text representation, fundamentals of machine learning, transformer architectures, and applied questions regarding LLMs. The course consists of six 1.5h sessions, each divided into a lecture with a conceptual focus, and a tutorial covering the implementation in python. The course is designed to provide a fast overview of major topics in the application of LLMs. It covers most content rather superficially, aiming to provide students with a good intuition of each concept and code as a starting point to implement their own ideas.
+This workshop provides an introduction to fundamentals of NLP and LLMs for social scientists. It covers basic and advanced text representation, fundamentals of machine learning, transformer architectures, and applied questions regarding LLMs. The course consists of six three-hour sessions, each divided into a lecture with a conceptual focus, and a tutorial covering the implementation in python. The course is designed to provide a fast overview of major topics in the application of LLMs. It covers most content rather superficially, aiming to provide students with a good intuition of each concept and code as a starting point to implement their own ideas.
 
 ## Wednesday, Sept. 3rd
 
