@@ -27,9 +27,9 @@ This workshop provides an introduction to fundamentals of NLP and LLMs for socia
 
 🖥️ [Lecture Slides](https://nicoberk.quarto.pub/llm_ws-lecture-2)
 
-🧑‍💻 [Tutorial 1: Intro to Python](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/02a_embeddings.ipynb)
+🧑‍💻 [Tutorial 1: Intro to embedding manipulation with `gensim`](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/02a_embeddings.ipynb)
 
-🧑‍💻 [Tutorial 2: Pandas & basic text representation](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/02b_embeddings_2.ipynb)
+🧑‍💻 [Tutorial 2: Scaling Word Embeddings & Document Embeddings](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/02b_embeddings_2.ipynb)
 
 **Explainer**
 
