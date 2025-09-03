@@ -35,6 +35,11 @@ This workshop provides an introduction to fundamentals of NLP and LLMs for socia
 
 McCormick, C. (2016, April 19). [Word2Vec tutorial - The skip-gram model](https://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/). *Chris McCormack's Blog*.
 
+**Tools**
+
+- [Regular Expressions Cheatsheet](https://regexr.com/)
+- [`gensim` documentation and tutorials on embeddings](https://radimrehurek.com/gensim/auto_examples/index.html#documentation)
+
 **Social Science Applications**
 
 - Kozlowski, Austin C, Matt Taddy, and James A Evans. 2019. “The Geometry of Culture: Analyzing the Meanings of Class Through Word Embeddings.” American Sociological Review 84 (5): 905–49. 
