@@ -16,14 +16,37 @@ This workshop provides an introduction to fundamentals of NLP and LLMs for socia
 
 🧑‍💻 [Tutorial 2: Pandas & basic text representation](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/01b_text_reps.ipynb)
 
-#### Further reading
+**Further reading**
 
 - Grimmer, J., Roberts, M. E., & Stewart, B. M. (2022). Bag of Words. In *Text as data: A new framework for machine learning and the social sciences*. Princeton University Press.
 - [pandas cheatsheet](https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf)
 
 ### Afternoon Session (14:30 - 17:30)
 
-Embeddings
+#### Embeddings
+
+🖥️ [Lecture Slides](https://nicoberk.quarto.pub/llm_ws-lecture-2)
+
+🧑‍💻 [Tutorial 1: Intro to Python](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/02a_embeddings.ipynb)
+
+🧑‍💻 [Tutorial 2: Pandas & basic text representation](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/02b_embeddings_2.ipynb)
+
+**Explainer**
+
+McCormick, C. (2016, April 19). [Word2Vec tutorial - The skip-gram model](https://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/). *Chris McCormack's Blog*.
+
+**Social Science Applications**
+
+- Kozlowski, Austin C, Matt Taddy, and James A Evans. 2019. “The Geometry of Culture: Analyzing the Meanings of Class Through Word Embeddings.” American Sociological Review 84 (5): 905–49. 
+- Kroon, Anne C, Damian Trilling, and Tamara Raats. 2021. “Guilty by Association: Using Word Embeddings to Measure Ethnic Stereotypes in News Coverage.” Journalism & Mass Communication Quarterly 98 (2): 451–77.
+-  Rheault, Ludovic, and Christopher Cochrane. 2020. “Word Embeddings for the Analysis of Ideological Placement in Parliamentary Corpora.” Political Analysis 28 (1): 112–33.
+- Rodman, Emma. 2020. “A Timely Intervention: Tracking the Changing Meanings of Political Concepts with Word Vectors.” Political Analysis 28 (1): 87–111.
+
+**Foundational Papers**
+
+- **Word Embeddings**: Mikolov, Tomas, Kai Chen, Greg Corrado, and Jeffrey Dean. 2013. “Efficient Estimation of Word Representations in Vector Space.” arXiv Preprint arXiv:1301.3781. 
+- **Document Embeddings**: Le, Quoc, and Tomas Mikolov. 2014. “Distributed Representations of Sentences and Documents.” In International Conference on Machine Learning, 1188–96. PMLR.
+- **Embedding Regression**: Rodriguez, Pedro L, Arthur Spirling, and Brandon M Stewart. 2023. “Embedding Regression: Models for Context-Specific Description and Inference.” American Political Science Review 117 (4): 1255–74. 
 
 ## Thursday, Sept. 4th
 
