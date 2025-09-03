@@ -351,13 +351,11 @@ $WV_{Paris} - WV_{France} + WV_{Germany} = WV_{X}$
 
 :::
 
-# 5 minute break
+# Short break
 
-Then we get our hands dirty!
+# Tutorial: Word Embeddings
 
-# Embeddings: Tutorial 1
-
-[Notebook](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/02_embeddings_1.ipynb)
+[Notebook](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/02a_embeddings.ipynb)
 
 # Advanced Embeddings
 
@@ -563,11 +561,11 @@ The **projection** of a term on this vector tells us which pole it is more assoc
 - Countries
 - ...
 
-# 5 minute break
+# Short break
 
 # Embeddings: Tutorial 2
 
-[Notebook](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/02_embeddings_2.ipynb)
+[Notebook](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/02b_embeddings_2.ipynb)
 
 # Closing Remarks
 
@@ -599,8 +597,6 @@ The **projection** of a term on this vector tells us which pole it is more assoc
 - Pre-trained on large corpora.
 - Fine-tuned for specific tasks.
 
-### Tomorrow!
-
 
 ## Note of Caution: Validation
 
@@ -613,12 +609,11 @@ $\rightarrow$ **Validation is essential!**
 - Correlate with established measures
 - Gold standard remains human assessment
 
-### Also more tomorrow!
 
 # See you tomorrow!
 
 ![](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDloNmo0MzVjdTZheXczcm43a3M0ZW1raTk5M2tvN253eWpzb2NxbCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3o6Mb3PGeR7EufOgYo/giphy.gif)
 
-## References {.unnumbered}
+## References
 
 
