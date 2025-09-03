@@ -18,9 +18,9 @@ bibliography: "../references.bib"
 
 ## Hi, my name is Nico
 
-<br>
 
-- I am a political scientist working on media and democracy
+- Postdoc at ETH Public Policy Group & IPL
+- Main focus: media and democracy
 - Working a lot with political text, especially news
 - Research areas:
   - Effects of media framing
@@ -37,8 +37,10 @@ bibliography: "../references.bib"
 - What is your name and affiliation?
 - What are your research interests?
 - What is your experience with NLP & programming?
-- Why are you interested in NLP?
+- Why are you interested in LLMs?
 - Do you have a specific application in mind?
+
+# Motivation
 
 ## Why Natural Language Processing (NLP)?
 
@@ -100,6 +102,8 @@ bibliography: "../references.bib"
   - Machine learning (tomorrow)
   - Transformer models (tomorrow & Friday)
 
+# Course Overview
+
 ## NLP? I signed up for LLMs!
 
 <br>
@@ -140,12 +144,13 @@ bibliography: "../references.bib"
 
 :::
 
-## Course Structure
+## Course Structure and Conduct
 
 - Each session consists of a lecture and a hands-on coding tutorial.
 - It makes sense to exchange with your neighbor about coding problems.
 - Use of AI is explicitly encouraged - course should teach you to understand the code, not make you an expert programmer.
 - Please ask lots of questions & interrupt me!
+- Be nice!
 
 ## Course Materials
 
@@ -194,11 +199,11 @@ Only relevant source: [github.com/nicolaiberk/llm_ws](https://github.com/nicolai
 
 Intro to Colab & Python Basics
 
-[Notebook]()
+[Notebook](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/01a_python.ipynb)
 
 # Representing Text
 
-## The lingo
+## Some lingo
 
 <br>
 
@@ -227,7 +232,7 @@ Intro to Colab & Python Basics
 - **Dictionary approach**: count occurrences of each token, use directly as outcome
 - **Bag-of-Words (BoW)**: represents text as a **vector** of token counts
   - Each unique token in the text becomes a feature
-  - Allows comparing text similarity and using it in models (tomorrow)
+  - Allows comparing text similarity and using it in models
 
 :::
 
@@ -399,6 +404,8 @@ What is a word?
 # Tutorial II
 
 Pandas & basic text representation
+
+[Notebook](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/01b_text_reps.ipynb)
 
 
 ## Resources
