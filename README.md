@@ -8,11 +8,22 @@ This workshop provides an introduction to fundamentals of NLP and LLMs for socia
 
 ### Morning Session (10:30 - 13:30)
 
-Intro to Python & Text Representation
+#### Intro to Python & Text Representation
+
+🖥️ [Lecture Slides](https://nicoberk.quarto.pub/llm_ws-lecture-1)
+
+🧑‍💻 [Tutorial 1: Intro to Python](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/01a_python.ipynb)
+
+🧑‍💻 [Tutorial 2: Pandas & basic text representation](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/01b_text_reps.ipynb)
+
+#### Further reading
+
+- Grimmer, J., Roberts, M. E., & Stewart, B. M. (2022). Bag of Words. In *Text as data: A new framework for machine learning and the social sciences*. Princeton University Press.
+- [pandas cheatsheet](https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf)
 
 ### Afternoon Session (14:30 - 17:30)
 
-Intro to Embeddings
+Embeddings
 
 ## Thursday, Sept. 4th
 
@@ -20,7 +31,7 @@ Intro to Embeddings
 
 Intro to Machine Learning
 
-### Afternoon Session (9:30 - 12:30)
+### Afternoon Session (13:30 - 16:30)
 
 Intro to Transformer Models
 
