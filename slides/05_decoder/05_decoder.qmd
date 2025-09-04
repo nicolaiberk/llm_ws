@@ -1,0 +1,275 @@
+---
+title: "Session 5: Generative LLMs"
+author: "Nicolai Berk"
+subtitle: "CUSO WS on Large Language Models"
+date: "2025-09-03"
+description: "This session covers generative decoder models."
+keywords: ["gpt", "decoder", "large language models", "machine learning", "nlp"]
+format:
+    revealjs:
+        theme: simple
+        slide-number: true
+        toc: false
+bibliography: "../references.bib"
+---
+
+
+## Recap: Encoder Models (BERT)
+
+<br>
+
+- Input: "The [MASK] is barking loudly"
+- BERT: Processes entire sentence simultaneously
+- Output: probability distribution across tokens ("dog" (87%), "puppy" (8%), "animal" (3%))
+- Bidirectional: Reads text in both directions
+
+### Masked Language Modeling: Trained to fill in blanks
+
+## Recap: Downstream Encoder Tasks
+
+<br>
+
+- Classify documents
+- Extract information
+- Measure similarity
+
+
+## How a Decoder Works {auto-animate="true"}
+
+<br>
+
+![Source: @tunstall2022natural](vis/decoder.png)
+
+## How a Decoder Works {auto-animate="true"}
+
+![Source: @tunstall2022natural](vis/decoder.png)
+
+- Input: "Cause and..."
+- **Predicts next token**: "effect"
+- Repeats until stopping condition
+- *Autoregressive* generation
+
+#### "Causal" language modeling
+
+## Major differences
+
+<br>
+
+::: columns
+::: column
+
+- **Autoregressive**: Generates one word at a time
+- **"Causal" attention**: Only looks at previous words
+- **Massive scale**: Often billions of parameters
+
+:::
+::: column
+
+![](vis/gpt.png)
+
+:::
+:::
+
+## Training GPT
+
+<br>
+
+- Pretraining: predict the next word (causal LM objective)
+- Scale = data + parameters + compute
+- Fine-tuning:
+  - Instruction tuning (datasets of Q&A)
+  - RLHF^[Reinforcement Learning with Human Feedback] (aligning with human preferences)
+
+## Decoder Tasks
+
+- Content generation
+
+. . .
+
+### Surprisingly generalizable task!
+
+- Zero/few-shot Classification
+- Code generation
+- Translation
+- App development
+
+...many more things it was not trained to do!
+
+## Social Science applications
+
+- Annotation
+- Extraction/text-mining
+- Generating experimental treatments
+- Adaptive surveys
+- Literature reviews
+- Simulation of social behaviour?
+- Policy simulation?
+
+# Inference with LLMs
+
+## Prompting
+
+![](vis/meme.jpg)
+
+#### Remember: prompt engineering on the *validation* set!
+
+## Writing a good prompt
+
+- <mark>Persona</mark>
+- **Task**
+- Context
+- *Format*
+
+<mark>You are a program manager in [industry].</mark> **Draft an executive summary email** to [persona] based on [details
+about relevant program docs]. *Limit to bullet points.*
+
+::: aside
+[Google prompting guide](https://services.google.com/fh/files/misc/gemini-for-google-workspace-prompting-guide-101.pdf)
+:::
+
+## Controlling model output 
+
+### [`pydantic`](https://docs.pydantic.dev/latest/concepts/models/#validating-data)
+
+```
+from pydantic import BaseModel, Field
+
+class Sentiment(BaseModel):
+    sentiment: str = Field(description="Is this POSITIVE, NEGATIVE, or NEUTRAL?")
+    confidence: float = Field(description="How confident are you? (0.0 to 1.0)")
+
+result = Sentiment.model_validate_json(llm_response)
+
+print(f"→ Sentiment: {result.sentiment}")
+print(f"→ Confidence: {result.confidence:.2f}")
+```
+
+::: aside
+::: fragment
+
+#### See also
+
+- [Ollama structured output](https://ollama.com/blog/structured-outputs)
+- [OpenAI function calls](https://platform.openai.com/docs/guides/function-calling#defining-functions)
+
+:::
+:::
+
+## Labelling with LLMs
+
+<br>
+
+- **Zero-shot**: just prompt provided
+- **Few-shot**: a few examples provided
+- **Dynamic few-shot**: examples selected based on similarity to the input
+
+## Few-shot labelling example
+
+<br>
+
+```
+Your task is to analyze the sentiment in the TEXT below from an investor perspective and label it with only one the three labels:
+positive, negative, or neutral.
+
+Examples:
+Text: Operating profit increased, from EUR 7m to 9m compared to the previous reporting period.
+Label: positive
+Text: The company generated net sales of 11.3 million euro this year.
+Label: neutral
+Text: Profit before taxes decreased to EUR 14m, compared to EUR 19m in the previous period.	
+Label: negative
+```
+
+## Synthetic Annotation
+
+![Source: [Moritz Laurer on HF Blog](https://huggingface.co/blog/synthetic-data-save-costs#conclusion)](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/176_synthetic-data-save-costs/table_pros_cons.png)
+
+## Synthetic Annotation
+
+<br>
+
+- Use LLM to annotate training data
+- Generate synthetic labels
+- Train smaller encoder model on synthetic data
+- Evaluate on gold standard
+- Apply cost-efficient at scale
+
+## Zero-shot encoder models 
+
+### @laurer2024less
+
+- Task: natural-language inference (NLI) - universal
+- Allow prompting
+- Controlled output
+- Class probabilities
+- Efficient
+
+::: fragment
+
+#### Try this before using generative models
+
+:::
+
+## How does it work?
+
+<br>
+
+![@laurer2024less, Table 1](vis/nli.png)
+
+## How does it work?
+
+<br>
+
+-  Class-hypotheses: “It is about economy", "it is about democracy", ...
+-  E.g. “We need to raise tariffs” as context
+-  Test each of the class-hypotheses against this context
+-  Probabilities for entailment and contradiction are converted to label probabilities
+
+::: aside
+[More](https://huggingface.co/tasks/zero-shot-classification)
+:::
+
+# Bias
+
+## Bias
+
+<br>
+
+- ML annotations are often inherently biased
+- If we use biased measures in our statistical models, our estimates will be biased as well
+- This issue is even bigger for LLMs, where the training data is often not known
+
+## Bias: Example
+
+> Do employers favor certain nationalities, holding skills constant?
+
+- You have a dataset of candidate profiles and whether they got an offer for a position or not.
+- You measure skill level using a GPT annotation of the candidate profiles.
+- You regress hiring decisions on applicants' nationality and skill level.
+
+. . .
+
+#### What might be the issue here?
+
+## Bias: Example
+
+<br>
+
+- Let's assume GPT annotates Croatians as less skilled, other things equal.
+- At the same time, employers are discriminating against Croatians.
+- Depending on the strength of each bias, Croatians might be estimated to be treated equally or even less discriminated against!
+
+## Design-based supervised learning (DSL)
+
+
+<!-- add if possible: anything on debiasing embeddings? -->
+
+
+# Tutorial I
+
+LLM Inference
+
+[Notebook]()
+
+
+## Resources
