@@ -57,12 +57,23 @@ McCormick, C. (2016, April 19). [Word2Vec tutorial - The skip-gram model](https:
 
 ### Morning Session (9:30 - 12:30)
 
-Intro to Machine Learning
+Intro to Supervised Machine Learning
+
+🖥️ [Lecture Slides](https://nicoberk.quarto.pub/llm_ws-session-3-ml)
+
+🧑‍💻 [Tutorial 1: Intro to Supervised Machine Learning with `scikit-learn`](https://colab.research.google.com/github/nicolaiberk/Imbalanced/blob/master/01_IntroSML_Solution.ipynb)
+
+🧑‍💻 [Tutorial 2: Hackathon](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/03b_hackathon.ipynb)
 
 ### Afternoon Session (13:30 - 16:30)
 
 Intro to Transformer Models
 
+🖥️ [Lecture Slides](https://nicoberk.quarto.pub/llm_ws-session-4-transformer/)
+
+🧑‍💻 [Tutorial 1: Contextualized Embeddings, Tokenization, and Inference with Transformers](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/04a_tokens_attention.ipynb)
+
+🧑‍💻 [Tutorial 2: Fine-tuning Transformer Models](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/04b_finetuning_bert.ipynb)
 
 ## Friday, Sept. 5th
 
