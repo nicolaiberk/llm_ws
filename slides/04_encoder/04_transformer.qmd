@@ -1,5 +1,5 @@
 ---
-title: "Session 4: The Encoder"
+title: "Session 4: The Transformer"
 author: "Nicolai Berk"
 subtitle: "CUSO WS on Large Language Models"
 date: "2025-09-03"
@@ -12,11 +12,6 @@ format:
         toc: false
 bibliography: "../references.bib"
 ---
-
-<!-- 
-- DONT ADD STUFF YOU'RE NOT FAMILIAR WITH!! 
-- contrast encoder and transformer differences (training tasks, architecture, capabilities)
- -->
 
 ## Today: Afternoon
 
@@ -275,7 +270,7 @@ $$x'_i = \sum_{j=1}^{n} w_{ij} x_j$$
 ::: column
 
 - Converts an input sequence of tokens into a sequence of embedding vectors
-- Trained on masked language modeling task
+- Trained on masked language modeling
 - Tasks: Text classification, named entity recognition, extractive question answering, ...
 
 :::
@@ -464,7 +459,7 @@ Note: prompts are also hyperparameters!
 
 **Fine-tuning a Transformer Model**
 
-![Notebook]()
+[Notebook](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/04b_finetuning_bert.ipynb)
 
 
 ## Resources {.uncounted}
