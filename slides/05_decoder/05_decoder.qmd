@@ -51,6 +51,8 @@ bibliography: "../references.bib"
 
 #### "Causal" language modeling
 
+## What does this look like?
+
 ## Major differences
 
 <br>
@@ -69,6 +71,13 @@ bibliography: "../references.bib"
 
 :::
 :::
+
+### [Visualization](https://bbycroft.net/llm)
+
+<br>
+
+Take 5-10 minutes to explore the visualization and discuss with your neighbor how the decoder architecture works.
+
 
 ## Training GPT
 
@@ -258,7 +267,6 @@ LLM inference and prompting
 
 
 # Hosting Models & Calling APIs
-
 
 ## [HF Inference Endpoints](https://endpoints.huggingface.co/)
 
