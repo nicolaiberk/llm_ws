@@ -81,6 +81,10 @@ Intro to Transformer Models
 
 Generative Transformers
 
+**Resources**
+
+- [Google prompting guide](https://services.google.com/fh/files/misc/gemini-for-google-workspace-prompting-guide-101.pdf)
+
 ### Afternoon Session (13:30 - 16:30)
 
 Using LLMs in Social Science Research/tbd

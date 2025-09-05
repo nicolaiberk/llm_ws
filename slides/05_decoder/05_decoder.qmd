@@ -131,18 +131,21 @@ about relevant program docs]. *Limit to bullet points.*
 
 ### [`pydantic`](https://docs.pydantic.dev/latest/concepts/models/#validating-data)
 
+Let's you impose structure on model outputs.
+
 ```
-from pydantic import BaseModel, Field
+class CityLocation(BaseModel):
+    city: str
+    country: str
 
-class Sentiment(BaseModel):
-    sentiment: str = Field(description="Is this POSITIVE, NEGATIVE, or NEUTRAL?")
-    confidence: float = Field(description="How confident are you? (0.0 to 1.0)")
 
-result = Sentiment.model_validate_json(llm_response)
-
-print(f"→ Sentiment: {result.sentiment}")
-print(f"→ Confidence: {result.confidence:.2f}")
+agent = Agent('google-gla:gemini-1.5-flash', output_type=CityLocation)
+result = agent.run_sync('Where were the olympics held in 2012?')
+print(result.output)
+#> city='London' country='United Kingdom'
 ```
+
+
 
 ::: aside
 ::: fragment
@@ -179,6 +182,24 @@ Label: neutral
 Text: Profit before taxes decreased to EUR 14m, compared to EUR 19m in the previous period.	
 Label: negative
 ```
+
+## Dynamic few-shot labelling
+
+<br>
+
+- Idea: most similar examples should be most informative
+1. Use cosine_similarity of embedding to assess similarity
+2. Add k most similar examples to the prompt
+
+## Retrieval Augmented Generation (RAG)
+
+<br>
+
+1. Retrieve most likely examples given a query (e.g. context for question)
+2. 
+- Provide examples to model as context for answer generation
+- Can require use of an additions
+
 
 ## Synthetic Annotation
 
@@ -229,47 +250,36 @@ Label: negative
 [More](https://huggingface.co/tasks/zero-shot-classification)
 :::
 
-# Bias
-
-## Bias
-
-<br>
-
-- ML annotations are often inherently biased
-- If we use biased measures in our statistical models, our estimates will be biased as well
-- This issue is even bigger for LLMs, where the training data is often not known
-
-## Bias: Example
-
-> Do employers favor certain nationalities, holding skills constant?
-
-- You have a dataset of candidate profiles and whether they got an offer for a position or not.
-- You measure skill level using a GPT annotation of the candidate profiles.
-- You regress hiring decisions on applicants' nationality and skill level.
-
-. . .
-
-#### What might be the issue here?
-
-## Bias: Example
-
-<br>
-
-- Let's assume GPT annotates Croatians as less skilled, other things equal.
-- At the same time, employers are discriminating against Croatians.
-- Depending on the strength of each bias, Croatians might be estimated to be treated equally or even less discriminated against!
-
-## Design-based supervised learning (DSL)
-
-
-<!-- add if possible: anything on debiasing embeddings? -->
-
-
 # Tutorial I
 
-LLM Inference
+LLM inference and prompting
 
 [Notebook]()
+
+
+# Hosting Models & Calling APIs
+
+
+## [HF Inference Endpoints](https://endpoints.huggingface.co/)
+
+![](vis/hf_inf.png)
+
+## Local Hosting
+
+Ollama
+
+## [Azure](https://oai.azure.com)
+
+![](vis/oai.png)
+
+## OpenAI
+
+# Tutorial II
+
+API calls, Structured Output
+
+[Notebook]()
+
 
 
 ## Resources

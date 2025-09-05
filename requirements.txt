@@ -1,5 +1,10 @@
 pandas
 scikit-learn
 gensim
+transformers
+sentence-transformers
+setfit
 ipykernel
 matplotlib
+pydantic_ai
+"pydantic-ai-slim[huggingface]"

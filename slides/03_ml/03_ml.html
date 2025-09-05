@@ -142,14 +142,31 @@ Nicolai Berk
 
   <p class="date">2025-09-03</p>
 </section>
+<section id="recap-text-representation" class="slide level2">
+<h2>Recap: Text Representation</h2>
+<p><br></p>
+<ul>
+<li>Capture Semantic Meaning with Embeddings</li>
+<li>Document Representations:
+<ul>
+<li>Bag of Words (BoW)</li>
+<li>Term Frequency-Inverse Document Frequency (TF-IDF)</li>
+<li>Document Embeddings</li>
+</ul></li>
+</ul>
+<div class="fragment">
+<h4 id="today-how-can-we-use-these-representations-to-measure-concepts-of-interest">Today: how can we use these representations to measure concepts of interest?</h4>
+</div>
+</section>
 <section id="today" class="slide level2">
 <h2>Today</h2>
+<p><br></p>
 <ul>
 <li>The basics of supervised machine learning</li>
 <li>Model evaluation</li>
+<li>Model selection</li>
 <li>Intro to neural networks</li>
 <li>Training neural networks</li>
-<li>Debiasing model predictions</li>
 </ul>
 </section>
 <section id="examples" class="slide level2">
@@ -384,13 +401,13 @@ Nicolai Berk
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">FALSE</td>
-<td style="text-align: right;">649</td>
-<td style="text-align: right;">18</td>
+<td style="text-align: right;">688</td>
+<td style="text-align: right;">9</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">TRUE</td>
-<td style="text-align: right;">35</td>
-<td style="text-align: right;">298</td>
+<td style="text-align: right;">37</td>
+<td style="text-align: right;">266</td>
 </tr>
 </tbody>
 </table>
@@ -462,7 +479,7 @@ Nicolai Berk
 <li class="fragment">Compare against informative baselines
 <ul>
 <li class="fragment">Random prediction at prevalence rate</li>
-<li class="fragment">Simple classifier, e.g.&nbsp;Logistic Regression</li>
+<li class="fragment">Compare classifiers of varying complexity</li>
 </ul></li>
 <li class="fragment">Think about metric of interest (cancer detection vs.&nbsp;ad targeting)</li>
 <li class="fragment">Use prevalence-insensitive metrics:
@@ -473,6 +490,16 @@ Nicolai Berk
 </ul>
 </div>
 </section></section>
+<section id="break" class="title-slide slide level1 center">
+<h1>Break</h1>
+
+</section>
+
+<section id="tutorial-i" class="title-slide slide level1 center">
+<h1>Tutorial I</h1>
+<p><a href="https://colab.research.google.com/github/nicolaiberk/Imbalanced/blob/master/01_IntroSML_Solution.ipynb">Training a simple text classifier</a></p>
+</section>
+
 <section>
 <section id="finding-the-perfect-match" class="title-slide slide level1 center">
 <h1>Finding the perfect match</h1>
@@ -513,21 +540,15 @@ Nicolai Berk
 <h2>The bias-variance tradeoff</h2>
 
 <img data-src="vis/bvt3.png" class="r-stretch"></section></section>
-<section id="break" class="title-slide slide level1 center">
-<h1>Break</h1>
-
-</section>
-
-<section id="tutorial-i" class="title-slide slide level1 center">
-<h1>Tutorial I</h1>
-<p><a href="">Training a simple text classifier</a></p>
-</section>
-
 <section>
 <section id="what-is-a-neural-network" class="title-slide slide level1 center">
 <h1>What is a Neural Network?</h1>
 
 </section>
+<section id="deep-neural-networks" class="slide level2">
+<h2>Deep Neural Networks</h2>
+
+<img data-src="vis/deep_neural_network.png" class="r-stretch quarto-figure-center"><p class="caption">Source: <a href="https://www.ibm.com/think/topics/neural-networks">IBM</a></p></section>
 <section id="a-single-node" class="slide level2">
 <h2>A Single Node</h2>
 
@@ -541,7 +562,7 @@ Nicolai Berk
 <h2>A Single Node</h2>
 
 <img data-src="vis/perceptron_example.png" class="r-stretch"></section>
-<section id="deep-neural-networks" class="slide level2">
+<section id="deep-neural-networks-1" class="slide level2">
 <h2>Deep Neural Networks</h2>
 
 <img data-src="vis/deep_neural_network.png" class="r-stretch quarto-figure-center"><p class="caption">Source: <a href="https://www.ibm.com/think/topics/neural-networks">IBM</a></p></section>
@@ -567,82 +588,22 @@ Nicolai Berk
 <li>In regression framework, this is called <strong>fitting</strong> the model to the training data.</li>
 </ul>
 </section>
-<section id="three-essential-steps" class="slide level2">
-<h2>Three Essential Steps</h2>
+<section id="training-deep-learning-models-1" class="slide level2">
+<h2>Training Deep Learning Models</h2>
 <p><br></p>
 <ul>
-<li><strong>Forward pass</strong>: The process of passing input data through the model to obtain predictions.</li>
-<li><strong>Loss</strong>: A measure of how well the model’s predictions match the ground truth.</li>
-<li><strong>Backward pass</strong>: The process of updating model parameters based on the loss.</li>
-</ul>
-</section>
-<section id="how-does-it-learn" class="slide level2">
-<h2>How does it learn?</h2>
-<p><img data-src="Figure1_6/8_Deep%20Learning.png"></p>
-<h3 id="loss-function">Loss Function</h3>
-<h3 id="backpropagation">Backpropagation</h3>
-<h3 id="gradient-descent">Gradient Descent</h3>
-<h3 id="hyperparameters">Hyperparameters</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="https://playground.tensorflow.org/.png"></p>
-<figcaption>Play around with a neural network</figcaption>
-</figure>
-</div>
-</section>
-<section id="training-a-deep-learning-model" class="slide level2">
-<h2>Training a Deep Learning Model</h2>
-<blockquote>
-<p>How can we fit billions of parameters efficiently?</p>
-</blockquote>
-<h3 id="gradient-descent-1">Gradient Descent</h3>
-</section>
-<section id="fine-tuning-a-transformer-model" class="slide level2">
-<h2>Fine-tuning a Transformer Model</h2>
-</section>
-<section id="training-hyperparameters" class="slide level2">
-<h2>Training Hyperparameters</h2>
-<h3 id="choose-one-of-the-hyperparameters-and-read-the-associated-explainer---then-explain-to-us-what-the-hyperparameter-does">Choose one of the hyperparameters and read the associated explainer - then explain to us what the hyperparameter does!</h3>
+<li>Read the section on backpropagation (black background) in <a href="https://mlu-explain.github.io/neural-networks/">this brief explainer</a></li>
+<li>Together with your partner, explain to each other:
 <ul>
-<li><strong>Number of Epochs</strong>: The number of complete passes through the training dataset.</li>
-<li><strong>Learning Rate</strong>: The step size at each iteration while moving toward a minimum of the loss function.</li>
-<li><strong>Batch Size</strong>: The number of training examples utilized in one iteration.</li>
-<li><strong>Weight Decay</strong>: A regularization technique to prevent overfitting by penalizing large weights.</li>
-<li>Dropout</li>
-<li>…</li>
+<li>What is a <strong>forward pass</strong>?</li>
+<li>What is <strong>loss</strong>?</li>
+<li>What is a <strong>backward pass</strong>?</li>
+</ul></li>
 </ul>
-</section>
-<section id="typology" class="slide level2">
-<h2>Typology</h2>
-<ul>
-<li>Fit more closely: epochs, learning rate,</li>
-<li>Generalize better/regularization: dropout, regularization, batch size, weight decay</li>
-</ul>
-</section>
-<section id="tracking-training-progress" class="slide level2">
-<h2>Tracking Training Progress</h2>
-<h3 id="the-process-of-hyperparameter-tuning">The Process of Hyperparameter Tuning</h3>
-<p><a href="https://wandb.ai/">Weights and Biases</a> - “experiment” tracking and visualization</p>
-</section>
-<section id="understanding-training-dynamics" class="slide level2">
-<h2>Understanding Training Dynamics</h2>
-<p><br></p>
-<p><a href="https://huggingface.co/learn/llm-course/chapter3/5">Understanding learning curves</a></p>
-<ul>
-<li>read, do quiz</li>
-<li>exchange insights</li>
-<li>test them here:</li>
-</ul>
-<p><a href="https://playground.tensorflow.org/">Visualizing training dynamics</a></p>
 </section></section>
-<section id="debiasing-model-predictions" class="title-slide slide level1 center">
-<h1>Debiasing Model Predictions</h1>
-
-</section>
-
-<section id="tutorial-ii" class="title-slide slide level1 center">
-<h1>Tutorial II</h1>
-<p>[sentence embeddings? issues with common metrics under imbalance? debiasing!!!]</p>
+<section id="hackathon" class="title-slide slide level1 center">
+<h1><a href="https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/03b_hackathon.ipynb">Hackathon!</a></h1>
+<p>Who gets the best F1 score?</p>
 
 </section>
     </div>

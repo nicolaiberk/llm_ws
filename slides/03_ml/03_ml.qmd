@@ -13,13 +13,29 @@ format:
 bibliography: "../references.bib"
 ---
 
+## Recap: Text Representation
+
+<br>
+
+- Capture Semantic Meaning with Embeddings
+- Document Representations:
+  - Bag of Words (BoW)
+  - Term Frequency-Inverse Document Frequency (TF-IDF)
+  - Document Embeddings
+
+. . .
+
+#### Today: how can we use these representations to measure concepts of interest?
+
 ## Today
+
+<br>
 
 - The basics of supervised machine learning
 - Model evaluation
+- Model selection
 - Intro to neural networks
 - Training neural networks
-- Debiasing model predictions
 
 ## Examples
 
@@ -320,7 +336,7 @@ df %>%
 
 - Compare against informative baselines
   - Random prediction at prevalence rate
-  - Simple classifier, e.g. Logistic Regression
+  - Compare classifiers of varying complexity
 - Think about metric of interest (cancer detection vs. ad targeting)
 - Use prevalence-insensitive metrics:
   - Matthew's correlation coefficient (MCC)
@@ -328,6 +344,13 @@ df %>%
 
 :::
 
+
+# Break
+
+
+# Tutorial I
+
+[Training a simple text classifier](https://colab.research.google.com/github/nicolaiberk/Imbalanced/blob/master/01_IntroSML_Solution.ipynb)
 
 # Finding the perfect match
 
@@ -365,15 +388,12 @@ $$MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2$$
 
 ![](vis/bvt3.png)
 
-# Break
-
-
-# Tutorial I
-
-[Training a simple text classifier]()
-
-
 # What is a Neural Network?
+
+## Deep Neural Networks
+
+![Source: [IBM](https://www.ibm.com/think/topics/neural-networks)](vis/deep_neural_network.png)
+
 
 ## A Single Node
 
@@ -388,7 +408,6 @@ $$\hat{y} = g(w_0 + \sum_{i=1}^{m} w_i x_i)$$
 ## A Single Node
 
 ![](vis/perceptron_example.png)
-
 
 ## Deep Neural Networks
 
@@ -413,76 +432,17 @@ $$\hat{y} = g(w_0 + \sum_{i=1}^{m} w_i x_i)$$
 - Remember from ML course: **Training** is the process of optimizing a model's parameters on a specific task using labeled data.
 - In regression framework, this is called **fitting** the model to the training data.
 
-## Three Essential Steps
+## Training Deep Learning Models
 
 <br>
 
-- **Forward pass**: The process of passing input data through the model to obtain predictions.
-- **Loss**: A measure of how well the model's predictions match the ground truth.
-- **Backward pass**: The process of updating model parameters based on the loss.
-
-## How does it learn?
-
-![](Figure1_6/8_Deep Learning)
-
-### Loss Function
-
-### Backpropagation
-
-### Gradient Descent
-
-### Hyperparameters
-
-![Play around with a neural network](https://playground.tensorflow.org/)
+- Read the section on backpropagation (black background) in [this brief explainer](https://mlu-explain.github.io/neural-networks/)
+- Together with your partner, explain to each other:
+  - What is a **forward pass**?
+  - What is **loss**?
+  - What is a **backward pass**?
 
 
-## Training a Deep Learning Model
+# [Hackathon!](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/03b_hackathon.ipynb)
 
-> How can we fit billions of parameters efficiently?
-
-### Gradient Descent
-
-
-
-## Fine-tuning a Transformer Model
-
-## Training Hyperparameters
-
-### Choose one of the hyperparameters and read the associated explainer - then explain to us what the hyperparameter does!
-
-- **Number of Epochs**: The number of complete passes through the training dataset.
-- **Learning Rate**: The step size at each iteration while moving toward a minimum of the loss function.
-- **Batch Size**: The number of training examples utilized in one iteration.
-- **Weight Decay**: A regularization technique to prevent overfitting by penalizing large weights.
-- Dropout
-- ...
-
-## Typology
-
-- Fit more closely: epochs, learning rate, 
-- Generalize better/regularization: dropout, regularization, batch size, weight decay
-
-
-## Tracking Training Progress
-
-### The Process of Hyperparameter Tuning
-
-[Weights and Biases](https://wandb.ai/) - "experiment" tracking and visualization
-
-## Understanding Training Dynamics
-
-<br>
-
-[Understanding learning curves](https://huggingface.co/learn/llm-course/chapter3/5)
-
-- read, do quiz
-- exchange insights
-- test them here:
-
-[Visualizing training dynamics](https://playground.tensorflow.org/)
-
-# Debiasing Model Predictions
-
-# Tutorial II
-
-[sentence embeddings? issues with common metrics under imbalance? debiasing!!!]
+Who gets the best F1 score?
