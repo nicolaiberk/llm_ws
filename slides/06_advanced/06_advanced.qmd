@@ -120,11 +120,7 @@ As you saw with the reddit study, you can use AI models in behavioral experiment
 
 Researchers working with large amounts of archival data can digitize content and search it with LLMs.
 
-# Tutorial
-
-Informed Prompting
-
-[Notebook]()
+# Break
 
 # Bias
 
