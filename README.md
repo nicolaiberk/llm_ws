@@ -81,13 +81,23 @@ Intro to Transformer Models
 
 Generative Transformers
 
+🖥️ [Lecture Slides](https://nicoberk.quarto.pub/llm_ws-session-5-generative/#/title-slide)
+
+🧑‍💻 [Tutorial 1: ](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/05a_prompting.ipynb)
+
+🧑‍💻 [Tutorial 2: ](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/05b_api.ipynb)
+
+
 **Resources**
 
 - [Google prompting guide](https://services.google.com/fh/files/misc/gemini-for-google-workspace-prompting-guide-101.pdf)
 
 ### Afternoon Session (13:30 - 16:30)
 
-Using LLMs in Social Science Research/tbd
+Using LLMs in Social Science Research
+
+🖥️ [Lecture Slides](https://nicoberk.quarto.pub/llm_ws-session-6-use-llms/#/title-slide)
+
 
 <!-- 
 
