@@ -1,0 +1,215 @@
+---
+title: "Session 6: Using LLMs via APIs"
+author: "Nicolai Berk"
+subtitle: "CUSO WS on Large Language Models"
+date: "2025-09-03"
+description: "This session covers the concept of embeddings in the context of large language models."
+keywords: ["bert", "large language models", "machine learning", "nlp"]
+format:
+    revealjs:
+        theme: simple
+        slide-number: true
+        toc: false
+bibliography: "../references.bib"
+---
+
+# Social Science With LLMs
+
+## Efficiency
+
+<br>
+
+#### You don't always need the biggest model
+
+- Start with simple things
+- See how well they work
+- Use more advanced tools if necessary
+
+## Which tool when? (Annotation)
+
+<br>
+
+- <10k observations: few-shot annotation
+- Depending on your budget, this number could be much higher
+- \>>100k: train your own model, e.g. with synthetic annotation
+
+::: fragment
+::: callout-important
+
+### Always validate with human, ideally expert annotations
+
+:::
+:::
+
+::: aside
+::: fragment
+
+You can use Paco Tomas-Valiente's [R package](https://github.com/pacotvj99/testsampleR) to determine sample size.
+
+:::
+:::
+
+## Validation best practices
+
+- Always validate with human annotations
+- Use large samples, quantify uncertainty (e.g. bootstrap)
+- Use informed sampling when the data is imbalanced to keep the test set small ([R package](https://github.com/pacotvj99/testsampleR))
+- Think about relevant metrics, use multiple
+- Compare to benchmarks (random, simpler measures)
+
+## Reproducibility
+
+- Reproducibility is often very hard with LLMs
+- Proprietary models go out of fashion - stick to open source
+- Try to stick to the same infrastructure
+- Explicitly define the relevant parameters to ensure reproducibility (next slide)
+
+::: fragment
+
+#### Do you think reproducibility is important for LLMs?
+
+:::
+
+## Reproducibility Parameters
+
+<br>
+
+- Seeds
+- Model version (where possible)
+- Temperature (should be 0)
+- top-k (should be 1)
+
+## Research Ethics and AI
+
+<br>
+
+- Please read this [Reddit post](https://www.reddit.com/r/changemyview/comments/1k8b2hj/meta_unauthorized_experiment_on_cmv_involving/)
+- Get together in groups of 2-3 and discuss
+  - Do you think this research was unethical?
+  - If so? Why? What were the major issues with the study?
+  - Collect 2-3 arguments for your position.
+
+## Climate Impact
+
+- LLMs use up substantial amounts of energy and water and contribute to carbon emissions.
+- Training GPT-3 alone is estimated to have produced 552 tons of carbon dioxide. Thats 500+ flights Zurich-New York.
+- Data centers might already have 2.5 times the energy consumption of France ([MIT News](https://news.mit.edu/2025/explained-generative-ai-environmental-impact-0117)).
+- **Use smaller models when possible - this is also economical**.
+- [`codecarbon`](https://github.com/mlco2/codecarbon) can track the emissions of your own training.
+
+## Security
+
+<br>
+
+- Do not send you sensitive data to OpenAI
+- Talk to your university IT about provided infrastructure
+- Use your own endpoints
+- Ensure compliance with data protection regulations (e.g. servers in Europe)
+
+
+
+## Special use cases
+
+<br>
+
+### Experimental Interventions
+
+As you saw with the reddit study, you can use AI models in behavioral experiments. (Maybe do it better)
+
+### RAG for Archival Research
+
+Researchers working with large amounts of archival data can digitize content and search it with LLMs.
+
+# Tutorial
+
+Informed Prompting
+
+[Notebook]()
+
+# Bias
+
+## Bias
+
+<br>
+
+- ML annotations are often inherently biased
+- If we use biased measures in our statistical models, our estimates will be biased as well
+- This issue is even bigger for LLMs, where the training data is often not known
+
+## Bias: Example
+
+> Do employers favor certain nationalities, holding skills constant?
+
+- You have a dataset of candidate profiles and whether they got an offer for a position or not.
+- You measure skill level using a GPT annotation of the candidate profiles.
+- You regress hiring decisions on applicants' nationality and skill level.
+
+. . .
+
+#### What might be the issue here?
+
+## Bias: Example
+
+<br>
+
+- Let's assume GPT annotates Croatians as less skilled, other things equal.
+- At the same time, employers are discriminating against Croatians.
+- Depending on the strength of each bias, Croatians might be estimated to be treated equally or even less discriminated against!
+
+## Summary
+
+<br>
+
+- When we use machine predictions, especially from LLMs, we might introduce unknown bias
+- This will bias our estimates and lead to faulty hypothesis testing
+- Worst case, this will lead to worse science
+
+. . .
+
+### Thankfully, someone had an idea.
+
+## Design-based supervised learning (DSL)
+
+@egami2024using
+
+<br>
+
+- Corrects statistical estimates based on ML predictions by using annotated gold-standards
+- Two major components:
+  - 
+
+## DSL - Simplified Intuition
+
+
+- In a regression, DSL corrects the estimates **where the model deviates from the expert** by replacing these annotations with the expert labels
+- Weigh these according to their sampling probability
+- Then regress this outcome on our predictors
+- Also works when using ML estimates as predictors
+
+
+
+::: aside
+
+Note: They also use cross-fitting, but to fully understand the method, I recommend you read their [paper aimed at social scientists](https://naokiegami.com/paper/dsl_ss.pdf).
+
+:::
+
+## DSL - Core Adjustment
+
+![](vis/dsl_fml.png)
+
+
+# Conclusion
+
+## Takeaways
+
+
+# Fin!
+
+
+I learned a lot, thank you very much!
+
+
+## Resources
+
+
