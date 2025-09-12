@@ -51,7 +51,6 @@ bibliography: "../references.bib"
 
 #### "Causal" language modeling
 
-## What does this look like?
 
 ## Major differences
 
@@ -71,6 +70,9 @@ bibliography: "../references.bib"
 
 :::
 :::
+
+
+## What does this look like?
 
 ### [Visualization](https://bbycroft.net/llm)
 
@@ -142,7 +144,10 @@ about relevant program docs]. *Limit to bullet points.*
 
 Let's you impose structure on model outputs.
 
-```
+```{python}
+#| eval: false
+#| echo: true
+
 class CityLocation(BaseModel):
     city: str
     country: str
@@ -196,7 +201,8 @@ Label: negative
 
 <br>
 
-- Idea: most similar examples should be most informative
+#### Idea: most similar examples should be most informative
+
 1. Use cosine_similarity of embedding to assess similarity
 2. Add k most similar examples to the prompt
 
@@ -205,10 +211,10 @@ Label: negative
 <br>
 
 1. Retrieve most likely examples given a query (e.g. context for question)
-2. 
-- Provide examples to model as context for answer generation
-- Can require use of an additions
+2. [Optional: rerank generated examples using cross-encoder]
+3. Use these examples in the prompt to generate an answer
 
+Use-cases: archival research, chatbots, ...
 
 ## Synthetic Annotation
 
@@ -263,7 +269,7 @@ Label: negative
 
 LLM inference and prompting
 
-[Notebook]()
+[Notebook](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/05a_prompting.ipynb)
 
 
 # Hosting Models & Calling APIs
@@ -274,7 +280,27 @@ LLM inference and prompting
 
 ## Local Hosting
 
-Ollama
+### Ollama
+
+<br>
+
+```{python}
+#| eval: false
+#| echo: true
+
+from ollama import chat
+from ollama import ChatResponse
+
+response: ChatResponse = chat(model='gemma3', messages=[
+  {
+    'role': 'user',
+    'content': 'Why is the sky blue?',
+  },
+])
+print(response['message']['content'])
+# or access fields directly from the response object
+print(response.message.content)
+```
 
 ## [Azure](https://oai.azure.com)
 
@@ -282,11 +308,28 @@ Ollama
 
 ## OpenAI
 
+<br>
+
+```{python}
+#| eval: false
+#| echo: true
+
+from openai import OpenAI
+client = OpenAI()
+
+response = client.responses.create(
+    model="gpt-5",
+    input="Write a short bedtime story about a unicorn."
+)
+
+print(response.output_text)
+```
+
 # Tutorial II
 
 API calls, Structured Output
 
-[Notebook]()
+[Notebook](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/05b_api.ipynb)
 
 
 
