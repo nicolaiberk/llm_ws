@@ -148,7 +148,7 @@ bibliography: "../references.bib"
 
 - Each session consists of a lecture and a hands-on coding tutorial.
 - It makes sense to exchange with your neighbor about coding problems.
-- Use of AI is explicitly encouraged - course should teach you to understand the code, not make you an expert programmer.
+- Use of AI is explicitly encouraged - course should teach you to understand & apply the concepts, not make you an expert programmer.
 - Please ask lots of questions & interrupt me!
 - Be nice!
 
@@ -192,8 +192,6 @@ Only relevant source: [github.com/nicolaiberk/llm_ws](https://github.com/nicolai
 - But simpler if we all use the same (better) infrastructure
 - [Google Colab](https://colab.research.google.com/) is a free cloud service where we can execute python code.
 - Crucial: provides access to GPUs for training LLMs.
-
-# Break
 
 # Tutorial I
 
