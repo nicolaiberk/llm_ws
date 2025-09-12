@@ -345,9 +345,6 @@ df %>%
 :::
 
 
-# Break
-
-
 # Tutorial I
 
 [Training a simple text classifier](https://colab.research.google.com/github/nicolaiberk/Imbalanced/blob/master/01_IntroSML_Solution.ipynb)
