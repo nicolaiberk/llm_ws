@@ -69,6 +69,7 @@ This workshop provides an introduction to fundamentals of NLP and LLMs for socia
 
 #### Further Reading
 
+- [Google's Machine Learning Crach Course](https://developers.google.com/machine-learning/crash-course)
 - [scikit-learn documentation](https://scikit-learn.org/stable/). Not only a documentation of the major library for machine learning, but a great resource of tutorials and explainers on machine learning.
 
 ### Session 2
