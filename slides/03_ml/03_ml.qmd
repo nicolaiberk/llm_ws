@@ -1,8 +1,8 @@
 ---
-title: "CUSO WS on LLMs"
-subtitle: "Session 3: Intro to Supervised Machine Learning"
+title: "Supervised Machine Learning"
 author: "Nicolai Berk"
-date: "2025-09-03"
+subtitle: "Crash-course LLMs for Social Science"
+date: "2025-09-12"
 description: "This lecture gives a brief introduction to machine learning for NLP."
 keywords: ["ml", "bag of words", "machine learning", "nlp"]
 format:

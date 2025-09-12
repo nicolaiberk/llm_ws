@@ -1,8 +1,8 @@
 ---
-title: "Session 5: Generative LLMs"
+title: "Generative LLMs"
 author: "Nicolai Berk"
-subtitle: "CUSO WS on Large Language Models"
-date: "2025-09-03"
+subtitle: "Crash-course LLMs for Social Science"
+date: "2025-09-12"
 description: "This session covers generative decoder models."
 keywords: ["gpt", "decoder", "large language models", "machine learning", "nlp"]
 format:

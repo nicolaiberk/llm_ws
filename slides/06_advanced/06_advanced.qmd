@@ -1,8 +1,8 @@
 ---
-title: "Session 6: Using LLMs via APIs"
+title: "LLMs for Social Science"
 author: "Nicolai Berk"
-subtitle: "CUSO WS on Large Language Models"
-date: "2025-09-03"
+subtitle: "Crash-course LLMs for Social Science"
+date: "2025-09-12"
 description: "This session covers the concept of embeddings in the context of large language models."
 keywords: ["bert", "large language models", "machine learning", "nlp"]
 format:
@@ -51,6 +51,8 @@ You can use Paco Tomas-Valiente's [R package](https://github.com/pacotvj99/tests
 
 ## Validation best practices
 
+<br>
+
 - Always validate with human annotations
 - Use large samples, quantify uncertainty (e.g. bootstrap)
 - Use informed sampling when the data is imbalanced to keep the test set small ([R package](https://github.com/pacotvj99/testsampleR))
@@ -58,6 +60,8 @@ You can use Paco Tomas-Valiente's [R package](https://github.com/pacotvj99/tests
 - Compare to benchmarks (random, simpler measures)
 
 ## Reproducibility
+
+<br>
 
 - Reproducibility is often very hard with LLMs
 - Proprietary models go out of fashion - stick to open source
@@ -114,13 +118,11 @@ You can use Paco Tomas-Valiente's [R package](https://github.com/pacotvj99/tests
 
 ### Experimental Interventions
 
-As you saw with the reddit study, you can use AI models in behavioral experiments. (Maybe do it better)
+As you saw with the reddit study, you can use AI models in behavioral experiments (maybe do it better).
 
 ### RAG for Archival Research
 
 Researchers working with large amounts of archival data can digitize content and search it with LLMs.
-
-# Break
 
 # Bias
 
@@ -170,12 +172,14 @@ Researchers working with large amounts of archival data can digitize content and
 
 <br>
 
-- Corrects statistical estimates based on ML predictions by using annotated gold-standards
+- Corrects statistical estimates based on ML/LLM predictions by using annotated gold-standards
 - Two major components:
-  - 
+  1. Use expert annotations to correct the outcome variable
+  2. Cross-fitting (less important for now)
 
 ## DSL - Simplified Intuition
 
+<br>
 
 - In a regression, DSL corrects the estimates **where the model deviates from the expert** by replacing these annotations with the expert labels
 - Weigh these according to their sampling probability
@@ -192,6 +196,8 @@ Note: They also use cross-fitting, but to fully understand the method, I recomme
 
 ## DSL - Core Adjustment
 
+<br><br>
+
 ![](vis/dsl_fml.png)
 
 
@@ -199,6 +205,12 @@ Note: They also use cross-fitting, but to fully understand the method, I recomme
 
 ## Takeaways
 
+- General understanding of how LLMs work
+- Window-shopping many tools
+  - Embeddings for assessment of word and sentence meaning
+  - Bag-of-words models for interpretable machine learning
+  - Encoder models for (zero-shot) classification, similarity assessment, ...
+  - Decoder models for text generation and completion
 
 # Fin!
 
@@ -208,4 +220,4 @@ I learned a lot, thank you very much!
 
 ## Resources
 
-
+<br>

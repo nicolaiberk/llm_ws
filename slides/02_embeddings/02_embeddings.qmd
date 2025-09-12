@@ -1,8 +1,8 @@
 ---
-title: "Lecture 2: Embeddings"
+title: "Embeddings"
 author: "Nicolai Berk"
-subtitle: "CUSO WS on Large Language Models"
-date: "2025-09-03"
+subtitle: "Crash-course LLMs for Social Science"
+date: "2025-09-12"
 description: "This lecture covers the concept of embeddings in the context of large language models."
 keywords: ["embeddings", "large language models", "machine learning", "nlp"]
 format:

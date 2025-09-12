@@ -1,8 +1,8 @@
 ---
-title: "Lecture 1: Introduction to NLP & Text Representation"
+title: "Representing Text"
 author: "Nicolai Berk"
-subtitle: "CUSO WS on Large Language Models"
-date: "2025-09-03"
+subtitle: "Crash-course LLMs for Social Science"
+date: "2025-09-12"
 description: "This lecture introduces students to the course, as well as python and text representation techniques."
 keywords: ["bag-of-words", "large language models", "nlp"]
 format:

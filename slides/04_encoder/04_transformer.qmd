@@ -1,9 +1,9 @@
 ---
-title: "Session 4: The Transformer"
+title: "Transformer Models"
 author: "Nicolai Berk"
-subtitle: "CUSO WS on Large Language Models"
-date: "2025-09-03"
-description: "This session covers the concept of embeddings in the context of large language models."
+subtitle: "Crash-course LLMs for Social Science"
+date: "2025-09-12"
+description: "This session covers tokenization, attention, and the fundamental building blocks of transformer architecture."
 keywords: ["bert", "large language models", "machine learning", "nlp"]
 format:
     revealjs:
