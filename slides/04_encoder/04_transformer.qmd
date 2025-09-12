@@ -248,8 +248,6 @@ $$x'_i = \sum_{j=1}^{n} w_{ij} x_j$$
   - Add these vectors to the token embeddings
   - This allows the model to understand the order of tokens
 
-# Breaktime
-
 # Tutorial I
 
 **Tokenization, Attention & Inference**
@@ -271,7 +269,7 @@ $$x'_i = \sum_{j=1}^{n} w_{ij} x_j$$
 
 - Converts an input sequence of tokens into a sequence of embedding vectors
 - Trained on masked language modeling
-- Tasks: Text classification, named entity recognition, extractive question answering, ...
+- Tasks: Text classification, named entity recognition, question answering, ...
 
 :::
 ::: column
