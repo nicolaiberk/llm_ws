@@ -61,17 +61,21 @@ This workshop provides an introduction to fundamentals of NLP and LLMs for socia
 
 **Intro to Supervised Machine Learning**
 
-🖥️ [Lecture Slides](https://nicoberk.quarto.pub/llm_ws-session-3-ml)
+🖥️ [Lecture Slides](https://nicoberk.quarto.pub/llm_ws-lecture-3)
 
 🧑‍💻 [Tutorial 1: Intro to Supervised Machine Learning with `scikit-learn`](https://colab.research.google.com/github/nicolaiberk/Imbalanced/blob/master/01_IntroSML_Solution.ipynb)
 
 🧑‍💻 [Tutorial 2: Hackathon](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/03b_hackathon.ipynb)
 
+#### Further Reading
+
+- [scikit-learn documentation](https://scikit-learn.org/stable/). Not only a documentation of the major library for machine learning, but a great resource of tutorials and explainers on machine learning.
+
 ### Session 2
 
-**Intro to Transformer Models**
+**Subword Tokenization, Attention & the Transformer Architecture**
 
-🖥️ [Lecture Slides](https://nicoberk.quarto.pub/llm_ws-session-4-transformer/)
+🖥️ [Lecture Slides](https://nicoberk.quarto.pub/llm_ws-lecture-4)
 
 🧑‍💻 [Tutorial 1: Contextualized Embeddings, Tokenization, and Inference with Transformers](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/04a_tokens_attention.ipynb)
 
@@ -79,13 +83,14 @@ This workshop provides an introduction to fundamentals of NLP and LLMs for socia
 
 #### Further Reading
 
-- **Simple Explanation of Transformer Architecture**: Tunstall, L., Von Werra, L., & Wolf, T. (2022). Hello Transformers. In: *Natural language processing with transformers*. " O'Reilly Media, Inc.".
+- [**Huggingface Explainer on Subword Tokenization**](https://huggingface.co/learn/llm-course/en/chapter2/4)
+- **Simple Explanation of Attention & Transformer Architecture**: Tunstall, L., Von Werra, L., & Wolf, T. (2022). Hello Transformers. In: *Natural language processing with transformers*. " O'Reilly Media, Inc.".
 - **Original Transformer Paper**: Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., ... & Polosukhin, I. (2017). Attention is all you need. Advances in neural information processing systems, 30.
 - **Paper introducing BERT Architecture**: [BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding](https://aclanthology.org/N19-1423/) (Devlin et al., NAACL 2019)
 
 **Interactive Tools**
 
-- [Interactive Neural Network Plaground](https://playground.tensorflow.org) by Tensorflow. Play around with network architecture and hyperparameter choices to gain an intuitive understanding of neural networks.
+- [Interactive Neural Network Playground](https://playground.tensorflow.org) by Tensorflow. Play around with network architecture and hyperparameter choices to gain an intuitive understanding of neural networks.
 
 ## Day 3
 
@@ -95,7 +100,7 @@ This workshop provides an introduction to fundamentals of NLP and LLMs for socia
 
 **Generative Transformers**
 
-🖥️ [Lecture Slides](https://nicoberk.quarto.pub/llm_ws-session-5-generative/#/title-slide)
+🖥️ [Lecture Slides](https://nicoberk.quarto.pub/llm_ws-lecture-5)
 
 🧑‍💻 [Tutorial 1: Annotation with Generative Models](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/05a_prompting.ipynb)
 
@@ -105,7 +110,7 @@ This workshop provides an introduction to fundamentals of NLP and LLMs for socia
 
 - [Google prompting guide](https://services.google.com/fh/files/misc/gemini-for-google-workspace-prompting-guide-101.pdf)
 
-**Visualizations**
+**Visual Guides**
 
 - [LLM Visualization by Brendan Bycroft](https://bbycroft.net/llm): Full interactive visualization of GPT Architecture with simple explanations of each step in the architecture.
 - [Jay Alamar's Illustrated Transfromer](https://jalammar.github.io/illustrated-transformer/): Accessible visual explanation of transformer architecture.
@@ -116,7 +121,7 @@ This workshop provides an introduction to fundamentals of NLP and LLMs for socia
 
 **Using LLMs in Social Science Research**
 
-🖥️ [Lecture Slides](https://nicoberk.quarto.pub/llm_ws-session-6-use-llms/#/title-slide)
+🖥️ [Lecture Slides](https://nicoberk.quarto.pub/llm_ws-lecture-6)
 
 <!-- 🧑‍💻 [Tutorial 1: Building a Chatbot for Retrieval-Augmented Generation](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/06a_rag.ipynb) -->
 
