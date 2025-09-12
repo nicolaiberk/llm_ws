@@ -561,8 +561,6 @@ The **projection** of a term on this vector tells us which pole it is more assoc
 - Countries
 - ...
 
-# Short break
-
 # Embeddings: Tutorial 2
 
 [Notebook](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/02b_embeddings_2.ipynb)
