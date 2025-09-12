@@ -1,14 +1,16 @@
-# CUSO Workshop: LLMs for Social Scientists
+# Crashcourse: LLMs for Social Scientists
 
-3-5 September 2025, UNIL Lausanne
+![](images/transformers-crash.png)
 
-This workshop provides an introduction to fundamentals of NLP and LLMs for social scientists. It covers basic and advanced text representation, fundamentals of machine learning, transformer architectures, and applied questions regarding LLMs. The course consists of six three-hour sessions, each divided into a lecture with a conceptual focus, and a tutorial covering the implementation in python. The course is designed to provide a fast overview of major topics in the application of LLMs. It covers most content rather superficially, aiming to provide students with a good intuition of each concept and code as a starting point to implement their own ideas.
+This workshop provides an introduction to fundamentals of NLP and LLMs for social scientists. It covers basic and advanced text representation, fundamentals of machine learning, transformer architectures, and applied questions regarding LLMs. The course consists of twelve 90-minute sessions, mostly divided into a lecture with a conceptual focus, and a tutorial covering implementation in python. The course is designed to provide a fast overview of major topics in the application of LLMs. It covers most content rather superficially, aiming to provide students with a good intuition of each concept and code as a starting point to implement their own ideas.
 
-## Wednesday, Sept. 3rd
+## Day 1
 
-### Morning Session (10:30 - 13:30)
+#### Representing Text
 
-#### Intro to Python & Text Representation
+### Session 1
+
+**Intro to Python & Text Representation**
 
 🖥️ [Lecture Slides](https://nicoberk.quarto.pub/llm_ws-lecture-1)
 
@@ -16,14 +18,16 @@ This workshop provides an introduction to fundamentals of NLP and LLMs for socia
 
 🧑‍💻 [Tutorial 2: Pandas & basic text representation](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/01b_text_reps.ipynb)
 
-**Further reading**
+#### Further Reading
 
-- Grimmer, J., Roberts, M. E., & Stewart, B. M. (2022). Bag of Words. In *Text as data: A new framework for machine learning and the social sciences*. Princeton University Press.
+- **Introduction to text representation for social scientists**: Grimmer, J., Roberts, M. E., & Stewart, B. M. (2022). Bag of Words. In *Text as data: A new framework for machine learning and the social sciences*. Princeton University Press.
 - [pandas cheatsheet](https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf)
+- [Regular Expressions Cheatsheet](https://regexr.com/)
 
-### Afternoon Session (14:30 - 17:30)
 
-#### Embeddings
+### Session 2
+
+**Embeddings**
 
 🖥️ [Lecture Slides](https://nicoberk.quarto.pub/llm_ws-lecture-2)
 
@@ -31,21 +35,10 @@ This workshop provides an introduction to fundamentals of NLP and LLMs for socia
 
 🧑‍💻 [Tutorial 2: Scaling Word Embeddings & Document Embeddings](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/02b_embeddings_2.ipynb)
 
-**Explainer**
+#### Further Reading
 
-McCormick, C. (2016, April 19). [Word2Vec tutorial - The skip-gram model](https://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/). *Chris McCormack's Blog*.
-
-**Tools**
-
-- [Regular Expressions Cheatsheet](https://regexr.com/)
+- **Explainer on Algorithm behind Word Embeddings**: McCormick, C. (2016, April 19). [Word2Vec tutorial - The skip-gram model](https://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/). *Chris McCormack's Blog*.
 - [`gensim` documentation and tutorials on embeddings](https://radimrehurek.com/gensim/auto_examples/index.html#documentation)
-
-**Social Science Applications**
-
-- Kozlowski, Austin C, Matt Taddy, and James A Evans. 2019. “The Geometry of Culture: Analyzing the Meanings of Class Through Word Embeddings.” American Sociological Review 84 (5): 905–49. 
-- Kroon, Anne C, Damian Trilling, and Tamara Raats. 2021. “Guilty by Association: Using Word Embeddings to Measure Ethnic Stereotypes in News Coverage.” Journalism & Mass Communication Quarterly 98 (2): 451–77.
--  Rheault, Ludovic, and Christopher Cochrane. 2020. “Word Embeddings for the Analysis of Ideological Placement in Parliamentary Corpora.” Political Analysis 28 (1): 112–33.
-- Rodman, Emma. 2020. “A Timely Intervention: Tracking the Changing Meanings of Political Concepts with Word Vectors.” Political Analysis 28 (1): 87–111.
 
 **Foundational Papers**
 
@@ -53,11 +46,20 @@ McCormick, C. (2016, April 19). [Word2Vec tutorial - The skip-gram model](https:
 - **Document Embeddings**: Le, Quoc, and Tomas Mikolov. 2014. “Distributed Representations of Sentences and Documents.” In International Conference on Machine Learning, 1188–96. PMLR.
 - **Embedding Regression**: Rodriguez, Pedro L, Arthur Spirling, and Brandon M Stewart. 2023. “Embedding Regression: Models for Context-Specific Description and Inference.” American Political Science Review 117 (4): 1255–74. 
 
-## Thursday, Sept. 4th
+**Social Science Applications**
 
-### Morning Session (9:30 - 12:30)
+- **Studying word Meaning with Embeddings**: Kozlowski, Austin C, Matt Taddy, and James A Evans. 2019. “The Geometry of Culture: Analyzing the Meanings of Class Through Word Embeddings.” American Sociological Review 84 (5): 905–49. 
+- **Measuring Bias and Stereotypes with Word Embeddings**: Kroon, Anne C, Damian Trilling, and Tamara Raats. 2021. “Guilty by Association: Using Word Embeddings to Measure Ethnic Stereotypes in News Coverage.” Journalism & Mass Communication Quarterly 98 (2): 451–77.
+- **Scaling Representatives with Document Embeddings**: Rheault, Ludovic, and Christopher Cochrane. 2020. “Word Embeddings for the Analysis of Ideological Placement in Parliamentary Corpora.” Political Analysis 28 (1): 112–33.
+- **Studying over-time Changes in Word Meaning**: Rodman, Emma. 2020. “A Timely Intervention: Tracking the Changing Meanings of Political Concepts with Word Vectors.” Political Analysis 28 (1): 87–111.
 
-Intro to Supervised Machine Learning
+## Day 2
+
+#### Machine Learning
+
+### Session 1
+
+**Intro to Supervised Machine Learning**
 
 🖥️ [Lecture Slides](https://nicoberk.quarto.pub/llm_ws-session-3-ml)
 
@@ -65,9 +67,9 @@ Intro to Supervised Machine Learning
 
 🧑‍💻 [Tutorial 2: Hackathon](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/03b_hackathon.ipynb)
 
-### Afternoon Session (13:30 - 16:30)
+### Session 2
 
-Intro to Transformer Models
+**Intro to Transformer Models**
 
 🖥️ [Lecture Slides](https://nicoberk.quarto.pub/llm_ws-session-4-transformer/)
 
@@ -75,98 +77,49 @@ Intro to Transformer Models
 
 🧑‍💻 [Tutorial 2: Fine-tuning Transformer Models](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/04b_finetuning_bert.ipynb)
 
-## Friday, Sept. 5th
+#### Further Reading
 
-### Morning Session (9:30 - 12:30)
+- **Simple Explanation of Transformer Architecture**: Tunstall, L., Von Werra, L., & Wolf, T. (2022). Hello Transformers. In: *Natural language processing with transformers*. " O'Reilly Media, Inc.".
+- **Original Transformer Paper**: Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., ... & Polosukhin, I. (2017). Attention is all you need. Advances in neural information processing systems, 30.
+- **Paper introducing BERT Architecture**: [BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding](https://aclanthology.org/N19-1423/) (Devlin et al., NAACL 2019)
 
-Generative Transformers
+**Interactive Tools**
 
-🖥️ [Lecture Slides](https://nicoberk.quarto.pub/llm_ws-session-5-generative/#/title-slide)
-
-🧑‍💻 [Tutorial 1: ](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/05a_prompting.ipynb)
-
-🧑‍💻 [Tutorial 2: ](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/05b_api.ipynb)
-
-
-**Resources**
-
-- [Google prompting guide](https://services.google.com/fh/files/misc/gemini-for-google-workspace-prompting-guide-101.pdf)
-
-### Afternoon Session (13:30 - 16:30)
-
-Using LLMs in Social Science Research
-
-🖥️ [Lecture Slides](https://nicoberk.quarto.pub/llm_ws-session-6-use-llms/#/title-slide)
-
-
-<!-- 
-
-## Day 1
-
-### Introduction & Representing Text
-
-*Lecture I: Introduction & Applications of NLP in the Social Sciences
-
-*Tutorial I: Intro to Python
-
-*Lecture II: Representing Text: Bag-of-Words
-
-*Tutorial II: Bag-of-Words and Scaling
-
-### Embeddings
-
-#### Lecture I: Working with Embeddings
-
-[Slides]()
-
-#### Tutorial I: Intro to Word Embeddings with `gensim`
-
-[Notebook]()
-
-Lecture II: Advanced Embeddings
-
-Tutorial II: Scaling Word Embeddings & Document Embeddings
-
-## Day 2
-
-### Supervised Machine Learning
-
-Lecture I: The basic process of Supervised Machine Learning & Bias-variance tradeoffs
-
-Tutorial I: Supervised ML with `scikit-learn`
-
-Lecture II: Basics of Neural Networks
-
-*Tutorial II: Classification with embeddings, hackathon: best model with and without embeddings
-
-### Introduction to Transformers: The Encoder
-
-Lecture I: Advanced Tokenization & Contextualized Embeddings
-
-Tutorial I: Tokenization, attention, inference with transformers
-
-Lecture II: The Encoder, Training a Transformer
-
-Tutorial II: Fine-tune your own BERT model
+- [Interactive Neural Network Plaground](https://playground.tensorflow.org) by Tensorflow. Play around with network architecture and hyperparameter choices to gain an intuitive understanding of neural networks.
 
 ## Day 3
 
-### Advanced NLP & the Decoder
+#### Generative Models
 
-*Lecture I: ?? (Decoder architecture, training generative models, hyperparameters)
+### Session 1
 
-*Tutorial I: ?? (tracking your experiments/hyperparameter tuning with wandb)
+**Generative Transformers**
 
-*Lecture II: ?? (Climate Impact of LLMs & PEFT, Bias & Debiasing, ...)
+🖥️ [Lecture Slides](https://nicoberk.quarto.pub/llm_ws-session-5-generative/#/title-slide)
 
-*Tutorial II: ?? (PEFT?)
+🧑‍💻 [Tutorial 1: Annotation with Generative Models](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/05a_prompting.ipynb)
 
-### RAG & other Shananigans, Q&A
+🧑‍💻 [Tutorial 2: API Calls & Structured Output](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/05b_api.ipynb)
 
-*Lecture I: ?? ()
+#### Further Reading
 
-*Tutorial I: ?? (tracking your experiments/hyperparameter tuning with wandb?)
+- [Google prompting guide](https://services.google.com/fh/files/misc/gemini-for-google-workspace-prompting-guide-101.pdf)
 
-*Lecture II: ?? ()
+**Visualizations**
 
-*Tutorial II: ?? (Building your own chatbot with RAG?) -->
+- [LLM Visualization by Brendan Bycroft](https://bbycroft.net/llm): Full interactive visualization of GPT Architecture with simple explanations of each step in the architecture.
+- [Jay Alamar's Illustrated Transfromer](https://jalammar.github.io/illustrated-transformer/): Accessible visual explanation of transformer architecture.
+- [Transformer Explainer](https://poloclub.github.io/transformer-explainer/) Interactive visualization of tranformer forward pass, focusing on attention and impact of specific hyperparameters.
+
+
+### Session 2
+
+**Using LLMs in Social Science Research**
+
+🖥️ [Lecture Slides](https://nicoberk.quarto.pub/llm_ws-session-6-use-llms/#/title-slide)
+
+<!-- 🧑‍💻 [Tutorial 1: Building a Chatbot for Retrieval-Augmented Generation](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/06a_rag.ipynb) -->
+
+#### Further Reading
+
+- [Debiasing machine-learning estimates](https://naokiegami.com/dsl/articles/intro.html)
