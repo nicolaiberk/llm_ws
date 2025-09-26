@@ -124,7 +124,7 @@ This workshop provides an introduction to fundamentals of NLP and LLMs for socia
 
 🖥️ [Lecture Slides](https://nicoberk.quarto.pub/llm_ws-lecture-6)
 
-<!-- 🧑‍💻 [Tutorial 1: Building a Chatbot for Retrieval-Augmented Generation](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/06a_rag.ipynb) -->
+🧑‍💻 [Tutorial 1: Informed Prompting and Retrieval-Augmented Generation](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/06a_rag.ipynb)
 
 #### Further Reading
 
