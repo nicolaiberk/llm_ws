@@ -1,0 +1,132 @@
+/*-- scss:defaults --*/
+
+// =====================================================================
+//  DiMES / FU Berlin — minimal Quarto RevealJS theme
+//  Two accents only: aggressive green (#CCFF00) + dark navy blue.
+//  Use with:  theme: [simple, ../fu-berlin.scss]
+// =====================================================================
+
+// --- Accents -------------------------------------------------------------
+$dimes-green: #ccff00;   // aggressive lime — used sparingly as a highlight
+$dimes-blue:  #0a1e5c;   // dark navy — headings & structure
+$ink:         #111111;   // body text
+$muted:       #6b7280;   // captions / secondary
+$hairline:    #e5e7eb;   // light dividers
+$white:       #ffffff;
+
+// --- Fonts ---------------------------------------------------------------
+// Body: Source Sans Pro (clean, readable). Headings: Space Grotesk (a tad
+// fancier — modern, distinctive, pairs with the bright-green accent).
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@500;600;700&display=swap');
+
+$font-family-sans-serif: "Source Sans Pro", Arial, Helvetica, sans-serif !default;
+$heading-font: "Inter", "Source Sans Pro", Arial, sans-serif;
+
+$presentation-font-size-root: 34px;
+$presentation-line-height: 1.4;
+
+// --- Core colours --------------------------------------------------------
+$body-bg:    $white;
+$body-color: $ink;
+
+$link-color:       $dimes-blue;
+$link-color-hover: lighten($dimes-blue, 20%);
+
+$selection-bg:    $dimes-green;
+$selection-color: $ink;
+
+// --- Headings ------------------------------------------------------------
+$presentation-heading-font:  $heading-font;
+$presentation-heading-color: $dimes-blue;
+$presentation-heading-font-weight: 700;
+$presentation-h1-font-size: 2.0em;
+$presentation-h2-font-size: 1.4em;
+$presentation-h3-font-size: 1.1em;
+
+// --- Code ----------------------------------------------------------------
+$code-color:    $dimes-blue;
+$code-block-bg: #f6f7f9;
+
+
+/*-- scss:rules --*/
+
+// ---- Section-divider slides (level-1 `#`) → navy text + green highlight ---
+// In Quarto these carry the `.title-slide` class (the real opening title
+// slide is #title-slide.quarto-title-block, handled separately below).
+.reveal section.title-slide h1 {
+  color: $dimes-blue;
+  border-bottom: 4px solid $dimes-green;
+  padding-bottom: 0.2em;
+  display: inline-block;
+}
+
+// ---- Opening title slide (clean white, thin green underline accent) ------
+.reveal #title-slide {
+  background-color: $white;
+}
+.reveal #title-slide h1.title {
+  color: $dimes-blue;
+  border-bottom: 3px solid $dimes-green;
+  padding-bottom: 0.15em;
+  display: inline-block;
+}
+.reveal #title-slide .subtitle { color: $muted; font-weight: 300; }
+.reveal #title-slide .quarto-title-author-name,
+.reveal #title-slide .date { color: $ink; }
+
+// ---- Content headings (clean — no underlines, no rules) -----------------
+.reveal h2, .reveal h3, .reveal h4 { color: $dimes-blue; }
+.reveal h2 { margin-bottom: 0.5em; }
+
+// ---- Links --------------------------------------------------------------
+.reveal a {
+  color: $dimes-blue;
+  text-decoration: none;
+  box-shadow: inset 0 -0.12em 0 $dimes-green;   // thin green underline swash
+  transition: box-shadow 0.2s ease, color 0.2s ease;
+}
+.reveal a:hover {
+  color: $ink;                                  // dark text stays readable on green
+  box-shadow: inset 0 -1em 0 $dimes-green;      // green rises to fill the background
+}
+
+// ---- Emphasis -----------------------------------------------------------
+.reveal mark {
+  background: $dimes-green;
+  color: $ink;
+  padding: 0 0.15em;
+}
+.reveal strong { color: $dimes-blue; }
+
+// ---- Lists (default markers, just tightened) ----------------------------
+.reveal li { margin-bottom: 0.15em; }
+
+// ---- Blockquotes --------------------------------------------------------
+.reveal blockquote {
+  border-left: 4px solid $dimes-green;
+  background: none;
+  box-shadow: none;
+  font-style: italic;
+  padding-left: 0.8em;
+}
+
+// ---- Tables (minimal: navy header rule, no fills) -----------------------
+.reveal table th {
+  color: $dimes-blue;
+  border-bottom: 2px solid $dimes-blue;
+}
+.reveal table td { border-bottom: 1px solid $hairline; }
+
+// ---- Callouts (thin coloured left border only) --------------------------
+.reveal .callout { box-shadow: none; }
+.reveal .callout.callout-tip       { border-left-color: $dimes-green; }
+.reveal .callout.callout-important { border-left-color: $dimes-blue; }
+.reveal .callout.callout-note      { border-left-color: $dimes-blue; }
+
+// ---- Captions -----------------------------------------------------------
+.reveal figure figcaption { color: $muted; font-size: 0.7em; }
+
+// ---- Progress bar & slide number ----------------------------------------
+.reveal .progress { color: $dimes-green; }
+.reveal .progress span { background: $dimes-green; }
+.reveal .slide-number { background: transparent; color: $muted; }
