@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>readme</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="README_files/libs/clipboard/clipboard.min.js"></script>
+<script src="README_files/libs/quarto-html/quarto.js"></script>
+<script src="README_files/libs/quarto-html/popper.min.js"></script>
+<script src="README_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="README_files/libs/quarto-html/anchor.min.js"></script>
+<link href="README_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="README_files/libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="README_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="README_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="README_files/libs/bootstrap/bootstrap-c0367b04c37547644fece4185067e4a7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+
+<section id="using-large-language-models-for-frame-measurement-and-other-shenanigans" class="level1">
+<h1>Using Large Language Models for Frame Measurement and Other Shenanigans</h1>
+<section id="dimes-workshop-at-fu-berlin-july-9-and-10" class="level4">
+<h4 class="anchored" data-anchor-id="dimes-workshop-at-fu-berlin-july-9-and-10">DiMES Workshop at FU Berlin, July 9 and 10</h4>
+<p><img src="images/llm_framing.png" class="img-fluid"></p>
+<p>This workshop provides an introduction to fundamentals of natural language processing (NLP) and large language models (LLMs) for political communication research. It covers basic and advanced text representation, fundamentals of machine learning, the inner workings of LLMs, and applied questions regarding LLMs. The course consists of seven 90-minute sessions and one 45-minute session, mostly divided into a lecture with a conceptual focus, and a tutorial covering implementation in python. The course is designed to provide a fast overview of major topics in the application of LLMs. It covers most content rather superficially, aiming to provide students with a good intuition of each concept and code as a starting point to implement their own ideas.</p>
+<!-- How can large language models be used to measure framing and other relevant concepts in political communication? This practical workshop introduces you to the essentials of leveraging these powerful models for your research. You will gain a basic understanding of text embeddings, transformer architectures, and the fundamentals of training and fine-tuning models.  We will delve into the practical use of these models using the Huggingface library in Python to effectively use existing models, fine-tune your own models, and deploy them via APIs. One session will delve into frame measurement with modern NLP methodology and how different methods align with different conceptualizations. Finally, we will cover model bias and its mitigation in the use of LLM predictions for statistical inference. -->
+</section>
+<section id="day-1-july-9" class="level2">
+<h2 class="anchored" data-anchor-id="day-1-july-9">Day 1 (July 9)</h2>
+<section id="representing-text" class="level4">
+<h4 class="anchored" data-anchor-id="representing-text">Representing Text</h4>
+</section>
+<section id="session-1" class="level3">
+<h3 class="anchored" data-anchor-id="session-1">Session 1</h3>
+<p><strong>Intro to Python &amp; Text Representation</strong></p>
+<p>Intro, Colab/Python, Text Representation (BoW) - <em>consider VaDER and stance detection discussion, esp Bestvater Munroe paper; but is this still relevant/necessary?</em></p>
+<p>🖥️ <a href="https://nicoberk.quarto.pub/llm_ws-lecture-1">Lecture Slides</a></p>
+<p>🧑‍💻 <a href="https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/01a_python.ipynb">Tutorial 1: Intro to Python</a></p>
+<p>🧑‍💻 <a href="https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/01b_text_reps.ipynb">Tutorial 2: Pandas &amp; basic text representation</a></p>
+<section id="further-reading" class="level4">
+<h4 class="anchored" data-anchor-id="further-reading">Further Reading</h4>
+<ul>
+<li><strong>Introduction to text representation for social scientists</strong>: Grimmer, J., Roberts, M. E., &amp; Stewart, B. M. (2022). Bag of Words. In <em>Text as data: A new framework for machine learning and the social sciences</em>. Princeton University Press.</li>
+<li><a href="https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf">pandas cheatsheet</a></li>
+<li><a href="https://regexr.com/">Regular Expressions Cheatsheet</a></li>
+<li><a href="https://www.cambridge.org/core/journals/political-analysis/article/sentiment-is-not-stance-targetaware-opinion-classification-for-political-text-analysis/743A9DD62DF3F2F448E199BDD1C37C8D">Bestvater SE, Monroe BL. Sentiment is Not Stance: Target-Aware Opinion Classification for Political Text Analysis. Political Analysis. 2023;31(2):235-256. doi:10.1017/pan.2022.10</a></li>
+</ul>
+</section>
+</section>
+<section id="session-2" class="level3">
+<h3 class="anchored" data-anchor-id="session-2">Session 2</h3>
+<p><strong>Embeddings (the short version)</strong></p>
+<p><em>add more substantive application (make sure to assign a paper using embeddings)</em></p>
+<p>🖥️ <a href="https://nicoberk.quarto.pub/llm_ws-lecture-2">Lecture Slides</a></p>
+<p>🧑‍💻 <a href="https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/02a_embeddings.ipynb">Tutorial 1: Intro to embedding manipulation with <code>gensim</code></a></p>
+<p>🧑‍💻 <a href="https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/02b_embeddings_2.ipynb">Tutorial 2: Scaling Word Embeddings &amp; Document Embeddings</a></p>
+<section id="further-reading-1" class="level4">
+<h4 class="anchored" data-anchor-id="further-reading-1">Further Reading</h4>
+<ul>
+<li><strong>Explainer on Algorithm behind Word Embeddings</strong>: McCormick, C. (2016, April 19). <a href="https://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/">Word2Vec tutorial - The skip-gram model</a>. <em>Chris McCormack’s Blog</em>.</li>
+<li><a href="https://radimrehurek.com/gensim/auto_examples/index.html#documentation"><code>gensim</code> documentation and tutorials on embeddings</a></li>
+</ul>
+<p><strong>Foundational Papers</strong></p>
+<ul>
+<li><strong>Word Embeddings</strong>: Mikolov, Tomas, Kai Chen, Greg Corrado, and Jeffrey Dean. 2013. “Efficient Estimation of Word Representations in Vector Space.” arXiv Preprint arXiv:1301.3781.</li>
+<li><strong>Document Embeddings</strong>: Le, Quoc, and Tomas Mikolov. 2014. “Distributed Representations of Sentences and Documents.” In International Conference on Machine Learning, 1188–96. PMLR.</li>
+<li><strong>Embedding Regression</strong>: Rodriguez, Pedro L, Arthur Spirling, and Brandon M Stewart. 2023. “Embedding Regression: Models for Context-Specific Description and Inference.” American Political Science Review 117 (4): 1255–74.</li>
+</ul>
+<p><strong>Social Science Applications</strong></p>
+<ul>
+<li><strong>Studying word Meaning with Embeddings</strong>: Kozlowski, Austin C, Matt Taddy, and James A Evans. 2019. “The Geometry of Culture: Analyzing the Meanings of Class Through Word Embeddings.” American Sociological Review 84 (5): 905–49.</li>
+<li><strong>Measuring Bias and Stereotypes with Word Embeddings</strong>: Kroon, Anne C, Damian Trilling, and Tamara Raats. 2021. “Guilty by Association: Using Word Embeddings to Measure Ethnic Stereotypes in News Coverage.” Journalism &amp; Mass Communication Quarterly 98 (2): 451–77.</li>
+<li><strong>Studying over-time Changes in Word Meaning</strong>: Rodman, Emma. 2020. “A Timely Intervention: Tracking the Changing Meanings of Political Concepts with Word Vectors.” Political Analysis 28 (1): 87–111.</li>
+<li><strong>Scaling Representatives with Document Embeddings</strong>: Rheault, Ludovic, and Christopher Cochrane. 2020. “Word Embeddings for the Analysis of Ideological Placement in Parliamentary Corpora.” Political Analysis 28 (1): 112–33.</li>
+</ul>
+</section>
+</section>
+<section id="session-3" class="level3">
+<h3 class="anchored" data-anchor-id="session-3">Session 3</h3>
+<p><strong>Intro to Supervised Machine Learning</strong></p>
+<p><em>focus on logic, extend validation</em></p>
+<p>🖥️ <a href="https://nicoberk.quarto.pub/llm_ws-lecture-3">Lecture Slides</a></p>
+<p>🧑‍💻 <a href="https://colab.research.google.com/github/nicolaiberk/Imbalanced/blob/master/01_IntroSML_Solution.ipynb">Tutorial 1: Intro to Supervised Machine Learning with <code>scikit-learn</code></a></p>
+<p>🧑‍💻 <a href="https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/03b_hackathon.ipynb">Tutorial 2: Hackathon</a></p>
+<section id="further-reading-2" class="level4">
+<h4 class="anchored" data-anchor-id="further-reading-2">Further Reading</h4>
+<ul>
+<li><a href="https://developers.google.com/machine-learning/crash-course">Google’s Machine Learning Crach Course</a></li>
+<li><a href="https://scikit-learn.org/stable/">scikit-learn documentation</a>. Not only a documentation of the major library for machine learning, but a great resource of tutorials and explainers on machine learning.</li>
+</ul>
+<p><strong>Social Science Applications</strong></p>
+<p>[Missing]</p>
+</section>
+</section>
+<section id="session-4-short-session" class="level3">
+<h3 class="anchored" data-anchor-id="session-4-short-session">Session 4 (Short session)</h3>
+<p><em>buffer/build your own measure/applications in ComSci &amp; PolSci</em></p>
+<p><em>certainly discuss applications and how different methods might capture different things; if using ‘build’ your own measure, make sure to have a notebook for each method as starting point and consider removing hackathon</em></p>
+</section>
+</section>
+<section id="day-2-july-10" class="level2">
+<h2 class="anchored" data-anchor-id="day-2-july-10">Day 2 (July 10)</h2>
+<section id="session-1-1" class="level3">
+<h3 class="anchored" data-anchor-id="session-1-1">Session 1</h3>
+<p><strong>A quick &amp; dirty introduction to LLMs &amp; the Huggingface Ecosystem</strong></p>
+<p><em>drop the fine-tuning, anything about architecture - focus on inference!</em></p>
+<p>🖥️ <a href="https://nicoberk.quarto.pub/llm_ws-lecture-4">Lecture Slides</a></p>
+<p>🧑‍💻 <a href="https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/04a_tokens_attention.ipynb">Tutorial 1: Contextualized Embeddings, Tokenization, and Inference with Transformers</a></p>
+<!-- 🧑‍💻 [Tutorial 2: Fine-tuning Transformer Models](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/04b_finetuning_bert.ipynb) -->
+<section id="further-reading-3" class="level4">
+<h4 class="anchored" data-anchor-id="further-reading-3">Further Reading</h4>
+<ul>
+<li><a href="https://huggingface.co/learn/llm-course/en/chapter2/4"><strong>Huggingface Explainer on Subword Tokenization</strong></a></li>
+<li><strong>Simple Explanation of Attention &amp; Transformer Architecture</strong>: Tunstall, L., Von Werra, L., &amp; Wolf, T. (2022). Hello Transformers. In: <em>Natural language processing with transformers</em>. ” O’Reilly Media, Inc.”.</li>
+<li><strong>Original Transformer Paper</strong>: Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., … &amp; Polosukhin, I. (2017). Attention is all you need. Advances in neural information processing systems, 30.</li>
+<li><strong>Paper introducing BERT Architecture</strong>: <a href="https://aclanthology.org/N19-1423/">BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</a> (Devlin et al., NAACL 2019)</li>
+</ul>
+<p><strong>Interactive Tools</strong></p>
+<ul>
+<li><a href="https://playground.tensorflow.org">Interactive Neural Network Playground</a> by Tensorflow. Play around with network architecture and hyperparameter choices to gain an intuitive understanding of neural networks.</li>
+</ul>
+</section>
+</section>
+<section id="session-2-1" class="level3">
+<h3 class="anchored" data-anchor-id="session-2-1">Session 2</h3>
+<p><strong>Generative Transformers</strong></p>
+<p>🖥️ <a href="https://nicoberk.quarto.pub/llm_ws-lecture-5">Lecture Slides</a></p>
+<p>🧑‍💻 <a href="https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/05a_prompting.ipynb">Tutorial 1: Annotation with Generative Models</a></p>
+<p>🧑‍💻 <a href="https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/05b_api.ipynb">Tutorial 2: API Calls &amp; Structured Output</a></p>
+<p>🧑‍💻 <a href="https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/06a_rag.ipynb">Tutorial 3: Informed Prompting and Retrieval-Augmented Generation</a></p>
+<section id="further-reading-4" class="level4">
+<h4 class="anchored" data-anchor-id="further-reading-4">Further Reading</h4>
+<ul>
+<li><a href="https://services.google.com/fh/files/misc/gemini-for-google-workspace-prompting-guide-101.pdf">Google prompting guide</a></li>
+</ul>
+<p><strong>Visual Guides</strong></p>
+<ul>
+<li><a href="https://bbycroft.net/llm">LLM Visualization by Brendan Bycroft</a>: Full interactive visualization of GPT Architecture with simple explanations of each step in the architecture.</li>
+<li><a href="https://jalammar.github.io/illustrated-transformer/">Jay Alamar’s Illustrated Transfromer</a>: Accessible visual explanation of transformer architecture.</li>
+<li><a href="https://poloclub.github.io/transformer-explainer/">Transformer Explainer</a> Interactive visualization of tranformer forward pass, focusing on attention and impact of specific hyperparameters.</li>
+</ul>
+</section>
+</section>
+<section id="session-3-1" class="level3">
+<h3 class="anchored" data-anchor-id="session-3-1">Session 3</h3>
+<p><strong>Using LLMs for frame measurement and other shenanigans</strong></p>
+<!-- Application: how to use these tools for measurement in the Social Sciences; Framing definitions and measures (Gruber, Own Paper, Others?); Validation, Reproducibility & Debiasing -->
+<ul>
+<li><a href="https://naokiegami.com/dsl/articles/intro.html">Debiasing machine-learning estimates</a></li>
+</ul>
+</section>
+<section id="session-4" class="level3">
+<h3 class="anchored" data-anchor-id="session-4">Session 4</h3>
+<p><strong>Using LLMs in Social Science Research</strong></p>
+<p><em>Buffer/Tools and Shenanigans for Research (Claude Code/Agents/Tool Use/Automation)</em></p>
+<p>🖥️ <a href="https://nicoberk.quarto.pub/llm_ws-lecture-6">Lecture Slides</a></p>
+<section id="further-reading-5" class="level4">
+<h4 class="anchored" data-anchor-id="further-reading-5">Further Reading</h4>
+</section>
+</section>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
