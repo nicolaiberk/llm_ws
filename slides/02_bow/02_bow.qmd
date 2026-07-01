@@ -1,0 +1,205 @@
+---
+title: "Representing Text"
+author: "Nicolai Berk"
+subtitle: "Crash-course LLMs for Social Science"
+date: "2025-06-9"
+date-format: "DD.MM.YYYY"
+description: "This lecture introduces students to the use of bag-of-words for text representation."
+keywords: ["bag-of-words", "large language models", "nlp"]
+format:
+    revealjs:
+        theme: [simple, ../fu-berlin.scss]
+        slide-number: true
+        toc: false
+        callout-icon: false
+bibliography: "../references.bib"
+---
+
+# Representing Text
+
+<!-- add motivation/application? -->
+
+## Some lingo
+
+<br>
+
+- **Corpus**: a collection of texts used for analysis
+- **Document**: a single text within a corpus
+- **Token**: a single unit of text (e.g. a word or punctuation mark)
+- **Vocabulary**: the set of unique tokens in a corpus
+
+## Text analysis: how?
+
+<br>
+
+
+- For most research questions, our unit of analysis is the document
+- But computers cannot read
+- $\rightarrow$ ***We need to transform our text into numbers***
+
+# Quantifying Text
+
+## Most Basic: Count Words
+
+<br>
+
+::: incremental
+
+- **Dictionary approach**: count occurrences of each token, use directly as outcome
+- **Bag-of-Words (BoW)**: represents text as a **vector** of token counts
+  - Each unique token in the text becomes a feature
+  - Allows comparing text similarity and using it in models
+
+:::
+
+## Bag-of Words {auto-animate="true"}
+
+<br>
+
+### How would you encode the following sentence?
+
+#### Dance like nobody is watching
+
+## Bag-of Words {auto-animate="true"}
+
+<br>
+
+#### Dance like nobody is watching
+
+| dance | like | nobody   | is | watching |
+|-------|------|----------|----|----------|
+| 1     | 1    | 1        | 1  | 1        |
+
+
+## Bag-of Words {auto-animate="true" auto-animate-duration="0"}
+
+<br>
+
+#### Move like nobody is watching
+
+| dance | like | nobody | is | watching | move |
+|-------|------|----------|----|----------|------|
+| 1     | 1    | 1        | 1  | 1        | 0    |
+| 0     | 1    | 1        | 1  | 1        | 1    |
+
+
+## Bag-of Words {auto-animate="true" auto-animate-duration="0"}
+
+<br>
+
+#### I like nobody
+
+| dance | like | nobody | is | watching | move | I |
+|-------|------|---------|---|---------|------|---|
+| 1     | 1    | 1       | 1 | 1       | 0    | 0 |
+| 0     | 1    | 1       | 1 | 0       | 1    | 0 |
+| 0     | 1    | 1       | 0 | 0       | 0    | 1 |
+
+::: aside
+This is called the "document-term matrix" (DTM)
+:::
+
+## Bag-of-Words: use cases
+
+Intuition: same words - similar meaning
+
+::: incremental
+
+- Counting words
+  - Topics: count words associated with a topic
+  - Basic sentiment analysis: count positive and negative words, or use a weighted dictionary [@hutto2014vader; @young2012affective]
+  - Stance: count words associated with a position on an issue, take difference
+  - Others: populism measurement [@grundl2022populist], psychological traits [@pennebaker2001linguistic], ...
+- Compare similarity of texts
+- Clustering/topic modelling
+- **Can be used as input for machine learning models (later)**
+
+:::
+
+::: fragment
+
+### Which limitations do you see with this approach?
+
+:::
+
+## One Limitation of BoW
+
+- BoW assigns similar importance to all words
+- But: not all words are equally informative!
+
+::: fragment
+
+#### Example: news topics
+
+Importance of very common terms like 'the', 'news', or 'politics' is the same as for 'climate' or 'gaza'.
+
+:::
+
+## More Limitations
+
+<br>
+
+- Most of these require pre-defined dictionary of words
+- Value of a word fixed, not learned from data
+- Sentiment $!=$ stance [@bestvater2023stance]
+
+
+# Tokenization
+
+What is a word?
+
+## How can we split our text?
+
+- Natural unit usually is the word
+- In some research far harder (e.g. genetics)
+- Most basic form: split on spaces and punctuation
+- Alternatives:
+  - stemming/lemmatization
+  - selection
+  - n-grams: include two- or three-word phrases
+
+
+::: aside
+
+**Tokenization**: the process of splitting text into individual tokens
+
+:::
+
+## Stemming
+
+<br>
+
+- Reduces words to base words by removing common suffixes and prefixes
+- This reduces vocabulary size
+- Usually based on strict rules (e.g. "running" -> "run")
+- Advanced version: lemmatization (uses dictionary form)
+
+## Selection
+
+<br>
+
+### Several ways to reduce dictionary size further
+
+- Stopword removal (e.g. "the", "is", "in")
+- Removal of very rare words
+- Sometimes also very frequent words removed
+
+::: fragment
+
+#### Why is it useful to reduce our vocabulary size?
+
+:::
+
+::: fragment
+
+#### Why might it nevertheless be useful to retain common n-grams?
+
+:::
+
+# Tutorial II
+
+Pandas & basic text representation
+
+[Notebook](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/01b_text_reps.ipynb)
+
+## Resources

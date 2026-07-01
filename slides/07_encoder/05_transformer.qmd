@@ -7,7 +7,7 @@ description: "This session covers tokenization, attention, and the fundamental b
 keywords: ["bert", "large language models", "machine learning", "nlp"]
 format:
     revealjs:
-        theme: simple
+        theme: [simple, ../fu-berlin.scss]
         slide-number: true
         toc: false
 bibliography: "../references.bib"

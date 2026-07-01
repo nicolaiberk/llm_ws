@@ -7,7 +7,7 @@ description: "This lecture gives a brief introduction to machine learning for NL
 keywords: ["ml", "bag of words", "machine learning", "nlp"]
 format:
     revealjs:
-        theme: simple
+        theme: [simple, ../fu-berlin.scss]
         slide-number: true
         toc: false
 bibliography: "../references.bib"

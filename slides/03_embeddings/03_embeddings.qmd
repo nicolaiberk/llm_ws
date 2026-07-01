@@ -7,7 +7,7 @@ description: "This lecture covers the concept of embeddings in the context of la
 keywords: ["embeddings", "large language models", "machine learning", "nlp"]
 format:
     revealjs:
-        theme: simple
+        theme: [simple, ../fu-berlin.scss]
         slide-number: true
         toc: false
 bibliography: "../references.bib"

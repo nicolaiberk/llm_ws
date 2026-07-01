@@ -1,0 +1,214 @@
+/*-- scss:rules --*/
+/* style.scss - Replicates visuals of anthropic.com */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+```
+
+$font-family: 'Inter', Arial, sans-serif;
+$primary-bg: #f7f7f7;
+$primary-text: #222;
+$accent: #ffb300;
+$button-bg: #222;
+$button-text: #fff;
+$border-radius: 32px;
+$max-width: 1200px;
+
+body {
+    background: $primary-bg;
+    color: $primary-text;
+    font-family: $font-family;
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+header {
+    background: $primary-bg;
+    padding: 32px 0 24px 0;
+    border-bottom: 1px solid #eaeaea;
+
+    .container {
+        max-width: $max-width;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 32px;
+    }
+
+    .logo {
+        font-weight: 700;
+        font-size: 2rem;
+        letter-spacing: -1px;
+        color: $primary-text;
+    }
+
+    nav {
+        display: flex;
+        gap: 32px;
+
+        a {
+            color: $primary-text;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+            &:hover {
+                color: $accent;
+            }
+        }
+    }
+}
+
+.hero {
+    max-width: $max-width;
+    margin: 64px auto 0 auto;
+    padding: 0 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin: 0 0 24px 0;
+        letter-spacing: -2px;
+        line-height: 1.1;
+    }
+
+    p {
+        font-size: 1.5rem;
+        margin: 0 0 32px 0;
+        color: #444;
+        max-width: 600px;
+    }
+
+    .cta-btn {
+        background: $button-bg;
+        color: $button-text;
+        border: none;
+        border-radius: $border-radius;
+        padding: 18px 40px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+        box-shadow: 0 2px 16px 0 rgba(0,0,0,0.04);
+
+        &:hover {
+            background: $accent;
+            color: $primary-text;
+        }
+    }
+}
+
+.section {
+    max-width: $max-width;
+    margin: 80px auto;
+    padding: 0 32px;
+
+    h2 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin-bottom: 24px;
+        letter-spacing: -1px;
+    }
+
+    p {
+        font-size: 1.2rem;
+        color: #444;
+        margin-bottom: 16px;
+    }
+}
+
+.card-list {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    margin-top: 32px;
+
+    .card {
+        background: #fff;
+        border-radius: $border-radius;
+        box-shadow: 0 2px 16px 0 rgba(0,0,0,0.04);
+        padding: 32px;
+        flex: 1 1 320px;
+        min-width: 280px;
+        max-width: 360px;
+
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        p {
+            font-size: 1rem;
+            color: #555;
+        }
+    }
+}
+
+footer {
+    background: $primary-bg;
+    border-top: 1px solid #eaeaea;
+    padding: 40px 0;
+    margin-top: 80px;
+
+    .container {
+        max-width: $max-width;
+        margin: 0 auto;
+        padding: 0 32px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .footer-links {
+        display: flex;
+        gap: 24px;
+
+        a {
+            color: #888;
+            text-decoration: none;
+            font-size: 1rem;
+            &:hover {
+                color: $accent;
+            }
+        }
+    }
+
+    .copyright {
+        color: #aaa;
+        font-size: 0.95rem;
+    }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .card-list {
+        flex-direction: column;
+        gap: 24px;
+    }
+    .hero {
+        h1 {
+            font-size: 2.2rem;
+        }
+        p {
+            font-size: 1.1rem;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    header .container,
+    .hero,
+    .section,
+    footer .container {
+        padding: 0 16px;
+    }
+    .hero {
+        margin-top: 32px;
+    }
+}
