@@ -1,7 +1,7 @@
 ---
-title: "Welcome & Intro to Python, Colab"
+title: "Introduction"
 author: "Nicolai Berk"
-subtitle: "Crash-course LLMs for Social Science"
+subtitle: "DiMES Workshop on LLMs"
 date: "2026-07-09"
 date-format: "DD.MM.YYYY"
 description: "This lecture introduces students to the course and discusses the basics of python and Google Colab."
@@ -15,7 +15,6 @@ format:
 bibliography: "../references.bib"
 ---
 
-# Introductions
 
 ## Hi, my name is Nico
 
@@ -42,6 +41,8 @@ bibliography: "../references.bib"
 
 ## Why Natural Language Processing (NLP)?
 
+<br>
+
 ### Social interactions happen through text:
 
 - Political campaigns
@@ -62,33 +63,6 @@ bibliography: "../references.bib"
 . . .
 
 ### We need scalable methods!
-
-## Examples
-
-<br>
-
-![@gentzkow2010drives measuring media bias with word prevalence](vis/gentzkow_dems.png)
-
-## Examples
-
-![@kroon2021guilty studying stereotypes with word embeddings](vis/kroon.jpg)
-
-
-## Examples
-
-![@berk2025impact studying migration coverage with BERT models](vis/berk.png)
-
-
-## Summary
-
-<br>
-
-- NLP methods offer powerful ways to study language at scale
-- Many different methods and tasks
-- Focus of this course:
-  - Text representation (today)
-  - Machine learning (tomorrow)
-  - Transformer models (tomorrow & Friday)
 
 # Course Overview
 
@@ -122,7 +96,7 @@ bibliography: "../references.bib"
 
 ## Your preferences (selection)
 
-### Measurement
+<br>
 
 - *"identifying latent and subtle concepts in text"*; *"abstract concepts"*
 - *"detect topics and emotions"*
@@ -152,36 +126,43 @@ bibliography: "../references.bib"
 
 #### Pre-lunch: Embeddings
 
+#### Morning: Intro to Transformer Models
+
 #### Post-lunch: Intro to Supervised Machine Learning
 
-#### Afternoon:  *Inaugural lecture Christian von Sikorski*
+#### Afternoon: Sneak Peak into LLMs
+
+#### From 16:00:  *Inaugural lecture Christian von Sikorski*
 
 :::
 ::: {.callout-important .fragment}
 
 ### Tomorrow
 
-#### Morning: Intro to Transformer Models
 
-#### Pre-lunch: Generative Transformers
+#### Morning: Generative Transformers
 
 #### Post-lunch: Using LLMs in your Research
 
-#### If time: Practical Tools for Research
+#### Afternoon: Validation
 
 :::
 
 ## Course Structure and Conduct
 
-- Each session consists of a lecture and a hands-on coding tutorial.
+<br>
+
+- Most sessions consist of a lecture and a hands-on coding tutorial.
 - <mark>Collaborate</mark> on coding problems!
-- <mark>Use of AI is explicitly encouraged</mark>
+- <mark>Use of AI is explicitly encouraged</mark>.
 - Please ask lots of questions & interrupt me!
 - <mark>Be nice!</mark>
 
 ## Course Materials
 
 Only relevant source: [github.com/nicolaiberk/llm_ws](https://github.com/nicolaiberk/llm_ws)
+
+<br>
 
 ### Contains
 
@@ -213,7 +194,7 @@ Only relevant source: [github.com/nicolaiberk/llm_ws](https://github.com/nicolai
 - You can download python and use it locally on your computer
 - But simpler if we all use the same (better) infrastructure
 - [Google Colab](https://colab.research.google.com/) is a free cloud service where we can execute python code.
-- Crucial: provides access to GPUs for training LLMs.
+- Crucial: provides access to GPUs for working with LLMs.
 
 # Tutorial I
 

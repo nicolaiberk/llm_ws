@@ -8,6 +8,7 @@
 
 // --- Accents -------------------------------------------------------------
 $dimes-green: #ccff00;   // aggressive lime — used sparingly as a highlight
+$dimes-cyan:  #00e5ff;   // bright cyan — secondary highlight
 $dimes-blue:  #0a1e5c;   // dark navy — headings & structure
 $ink:         #111111;   // body text
 $muted:       #6b7280;   // captions / secondary
@@ -93,6 +94,18 @@ $code-block-bg: #f6f7f9;
 // ---- Emphasis -----------------------------------------------------------
 .reveal mark {
   background: $dimes-green;
+  color: $ink;
+  padding: 0 0.15em;
+}
+// custom cyan highlight — used as <mark-cyan>…</mark-cyan>
+.reveal mark-cyan {
+  background: $dimes-cyan;
+  color: $ink;
+  padding: 0 0.15em;
+}
+// custom gray highlight — used as <mark-gray>…</mark-gray>
+.reveal mark-gray {
+  background: #d1d5db;   // light gray so black text stays legible
   color: $ink;
   padding: 0 0.15em;
 }
