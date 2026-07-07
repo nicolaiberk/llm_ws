@@ -1,8 +1,8 @@
 ---
 title: "Representing Text"
 author: "Nicolai Berk"
-subtitle: "Crash-course LLMs for Social Science"
-date: "2025-06-9"
+subtitle: "DiMES Workshop on LLMs"
+date: "2026-07-09"
 date-format: "DD.MM.YYYY"
 description: "This lecture introduces students to the use of bag-of-words for text representation."
 keywords: ["bag-of-words", "large language models", "nlp"]
@@ -15,9 +15,6 @@ format:
 bibliography: "../references.bib"
 ---
 
-# Representing Text
-
-<!-- add motivation/application? -->
 
 ## Some lingo
 
@@ -105,11 +102,7 @@ Intuition: same words - similar meaning
 
 ::: incremental
 
-- Counting words
-  - Topics: count words associated with a topic
-  - Basic sentiment analysis: count positive and negative words, or use a weighted dictionary [@hutto2014vader; @young2012affective]
-  - Stance: count words associated with a position on an issue, take difference
-  - Others: populism measurement [@grundl2022populist], psychological traits [@pennebaker2001linguistic], ...
+- Count words to measure topics, sentiment [@hutto2014vader; @young2012affective], populism [@grundl2022populist], or psychological traits [@pennebaker2001linguistic].
 - Compare similarity of texts
 - Clustering/topic modelling
 - **Can be used as input for machine learning models (later)**
@@ -124,8 +117,12 @@ Intuition: same words - similar meaning
 
 ## One Limitation of BoW
 
+<br>
+
 - BoW assigns similar importance to all words
 - But: not all words are equally informative!
+
+<br>
 
 ::: fragment
 
@@ -135,13 +132,14 @@ Importance of very common terms like 'the', 'news', or 'politics' is the same as
 
 :::
 
-## More Limitations
+## More Limitations of BoW
 
 <br>
 
-- Most of these require pre-defined dictionary of words
-- Value of a word fixed, not learned from data
-- Sentiment $!=$ stance [@bestvater2023stance]
+- Requires pre-defined dictionary of words
+- Similar words are not recognized as such (e.g. "car" and "automobile")
+- Ignores word order and context (e.g. "I like nobody" vs. "Nobody likes me")
+- Does not capture semantic meaning
 
 
 # Tokenization
@@ -149,6 +147,8 @@ Importance of very common terms like 'the', 'news', or 'politics' is the same as
 What is a word?
 
 ## How can we split our text?
+
+<br>
 
 - Natural unit usually is the word
 - In some research far harder (e.g. genetics)
@@ -186,9 +186,11 @@ What is a word?
 
 ::: fragment
 
-#### Why is it useful to reduce our vocabulary size?
+#### Why could it be useful to reduce our vocabulary size?
 
 :::
+
+<br>
 
 ::: fragment
 
