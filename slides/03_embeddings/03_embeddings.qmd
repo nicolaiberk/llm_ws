@@ -1,8 +1,8 @@
 ---
 title: "Embeddings"
 author: "Nicolai Berk"
-subtitle: "Crash-course LLMs for Social Science"
-date: "2025-09-12"
+subtitle: "DiMES Workshop on LLMs"
+date: "2026-07-09"
 description: "This lecture covers the concept of embeddings in the context of large language models."
 keywords: ["embeddings", "large language models", "machine learning", "nlp"]
 format:
@@ -15,65 +15,7 @@ bibliography: "../references.bib"
 
 # Introduction to Embeddings
 
-## Recap: Bag-of Words {auto-animate="true"}
-
-<br>
-
-#### Dance like nobody's watching
-
-| dance | move | steal | like | nobody's | watching |
-|-------|------|-------|------|---------|---------|
-| 1     | 0    | 0     | 1    | 1       | 1       |
-
-
-## Recap: Bag-of Words {auto-animate="true" auto-animate-duration="0"}
-
-<br>
-
-#### Move like nobody's watching
-
-| dance | move | steal | like | nobody's | watching |
-|-------|------|-------|------|---------|---------|
-| 1     | 0    | 0     | 1    | 1       | 1       |
-| 0     | 1    | 0     | 1    | 1       | 1       |
-
-
-## Recap: Bag-of Words {auto-animate="true" auto-animate-duration="0"}
-
-<br>
-
-#### Steal like nobody's watching
-
-| dance | move | steal | like | nobody's | watching |
-|-------|------|-------|------|---------|---------|
-| 1     | 0    | 0     | 1    | 1       | 1       |
-| 0     | 1    | 0     | 1    | 1       | 1       |
-| 0     | 0    | 1     | 1    | 1       | 1       |
-
-
-## Recap: Bag-of Words {auto-animate="true" auto-animate-duration="0"}
-
-<br>
-
-#### Nobody's watching: steal!
-
-| dance | move | steal | like | nobody's | watching |
-|-------|------|-------|------|---------|---------|
-| 1     | 0    | 0     | 1    | 1       | 1       |
-| 0     | 1    | 0     | 1    | 1       | 1       |
-| 0     | 0    | 1     | 1    | 1       | 1       |
-| 0     | 0    | 1     | 0    | 1       | 1       |
-
-
-::: fragment
-
-<br>
-
-### What do we miss with this representation?
-
-:::
-
-## Limitations of BoW & Tf-IDF
+## Limitations of BoW
 
 <br>
 
@@ -191,6 +133,18 @@ data.frame(
 
 ![](vis/skip_gram_net_arch.png)
 
+::: fragment
+
+#### We learn to sets of 300 X 10,000 weight matrices
+
+:::
+
+## Prediction lookup
+
+<br>
+
+![](vis/embeddings_lookup.png)
+
 ## Result
 
 ::: {.absolute top=75 left=150}
@@ -208,6 +162,8 @@ data.frame(
 
 ## Training Data and Bias
 
+<br>
+
 - Embeddings simply reflect the data they are trained on
 - If biases exist in the data, they will be reflected in the embeddings
 - This is a problem, e.g. when using embeddings for downstream tasks
@@ -223,18 +179,15 @@ data.frame(
 
 ## Vector Basics
 
+#### Direction and Magnitude
+
 ![Source: [Math Insight](https://mathinsight.org/vector_introduction)](vis/dir_mag.png)
 
-## Vector Basics
-
-<br>
-
-Magnitude: length of a vector
-
-<br>
+::: fragment
 
 $$||\mathbf{a}|| = \sqrt{a_1^2 + a_2^2 + \ldots + a_n^2}$$
 
+:::
 
 ## Vector Addition
 
@@ -337,7 +290,7 @@ data.frame(
 ```
 
 
-## Basic Operations: Examples
+## Basic Operations: Example
 
 <br>
 
@@ -351,13 +304,32 @@ $WV_{Paris} - WV_{France} + WV_{Germany} = WV_{X}$
 
 :::
 
-# Short break
+## Defining Semantic Axes
 
-# Tutorial: Word Embeddings
+Nice feature of all this algebra: you can define semantic *axes* simply by substracting vectors of polar opposites!
 
-[Notebook](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/02a_embeddings.ipynb)
+$$WV_{frenchness} = WV_{french} - WV_{german}$$
 
-# Advanced Embeddings
+::: fragment
+
+:::: columns
+::: column
+
+The **projection** of a term on this vector tells us which pole it is more associated with!
+
+:::
+::: column
+
+| Term | Frenchness |
+|------|-------------|
+| Paris | 0.298 |
+| Lausanne | 0.073 |
+| Bern | -0.177 |
+| Berlin | -0.333 |
+
+:::
+::::
+:::
 
 ## Advanced Operations: Projection
 
@@ -425,6 +397,7 @@ data.frame(
   xlim(-1, 5)
 
 ```
+
 
 
 ## Cosine Similarity
@@ -515,34 +488,6 @@ plot_cossim(a,b)
 ```
 
 
-## Defining Semantic Axes
-
-Nice feature of all this algebra: you can define semantic *axes* simply by substracting vectors of polar opposites!
-
-$$WV_{frenchness} = WV_{french} - WV_{german}$$
-
-::: fragment
-
-:::: columns
-::: column
-
-The **projection** of a term on this vector tells us which pole it is more associated with!
-
-:::
-::: column
-
-| Term | Frenchness |
-|------|-------------|
-| Paris | 0.298 |
-| Lausanne | 0.073 |
-| Bern | -0.177 |
-| Berlin | -0.333 |
-
-:::
-::::
-:::
-
-
 ## Document Embeddings
 
 > "The paragraph token can be thought of as another word." (p.3)
@@ -561,9 +506,9 @@ The **projection** of a term on this vector tells us which pole it is more assoc
 - Countries
 - ...
 
-# Embeddings: Tutorial 2
+# Tutorial: Word Embeddings
 
-[Notebook](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/02b_embeddings_2.ipynb)
+[Notebook](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/02a_embeddings.ipynb)
 
 # Closing Remarks
 
@@ -608,9 +553,9 @@ $\rightarrow$ **Validation is essential!**
 - Gold standard remains human assessment
 
 
-# See you tomorrow!
+# End of Morning Session 
 
-![](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDloNmo0MzVjdTZheXczcm43a3M0ZW1raTk5M2tvN253eWpzb2NxbCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3o6Mb3PGeR7EufOgYo/giphy.gif)
+![](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXk3cXY4ZzM4eDhicWJydzFrNjRpbnFydGhtMGd1aXhsajdrcDBwdSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/eH3Ra3DUp3tMylXedo/giphy.gif)
 
 ## References
 
