@@ -1,56 +1,72 @@
 # Using Large Language Models for Frame Measurement and Other Shenanigans
 
-#### DiMES Workshop at FU Berlin, July 9 and 10
+#### DiMES Workshop at FU Berlin
 
 ![](images/llms_framing.png)
 
-This workshop provides an introduction to fundamentals of natural language processing (NLP) and large language models (LLMs) for political communication research. It covers basic and advanced text representation, fundamentals of machine learning, the inner workings of LLMs, and applied questions regarding LLMs. The course consists of seven 90-minute sessions and one 45-minute session, mostly divided into a lecture with a conceptual focus, and a tutorial covering implementation in python. The course is designed to provide a fast overview of major topics in the application of LLMs. It covers most content rather superficially, aiming to provide students with a good intuition of each concept and code as a starting point to implement their own ideas.
-
-<!-- How can large language models be used to measure framing and other relevant concepts in political communication? This practical workshop introduces you to the essentials of leveraging these powerful models for your research. You will gain a basic understanding of text embeddings, transformer architectures, and the fundamentals of training and fine-tuning models.  We will delve into the practical use of these models using the Huggingface library in Python to effectively use existing models, fine-tune your own models, and deploy them via APIs. One session will delve into frame measurement with modern NLP methodology and how different methods align with different conceptualizations. Finally, we will cover model bias and its mitigation in the use of LLM predictions for statistical inference. -->
-
-## Day 1 (July 9)
-
-#### Representing Text
-
-### Session 1
-
-**Intro to Python & Text Representation**
-
-Intro, Colab/Python, Text Representation (BoW) - *consider VaDER and stance detection discussion, esp Bestvater Munroe paper; ideally foreshadow ML application with simple regression model - maybe start with agenda setting/topics as application*
+This workshop provides an introduction to fundamentals of natural language processing (NLP) and large language models (LLMs) for political communication research. It covers basic and advanced text representation, fundamentals of machine learning, the inner workings of LLMs, and applied questions regarding LLMs. The course consists of nine sessions, consisting of lectures with a conceptual focus and hands-on tutorials. The course is designed to provide a fast overview of major topics in the application of LLMs. It covers most content rather superficially, aiming to provide students with a good overview of available tools, intuition of each concept, and code as a starting point to implement their own ideas.
 
 
-🖥️ [Lecture Slides](https://nicoberk.quarto.pub/llm_ws-lecture-1)
+## Schedule
 
-🧑‍💻 [Tutorial 1: Intro to Python](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/01a_python.ipynb)
+| Time | Session |
+|---|--------|
+| **Thursday, July 9** | **Fundamentals** |
+| 9:00–10:00 | 1: Welcome & Intro to Python, Colab |
+| 10:05–10:50 | 2: Representing Text |
+| 11:00–12:15 | 3: Embeddings |
+| 12:15–13:15 | *Lunch* |
+| 13:15–14:45 | 4: Supervised Machine Learning |
+| 15:00–15:45 | 5: Transformer Models (short session) |
+| 16:00 | *Inaugural lecture Christian von Sikorski* |
+| **Friday, July 10** | **Working with LLMs** |
+| 9:00–10:30 | 6: Generative LLMs & Training |
+| 10:30–12:00 | 7: Inference, APIs & Hosting |
+| 12:00–13:30 | *Lunch* |
+| 13:30–15:00 | 8: Measuring Concepts in Text |
+| 15:15–16:45 | 9: Validation, Debiasing, and more |
 
-🧑‍💻 [Tutorial 2: Pandas & basic text representation](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/01b_text_reps.ipynb)
+## Day 1 (Thursday, July 9)
+
+### Session 1: Welcome & Intro to Python, Colab
+
+Introduction round and course overview. We discuss why NLP matters for political communication research, walk through examples of what text-as-data methods can do, and set up our shared working environment. The tutorial introduces Google Colab and Python basics.
+
+🖥️ [Lecture Slides](https://nicoberk.quarto.pub/llm_ws-lecture-1/)
+
+#### Resources
+
+- **Python Tutorial**: [Beginners' Guide to Python](https://wiki.python.org/moin/BeginnersGuide)
+- **Introduction to Google Colab**: [Welcome to Colab](https://colab.research.google.com/notebooks/intro.ipynb)
+- [pandas cheatsheet](https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf)
+
+### Session 2: Representing Text
+
+How do we turn text into numbers? This session introduces the bag-of-words representation, dictionary-based measures, tokenization, stemming, and feature selection — and discusses what gets lost along the way. The tutorial covers pandas and basic text representation in Python.
+
+🖥️ [Lecture Slides](https://nicoberk.quarto.pub/representing-text/)
+
 
 #### Further Reading
 
-- **Introduction to text representation for social scientists**: Grimmer, J., Roberts, M. E., & Stewart, B. M. (2022). Bag of Words. In *Text as data: A new framework for machine learning and the social sciences*. Princeton University Press.
-- [pandas cheatsheet](https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf)
-- [Regular Expressions Cheatsheet](https://regexr.com/)
-- [Bestvater SE, Monroe BL. Sentiment is Not Stance: Target-Aware Opinion Classification for Political Text Analysis. Political Analysis. 2023;31(2):235-256. doi:10.1017/pan.2022.10](https://www.cambridge.org/core/journals/political-analysis/article/sentiment-is-not-stance-targetaware-opinion-classification-for-political-text-analysis/743A9DD62DF3F2F448E199BDD1C37C8D)
+
+- Grimmer, J., Roberts, M. E., & Stewart, B. M. (2022). Bag of Words. In *Text as data: A new framework for machine learning and the social sciences*. Princeton University Press.
+- Jurafsky, D., & Martin, J. H. (2026). [*Speech and Language Processing. Chapter 2.* (3rd ed. draft)](https://web.stanford.edu/~jurafsky/slp3/2.pdf).
 
 
-### Session 2
+### Session 3: Embeddings
 
-**Embeddings (the short version)**
+From counting words to representing meaning: the distributional hypothesis, how word2vec learns word vectors from context, and how to work with embeddings — semantic axes, projection, cosine similarity, and document embeddings. The tutorial covers embedding manipulation with `gensim`.
 
-*add more substantive application (make sure to discuss a paper using embeddings; maybe for stance detection? or associative framing? - could use approach by Kroon et al and apply it to another dataset?)*
-
-🖥️ [Lecture Slides](https://nicoberk.quarto.pub/llm_ws-lecture-2)
-
-🧑‍💻 [Tutorial 1: Intro to embedding manipulation with `gensim`](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/02a_embeddings.ipynb)
-
-🧑‍💻 [Tutorial 2: Scaling Word Embeddings & Document Embeddings](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/02b_embeddings_2.ipynb)
+🖥️ [Lecture Slides](https://nicoberk.quarto.pub/embeddings/)
 
 #### Further Reading
 
 - **Explainer on Algorithm behind Word Embeddings**: McCormick, C. (2016, April 19). [Word2Vec tutorial - The skip-gram model](https://mccormickml.com/2016/04/19/word2vec-tutorial-the-skip-gram-model/). *Chris McCormack's Blog*.
+- Jurafsky, D., & Martin, J. H. (2026). [*Speech and Language Processing. Chapter 5.* (3rd ed. draft)](https://web.stanford.edu/~jurafsky/slp3/5.pdf).
 - [`gensim` documentation and tutorials on embeddings](https://radimrehurek.com/gensim/auto_examples/index.html#documentation)
 
-**Foundational Papers**
+**Technical Papers**
 
 - **Word Embeddings**: Mikolov, Tomas, Kai Chen, Greg Corrado, and Jeffrey Dean. 2013. “Efficient Estimation of Word Representations in Vector Space.” arXiv Preprint arXiv:1301.3781. 
 - **Document Embeddings**: Le, Quoc, and Tomas Mikolov. 2014. “Distributed Representations of Sentences and Documents.” In International Conference on Machine Learning, 1188–96. PMLR.
@@ -60,115 +76,82 @@ Intro, Colab/Python, Text Representation (BoW) - *consider VaDER and stance dete
 
 - **Studying word Meaning with Embeddings**: Kozlowski, Austin C, Matt Taddy, and James A Evans. 2019. “The Geometry of Culture: Analyzing the Meanings of Class Through Word Embeddings.” American Sociological Review 84 (5): 905–49. 
 - **Measuring Bias and Stereotypes with Word Embeddings**: Kroon, Anne C, Damian Trilling, and Tamara Raats. 2021. “Guilty by Association: Using Word Embeddings to Measure Ethnic Stereotypes in News Coverage.” Journalism & Mass Communication Quarterly 98 (2): 451–77.
-- **Studying over-time Changes in Word Meaning**: Rodman, Emma. 2020. “A Timely Intervention: Tracking the Changing Meanings of Political Concepts with Word Vectors.” Political Analysis 28 (1): 87–111.
 - **Scaling Representatives with Document Embeddings**: Rheault, Ludovic, and Christopher Cochrane. 2020. “Word Embeddings for the Analysis of Ideological Placement in Parliamentary Corpora.” Political Analysis 28 (1): 112–33.
+- **Studying over-time Changes in Word Meaning**: Rodman, Emma. 2020. “A Timely Intervention: Tracking the Changing Meanings of Political Concepts with Word Vectors.” Political Analysis 28 (1): 87–111.
 
-### Session 3
+### Session 4: Supervised Machine Learning
 
-**Intro to Supervised Machine Learning**
+An introduction to the logic of supervised machine learning for text with practical application: annotation, train/test splits, model fitting, prediction, and evaluation. We discuss common evaluation metrics and their pitfalls, the bias-variance tradeoff, and over- and underfitting. 
 
-*focus on logic, extend validation, substantive application: partisan differences in speech/?? (Berk)?*
-
-🖥️ [Lecture Slides](https://nicoberk.quarto.pub/llm_ws-lecture-3)
-
-🧑‍💻 [Tutorial 1: Intro to Supervised Machine Learning with `scikit-learn`](https://colab.research.google.com/github/nicolaiberk/Imbalanced/blob/master/01_IntroSML_Solution.ipynb)
-
-🧑‍💻 [Tutorial 2: Hackathon](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/03b_hackathon.ipynb)
+🖥️ [Lecture Slides](https://nicoberk.quarto.pub/supervised-machine-learning/)
 
 #### Further Reading
 
-- [Google's Machine Learning Crach Course](https://developers.google.com/machine-learning/crash-course)
-- [scikit-learn documentation](https://scikit-learn.org/stable/). Not only a documentation of the major library for machine learning, but a great resource of tutorials and explainers on 
-machine learning.
-
-**Social Science Applications**
-
-
-[Missing]
+- [Visual Explanation of the Bias-Variance Tradeoff](https://mlu-explain.github.io/bias-variance/), [Machine Learning University](https://mlu-explain.github.io/)
+- [Google's Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course)
+- [scikit-learn documentation](https://scikit-learn.org/stable/) — not only a documentation of the major library for machine learning, but a great resource of tutorials and explainers.
+- [Hugging Face guide on understanding learning curves](https://huggingface.co/learn/llm-course/chapter3/5)
+- Grimmer, J., & Stewart, B. M. (2013). Text as data: The promise and pitfalls of automatic content analysis methods for political texts. *Political Analysis*, 21(3), 267–297.
+- Tomas-Valiente, Francisco. (2026). Uncertain performance: How to quantity uncertainty and draw test sets when evaluating classifiers. Working paper.
 
 
-### Session 4 (Short session)
+### Session 5: Transformer Models (short session)
 
-*buffer/build your own measure/applications in ComSci & PolSci*
+The building blocks of modern language models: subword tokenization, the attention mechanism, contextualized embeddings, and the encoder architecture (e.g., BERT). We discuss how classification heads turn pre-trained encoders into measurement tools.
 
-*certainly discuss applications and how different methods might capture different things; if using 'build' your own measure, make sure to have a notebook for each method as starting point and consider removing hackathon*
-
-
-
-## Day 2 (July 10)
-
-### Session 1
-
-**A quick & dirty introduction to LLMs & the Huggingface Ecosystem**
-
-*drop the fine-tuning, anything about architecture - focus on inference!*
-
-*substantive application: framing (Berk 2025)*
-
-<!-- Why to keep HF focus but throw out the fine-tuning (might still supply notebook): Open-weight models via HF (Llama, Mistral, your Apertus-70B work) matter for privacy-sensitive data — survey responses, non-public platform data — where sending things to an OpenAI/Anthropic API isn't an option. That's a real methodological argument, not just a technical nicety.
-
-reproducibility as a selling point: a downloaded checkpoint doesn't change under you the way an API-served model does. Good contrast to raise right before the generative LLM section's discussion of reproducibility/versioning. -->
-
-🖥️ [Lecture Slides](https://nicoberk.quarto.pub/llm_ws-lecture-4)
-
-🧑‍💻 [Tutorial 1: Contextualized Embeddings, Tokenization, and Inference with Transformers](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/04a_tokens_attention.ipynb)
-
-<!-- 🧑‍💻 [Tutorial 2: Fine-tuning Transformer Models](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/04b_finetuning_bert.ipynb) -->
+🖥️ [Lecture Slides](https://nicoberk.quarto.pub/transformer-models/)
 
 #### Further Reading
 
-- [**Huggingface Explainer on Subword Tokenization**](https://huggingface.co/learn/llm-course/en/chapter2/4)
-- **Simple Explanation of Attention & Transformer Architecture**: Tunstall, L., Von Werra, L., & Wolf, T. (2022). Hello Transformers. In: *Natural language processing with transformers*. " O'Reilly Media, Inc.".
-- **Original Transformer Paper**: Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., ... & Polosukhin, I. (2017). Attention is all you need. Advances in neural information processing systems, 30.
-- **Paper introducing BERT Architecture**: [BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding](https://aclanthology.org/N19-1423/) (Devlin et al., NAACL 2019)
+- Tunstall, L., von Werra, L., & Wolf, T. (2022). *Natural Language Processing with Transformers*. O'Reilly Media.
+- Jurafsky, D., & Martin, J. H. (2026). [*Speech and Language Processing. Chapter 7.* (3rd ed. draft)](https://web.stanford.edu/~jurafsky/slp3/7.pdf).
+- Jurafsky, D., & Martin, J. H. (2026). [*Speech and Language Processing. Chapter 8.* (3rd ed. draft)](https://web.stanford.edu/~jurafsky/slp3/8.pdf).
 
-**Interactive Tools**
+## Day 2 (Friday, July 10)
 
-- [Interactive Neural Network Playground](https://playground.tensorflow.org) by Tensorflow. Play around with network architecture and hyperparameter choices to gain an intuitive understanding of neural networks.
+### Session 6: Generative LLMs & Training
 
-### Session 2
-
-**Generative Transformers**
-
-*Generative LLMs, zero/few/dynamic/few-shot/RAG/synthetic annotation, chat structure, structured annotation with pydantic*
-
-🖥️ [Lecture Slides](https://nicoberk.quarto.pub/llm_ws-lecture-5)
-
-🧑‍💻 [Tutorial 1: Annotation with Generative Models](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/05a_prompting.ipynb)
-
-🧑‍💻 [Tutorial 2: API Calls & Structured Output](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/05b_api.ipynb)
-
-🧑‍💻 [Tutorial 3: Informed Prompting and Retrieval-Augmented Generation](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/06a_rag.ipynb)
+How decoder models generate text, and how they differ from encoders. We cover the three stages of LLM training — pre-training, fine-tuning, and post-training (e.g., RLHF) — the chat structure of modern assistants, and the Hugging Face ecosystem for working with open models.
 
 #### Further Reading
+
+- Tunstall, L., von Werra, L., & Wolf, T. (2022). *Natural Language Processing with Transformers*. O'Reilly Media.
+- Jurafsky, D., & Martin, J. H. (2026). [*Speech and Language Processing. Chapter 9.* (3rd ed. draft)](https://web.stanford.edu/~jurafsky/slp3/9.pdf).
+- Jurafsky, D., & Martin, J. H. (2026). [*Speech and Language Processing. Chapter 10.* (3rd ed. draft)](https://web.stanford.edu/~jurafsky/slp3/10.pdf).
+
+**Further resources**
+
+- [LLM Visualization by Brendan Bycroft](https://bbycroft.net/llm) — full interactive visualization of GPT architecture with simple explanations of each step.
+- [Jay Alammar's Illustrated Transformer](https://jalammar.github.io/illustrated-transformer/) — accessible visual explanation of the transformer architecture.
+- [Transformer Explainer](https://poloclub.github.io/transformer-explainer/) — interactive visualization of the transformer forward pass.
+
+### Session 7: Inference, APIs & Hosting
+
+Using LLMs for annotation in practice: prompting, zero-/few-/dynamic few-shot labelling, retrieval-augmented generation, and synthetic annotation. We cover zero-shot classification with NLI encoder models, hosting options (Hugging Face inference endpoints, local hosting), commercial APIs (OpenAI, Anthropic, Azure), structured output, and tool use.
+
+#### Further Reading
+
+- Laurer, M., van Atteveldt, W., Casas, A., & Welbers, K. (2024). Less annotating, more classifying: Addressing the data scarcity issue of supervised machine learning with deep transfer learning and BERT-NLI. *Political Analysis*, 32(1), 84–100.
+
+**Further resources**
 
 - [Google prompting guide](https://services.google.com/fh/files/misc/gemini-for-google-workspace-prompting-guide-101.pdf)
 
-**Visual Guides**
+### Session 8: Measuring Concepts in Text
 
-- [LLM Visualization by Brendan Bycroft](https://bbycroft.net/llm): Full interactive visualization of GPT Architecture with simple explanations of each step in the architecture.
-- [Jay Alamar's Illustrated Transfromer](https://jalammar.github.io/illustrated-transformer/): Accessible visual explanation of transformer architecture.
-- [Transformer Explainer](https://poloclub.github.io/transformer-explainer/) Interactive visualization of tranformer forward pass, focusing on attention and impact of specific hyperparameters.
+How to get from a social science concept to a measurement: conceptualization, operationalization, and method choice. Using framing as a case study, we compare how different definitions imply different measurement strategies. In the interactive part, participants develop a measurement strategy for a concept from their own research with their neighbors, pitch it to the group, and collect feedback — before prototyping their measure in the tutorial.
 
 
-### Session 3
 
-**Using LLMs for frame measurement and other shenanigans**
+### Session 9: Validation, Debiasing, Security, Privacy, Reproducibility
 
-*Application: how to use these tools for measurement in the Social Sciences; Framing definitions and measures (Gruber, Own Paper, Others?); Validation, Reproducibility (local model hosting?) & Debiasing*
+What makes a measure valid, and how do we show it? We cover convergent, content, and hypothesis-based validation, best practices for validating LLM annotations, bias in LLM predictions and design-based supervised learning (DSL) for debiasing downstream analyses, as well as reproducibility, research ethics, security, and data protection when working with LLMs.
 
-#### Further Reading
+**Literature**
 
-- [Debiasing machine-learning estimates](https://naokiegami.com/dsl/articles/intro.html)
+- Adcock, R., & Collier, D. (2001). Measurement validity: A shared standard for qualitative and quantitative research. *American Political Science Review*, 95(3), 529–546.
+- Egami, N., Hinck, M., Stewart, B. M., & Wei, H. (2024). Using large language model annotations for the social sciences: A general framework of using predicted variables in downstream analyses.
 
-### Session 4
+**Further resources**
 
-**Using LLMs in Social Science Research**
-
-*Buffer/Tools and Shenanigans for Research (Claude Code/Agents/Tool Use/Automation)*
-
-🖥️ [Lecture Slides](https://nicoberk.quarto.pub/llm_ws-lecture-6)
-
-
-#### Further Reading
-
+- [Introduction to design-based supervised learning (DSL)](https://naokiegami.com/dsl/articles/intro.html)

@@ -1,0 +1,8 @@
+project:
+  # Render files in place (no output-dir), preserving current behavior.
+  render:
+    - "slides/**/*.qmd"
+
+execute:
+  # Cache chunk results; only re-run chunks whose code changed.
+  freeze: auto

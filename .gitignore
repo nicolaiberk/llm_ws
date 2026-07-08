@@ -15,3 +15,8 @@ notes_on_course.md
 TODO.md
 TODO.html
 **/_publish.yml
+
+/.quarto/
+_freeze
+.env
+*.html
