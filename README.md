@@ -122,6 +122,10 @@ The building blocks of modern language models: subword tokenization, the attenti
 
 How decoder models generate text, and how they differ from encoders. We cover the three stages of LLM training — pre-training, fine-tuning, and post-training (e.g., RLHF) — the chat structure of modern assistants, and the Hugging Face ecosystem for working with open models.
 
+🖥️ [Lecture Slides](https://nicoberk.quarto.pub/generative-llms/)
+
+🧑‍💻 [Tutorial: Generative Models](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/dimes26/notebooks/06_prompting.ipynb)
+
 #### Further Reading
 
 - Tunstall, L., von Werra, L., & Wolf, T. (2022). *Natural Language Processing with Transformers*. O'Reilly Media.

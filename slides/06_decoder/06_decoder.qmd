@@ -329,7 +329,7 @@ Bern has roughly 135,000 inhabitants in the city proper.<|im_end|>
 
 # Tutorial: Generative LLMs
 
-[Notebook]()
+[Notebook](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/dimes26/notebooks/06_prompting.ipynb)
 
 
 ## Resources
