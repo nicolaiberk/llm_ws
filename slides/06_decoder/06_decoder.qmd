@@ -1,8 +1,8 @@
 ---
 title: "Generative LLMs"
 author: "Nicolai Berk"
-subtitle: "Crash-course LLMs for Social Science"
-date: "2025-09-12"
+subtitle: "DiMES Workshop on LLMs"
+date: "2026-07-10"
 description: "This session covers generative decoder models."
 keywords: ["gpt", "decoder", "large language models", "machine learning", "nlp"]
 format:
@@ -13,25 +13,56 @@ format:
 bibliography: "../references.bib"
 ---
 
+## Recap: Decoder vs. Encoder
 
-## Recap: Encoder Models (BERT)
+![](vis/transformers.png)
 
-<br>
+## Recap: Decoder vs. Encoder
 
-- Input: "The [MASK] is barking loudly"
-- BERT: Processes entire sentence simultaneously
-- Output: probability distribution across tokens ("dog" (87%), "puppy" (8%), "animal" (3%))
-- Bidirectional: Reads text in both directions
+::: callout-note
 
-### Masked Language Modeling: Trained to fill in blanks
+### Encoder (e.g. BERT)
 
-## Recap: Downstream Encoder Tasks
+:::: columns
+::: column
 
-<br>
+- Converts an input sequence of tokens into a sequence of embedding vectors
+- Trained on masked language modeling
+- Tasks: Text classification, named entity recognition, question answering, ...
 
-- Classify documents
-- Extract information
-- Measure similarity
+:::
+::: column
+
+![](vis/encoder.png)
+
+:::
+::::
+:::
+
+::: fragment
+::: callout-important
+
+### Decoder (e.g. GPT)
+
+:::: columns
+::: column
+
+- Uses a sequence of embedding vectors to iteratively generate an output sequence of tokens, one token at a time
+- Trained to predict next word
+- Tasks: Mainly text **generation** (e.g. Chatbot responses)
+
+:::
+::: column
+
+![](vis/decoder.png)
+
+:::
+::::
+:::
+:::
+
+
+# The Decoder
 
 
 ## How a Decoder Works {auto-animate="true"}
@@ -71,25 +102,19 @@ bibliography: "../references.bib"
 :::
 :::
 
-
 ## What does this look like?
 
-### [Visualization](https://bbycroft.net/llm)
+<br><br>
 
-<br>
+### [Visualization](https://poloclub.github.io/transformer-explainer/)
 
-Take 5-10 minutes to explore the visualization and discuss with your neighbor how the decoder architecture works.
+Take 5-10 minutes to explore the visualization and discuss with your neighbor how the transformer architecture works.
 
+::: fragment
 
-## Training GPT
+### Let's talk through it!
 
-<br>
-
-- Pretraining: predict the next word (causal LM objective)
-- Scale = data + parameters + compute
-- Fine-tuning:
-  - Instruction tuning (datasets of Q&A)
-  - RLHF^[Reinforcement Learning with Human Feedback] (aligning with human preferences)
+:::
 
 ## Decoder Tasks
 
@@ -116,221 +141,195 @@ Take 5-10 minutes to explore the visualization and discuss with your neighbor ho
 - Simulation of social behaviour?
 - Policy simulation?
 
-# Inference with LLMs
+# Training LLMs
 
-## Prompting
+## What is "Training" ?
 
-![](vis/meme.jpg)
+<br>
 
-#### Remember: prompt engineering on the *validation* set!
+- Remember from ML course: **Training** is the process of optimizing a model's parameters on a specific task using labeled data.
+- In regression framework, this is called **fitting** the model to the training data.
 
-## Writing a good prompt
+## Three Essential Steps
 
-- <mark>Persona</mark>
-- **Task**
-- Context
-- *Format*
+<br>
 
-<mark>You are a program manager in [industry].</mark> **Draft an executive summary email** to [persona] based on [details
-about relevant program docs]. *Limit to bullet points.*
+- **Forward pass**: The process of passing input data through the model to obtain predictions.
+- **Loss**: A measure of how well the model's predictions match the ground truth.
+- **Backward pass**: The process of updating model parameters based on the loss.
 
-::: aside
-[Google prompting guide](https://services.google.com/fh/files/misc/gemini-for-google-workspace-prompting-guide-101.pdf)
+## Training Objective
+
+> Training or fitting a model is the process of optimizing its parameters to predict the desired output.
+
+::: incremental
+
+- Basically the same as OLS, just with a different <mark>loss function</mark>.
+- Loss functions depend on task.
+
 :::
 
-## Controlling model output 
+::: {.fragment .incremental}
 
-### [`pydantic`](https://docs.pydantic.dev/latest/concepts/models/#validating-data)
+### What is learned: parameters
 
-Let's you impose structure on model outputs.
+- **Token embeddings**
+- **Attention weights**: matrices that determine what to attend to.
+- **Weights** in each layer of the neural network - the main action.
+- Not learned: **hyperparameters**.
 
-```{python}
-#| eval: false
-#| echo: true
+:::
 
-class CityLocation(BaseModel):
-    city: str
-    country: str
+## Three stages of LLM Training
 
+<br><br>
 
-agent = Agent('google-gla:gemini-1.5-flash', output_type=CityLocation)
-result = agent.run_sync('Where were the olympics held in 2012?')
-print(result.output)
-#> city='London' country='United Kingdom'
-```
+::: incremental
+
+1. **Pretraining**: Train on a large corpus of text to learn general language patterns.
+2. **Fine-tuning**: Adapt the pretrained model to a specific task or domain.
+3. **Additional Post-training** (optional): Further refine the model, e.g. to follow certain preferences.
 
 
+:::
 
-::: aside
-::: fragment
+## Transfer Learning/Fine-Tuning
 
-#### See also
+![@tunstall2022natural, Fig. 1-7](vis/fine-tuning.png)
 
-- [Ollama structured output](https://ollama.com/blog/structured-outputs)
-- [OpenAI function calls](https://platform.openai.com/docs/guides/function-calling#defining-functions)
+
+## Pre-Training Encoder Models
+
+### Masked Language Modeling (MLM)
+
+::: columns
+::: column
+::: incremental
+
+- Training task used for encoder models
+- Randomly masks a percentage of input tokens
+- Model learns to predict the masked tokens based on context
+- Bidirectional Attention: considers both left and right context
 
 :::
 :::
+::: column
 
-## Labelling with LLMs
-
-<br>
-
-- **Zero-shot**: just prompt provided
-- **Few-shot**: a few examples provided
-- **Dynamic few-shot**: examples selected based on similarity to the input
-
-## Few-shot labelling example
 
 <br>
 
-```
-Your task is to analyze the sentiment in the TEXT below from an investor perspective and label it with only one the three labels:
-positive, negative, or neutral.
+![](vis/mlm.png)
 
-Examples:
-Text: Operating profit increased, from EUR 7m to 9m compared to the previous reporting period.
-Label: positive
-Text: The company generated net sales of 11.3 million euro this year.
-Label: neutral
-Text: Profit before taxes decreased to EUR 14m, compared to EUR 19m in the previous period.	
-Label: negative
-```
-
-## Dynamic few-shot labelling
-
-<br>
-
-#### Idea: most similar examples should be most informative
-
-1. Use cosine_similarity of embedding to assess similarity
-2. Add k most similar examples to the prompt
-
-## Retrieval Augmented Generation (RAG)
-
-<br>
-
-1. Retrieve most likely examples given a query (e.g. context for question)
-2. [Optional: rerank generated examples using cross-encoder]
-3. Use these examples in the prompt to generate an answer
-
-Use-cases: archival research, chatbots, ...
-
-## Synthetic Annotation
-
-![Source: [Moritz Laurer on HF Blog](https://huggingface.co/blog/synthetic-data-save-costs#conclusion)](https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/blog/176_synthetic-data-save-costs/table_pros_cons.png)
-
-## Synthetic Annotation
-
-<br>
-
-- Use LLM to annotate training data
-- Generate synthetic labels
-- Train smaller encoder model on synthetic data
-- Evaluate on gold standard
-- Apply cost-efficient at scale
-
-## Zero-shot encoder models 
-
-### @laurer2024less
-
-- Task: natural-language inference (NLI) - universal
-- Allow prompting
-- Controlled output
-- Class probabilities
-- Efficient
+:::
+:::
 
 ::: fragment
 
-#### Try this before using generative models
+Output: probability distribution across tokens ("Virtual" (87%), "good" (8%), "helpful" (3%), ...)
 
 :::
 
-## How does it work?
+## Post-training Encoder Models
 
 <br>
 
-![@laurer2024less, Table 1](vis/nli.png)
+- Task-dependent
+- For supervised classification: use [CLS] token embedding for classification to predict labels (=fine tuning)
+- Other post-training: 
+  - Add task-specific heads (e.g., for NER, etc.)
+  - Continued pre-training for domain adaptation
 
-## How does it work?
+## Pre-Training Decoder Models
+
+### "Causal" Language Modeling (CLM)
+
+
+![](vis/causal_next_token_prediction.png)
+
+- Predicts the next token in a sequence
+- Unidirectional Attention: only considers previous tokens
+- Same output as MLM: probability distribution across tokens
+
+## Fine-Tuning Decoder Models
 
 <br>
 
--  Class-hypotheses: “It is about economy", "it is about democracy", ...
--  E.g. “We need to raise tariffs” as context
--  Test each of the class-hypotheses against this context
--  Probabilities for entailment and contradiction are converted to label probabilities
+::: incremental
 
-::: aside
-[More](https://huggingface.co/tasks/zero-shot-classification)
+- Pre-training yields a next-token predictor of internet text.
+- Post-training turns it into a model that <mark>follows instructions and refuses harmful requests</mark>.
+- **Instruction tuning**: Train on (instruction, response) pairs. [Example dataset](https://huggingface.co/datasets/Anthropic/hh-rlhf/viewer/default/train?row=4)
+- Models learn chat format and how to respond to instructions.
+
 :::
 
-# Tutorial I
-
-LLM inference and prompting
-
-[Notebook](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/05a_prompting.ipynb)
-
-
-# Hosting Models & Calling APIs
-
-## [HF Inference Endpoints](https://endpoints.huggingface.co/)
-
-![](vis/hf_inf.png)
-
-## Local Hosting
-
-### Ollama
+## Chats: Cosplay for Generative LLMs
 
 <br>
 
-```{python}
-#| eval: false
-#| echo: true
+::: columns
+::: column
 
-from ollama import chat
-from ollama import ChatResponse
+### A typical chat structure
 
-response: ChatResponse = chat(model='gemma3', messages=[
-  {
-    'role': 'user',
-    'content': 'Why is the sky blue?',
-  },
-])
-print(response['message']['content'])
-# or access fields directly from the response object
-print(response.message.content)
+```
+<|im_start|>system
+You are a helpful assistant.<|im_end|>
+<|im_start|>user
+What is the capital of Switzerland?<|im_end|>
+<|im_start|>assistant
+The capital is Bern.<|im_end|>
+<|im_start|>user
+And its population?<|im_end|>
+<|im_start|>assistant
 ```
 
-## [Azure](https://oai.azure.com)
+:::
+::: {.column .fragment}
 
-![](vis/oai.png)
+### "Reasoning"
 
-## OpenAI
+```
+<|im_start|>assistant
+<think>
+The user asks about population. Bern city proper is ~135k,
+the metro area larger. They probably mean the city...
+</think>
+Bern has roughly 135,000 inhabitants in the city proper.<|im_end|>
+```
+
+:::
+:::
+
+
+
+## Additional Post-Training
+
+### Reinforcement Learning with Human Feedback (RLHF)
 
 <br>
 
-```{python}
-#| eval: false
-#| echo: true
+::: incremental
 
-from openai import OpenAI
-client = OpenAI()
+- Humans rank model outputs 
+- Model optimized to produce outputs that align with human preferences
+- Aiming for more helpful, less harmful, more truthful responses and a happy, sycophantic character (or sometimes a chinese party member)
+- Also: RL with verifiable rewards (RLVR), like math answers or code
 
-response = client.responses.create(
-    model="gpt-5",
-    input="Write a short bedtime story about a unicorn."
-)
+:::
 
-print(response.output_text)
-```
+## The Huggingface Ecosystem
 
-# Tutorial II
+<br>
 
-API calls, Structured Output
+### [The Model Hub](https://huggingface.co/models)
 
-[Notebook](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/05b_api.ipynb)
+### [Datasets](https://huggingface.co/datasets)
 
+
+# Tutorial: Generative LLMs
+
+[Notebook]()
 
 
 ## Resources
