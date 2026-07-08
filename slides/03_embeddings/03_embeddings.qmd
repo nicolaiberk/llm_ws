@@ -508,7 +508,7 @@ plot_cossim(a,b)
 
 # Tutorial: Word Embeddings
 
-[Notebook](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/02a_embeddings.ipynb)
+[Notebook](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/dimes26/notebooks/03_embeddings.ipynb)
 
 # Closing Remarks
 

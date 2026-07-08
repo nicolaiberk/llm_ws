@@ -34,6 +34,8 @@ Introduction round and course overview. We discuss why NLP matters for political
 
 🖥️ [Lecture Slides](https://nicoberk.quarto.pub/llm_ws-lecture-1/)
 
+🧑‍💻 [Tutorial: Intro to Python](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/dimes26/notebooks/01_python.ipynb)
+
 #### Resources
 
 - **Python Tutorial**: [Beginners' Guide to Python](https://wiki.python.org/moin/BeginnersGuide)
@@ -46,6 +48,7 @@ How do we turn text into numbers? This session introduces the bag-of-words repre
 
 🖥️ [Lecture Slides](https://nicoberk.quarto.pub/representing-text/)
 
+🧑‍💻 [Tutorial: Pandas & basic text representation](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/01b_text_reps.ipynb)
 
 #### Further Reading
 
@@ -59,6 +62,8 @@ How do we turn text into numbers? This session introduces the bag-of-words repre
 From counting words to representing meaning: the distributional hypothesis, how word2vec learns word vectors from context, and how to work with embeddings — semantic axes, projection, cosine similarity, and document embeddings. The tutorial covers embedding manipulation with `gensim`.
 
 🖥️ [Lecture Slides](https://nicoberk.quarto.pub/embeddings/)
+
+🧑‍💻 [Tutorial: Word Embeddings](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/dimes26/notebooks/03_embeddings.ipynb)
 
 #### Further Reading
 
@@ -85,6 +90,8 @@ An introduction to the logic of supervised machine learning for text with practi
 
 🖥️ [Lecture Slides](https://nicoberk.quarto.pub/supervised-machine-learning/)
 
+🧑‍💻 [Tutorial: Intro to Supervised ML](https://colab.research.google.com/github/nicolaiberk/Imbalanced/blob/master/01_IntroSML_Solution.ipynb)
+
 #### Further Reading
 
 - [Visual Explanation of the Bias-Variance Tradeoff](https://mlu-explain.github.io/bias-variance/), [Machine Learning University](https://mlu-explain.github.io/)
@@ -100,6 +107,8 @@ An introduction to the logic of supervised machine learning for text with practi
 The building blocks of modern language models: subword tokenization, the attention mechanism, contextualized embeddings, and the encoder architecture (e.g., BERT). We discuss how classification heads turn pre-trained encoders into measurement tools.
 
 🖥️ [Lecture Slides](https://nicoberk.quarto.pub/transformer-models/)
+
+🧑‍💻 [Tutorial: Tokenization and Inference](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/dimes26/notebooks/05_tokens_attention.ipynb)
 
 #### Further Reading
 

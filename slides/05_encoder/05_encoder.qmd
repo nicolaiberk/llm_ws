@@ -266,7 +266,7 @@ $$x'_i = \sum_{j=1}^{n} w_{ij} x_j$$
 
 **Tokenization and Inference**
 
-[Notebook](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/04b_finetuning_bert.ipynb)
+[Notebook](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/dimes26/notebooks/05_tokens_attention.ipynb)
 
 
 ## Resources {.uncounted}

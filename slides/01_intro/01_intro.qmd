@@ -200,6 +200,6 @@ Only relevant source: [github.com/nicolaiberk/llm_ws](https://github.com/nicolai
 
 Intro to Colab & Python Basics
 
-[Notebook](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/01a_python.ipynb)
+[Notebook](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/dimes26/notebooks/01_python.ipynb)
 
 ## Resources

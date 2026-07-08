@@ -428,9 +428,9 @@ df %>%
 
 :::
 
-# Tutorial I
+# Tutorial
 
-[Training a simple text classifier](https://colab.research.google.com/github/nicolaiberk/Imbalanced/blob/master/01_IntroSML_Solution.ipynb)
+🧑‍💻 [Tutorial: Training a simple text classifier](https://colab.research.google.com/github/nicolaiberk/Imbalanced/blob/master/01_IntroSML_Solution.ipynb)
 
 
 # The perfect fit

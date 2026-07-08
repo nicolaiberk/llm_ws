@@ -198,7 +198,7 @@ What is a word?
 
 :::
 
-# Tutorial II
+# Tutorial
 
 Pandas & basic text representation
 
