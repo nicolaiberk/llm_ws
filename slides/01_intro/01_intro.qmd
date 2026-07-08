@@ -126,8 +126,6 @@ bibliography: "../references.bib"
 
 #### Pre-lunch: Embeddings
 
-#### Morning: Intro to Transformer Models
-
 #### Post-lunch: Intro to Supervised Machine Learning
 
 #### Afternoon: Sneak Peak into LLMs
