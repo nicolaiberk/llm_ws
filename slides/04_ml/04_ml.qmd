@@ -1,8 +1,8 @@
 ---
 title: "Supervised Machine Learning"
 author: "Nicolai Berk"
-subtitle: "Crash-course LLMs for Social Science"
-date: "2025-09-12"
+subtitle: "DiMES Workshop on LLMs"
+date: "2026-07-09"
 description: "This lecture gives a brief introduction to machine learning for NLP."
 keywords: ["ml", "bag of words", "machine learning", "nlp"]
 format:
@@ -10,6 +10,7 @@ format:
         theme: [simple, ../fu-berlin.scss]
         slide-number: true
         toc: false
+        callout-icon: false
 bibliography: "../references.bib"
 ---
 
@@ -34,16 +35,17 @@ bibliography: "../references.bib"
 - The basics of supervised machine learning
 - Model evaluation
 - Model selection
-- Intro to neural networks
-- Training neural networks
 
 ## Examples
+
+<br>
 
 ![Netflix recommendations](vis/netflix.png)
 
 ## Examples
 
-![Drug Development (Source: [Catacutan et al. 2024](https://www.nature.com/articles/s41589-024-01679-1))](vis/drug_dev_ml.png)
+![Refugee Placement (Source: [GeoMatch](https://immigrationlab.org/geomatch/))](vis/ipl_geomatch.png)
+
 
 ## Examples
 
@@ -51,12 +53,17 @@ bibliography: "../references.bib"
 
 ## ML Overview
 
-#### Many different forms!
+<br>
+
+#### Many different forms:
+
 
 - Regression
 - Classification
 - Clustering/Unsupervised ML
 - Generative Models
+
+<br>
 
 ### Focus here on classification/supervised ML!
 
@@ -73,6 +80,27 @@ bibliography: "../references.bib"
 
 #### Core Challenge: Prediction
 
+## How to get there
+
+#### (and what's a model?)
+
+<br><br>
+
+::: {style="display: flex; align-items: center; justify-content: center; gap: 0.6em; font-size: 1.6em; margin-top: 0.5em;"}
+[Input]{style="padding: 0.5em 1em; border: 3px solid #444; border-radius: 10px;"}
+[→]{style="font-size: 1.3em;"}
+[Model]{style="padding: 0.5em 1em; border: 3px solid #444; border-radius: 50px; background: #ccff00;"}
+[→]{style="font-size: 1.3em;"}
+[Prediction]{style="padding: 0.5em 1em; border: 3px solid #444; border-radius: 10px;"}
+:::
+
+<br>
+
+::: fragment
+**Note**: the precise form of the model is not important. It is simply a <mark>function that takes input and produces output</mark>.
+:::
+
+
 ## Some Lingo
 
 <br>
@@ -83,6 +111,47 @@ bibliography: "../references.bib"
 | **Training** | The process of fitting the classifier to the data. |
 | **Train and test set** | Datasets used to train and evaluate the classifier. |
 | **Vectorizer** | A tool used to translate text into numbers. |
+
+## Prediction, not Explanation
+
+<br>
+
+:::: columns
+::: {.column width="50%"}
+::: {.callout-note}
+
+### Quantitative Analysis
+
+- **Goal**:         Explanation - understand phenomena.
+- **Model**:        Should describe reality accurately.
+- **Focus**:        Interpretation of coefficients.
+- **Example**:      Understanding the effect of education on income.
+
+:::
+:::
+::: {.column width="50%"}
+::: {.callout-important .fragment}
+
+### Machine Learning
+
+- **Goal**:       Prediction - make statements about unseen data.
+- **Model**:      Model can be misspecified, as long as it predicts well.
+- **Focus**:      Accuracy of predictions.
+- **Example**:    Predicting email spam.
+
+:::
+:::
+::::
+
+<br>
+
+::: fragment
+
+### We might use the same method, but the goal is different!
+
+:::
+
+
 
 ## The Classic Pipeline for Text Classification
 
@@ -124,7 +193,14 @@ bibliography: "../references.bib"
 
 - Usually randomly sampled (not always!)
 - Customary: 90-10/80-10-10 split
-- Only consideration for test/validation set size: precision of metrics - for large datasets 10% test split not sensible
+- Only consideration for test/validation set size: precision of metrics
+- For large datasets 10% split not sensible, for small datasets 10% might be too small.
+
+::: fragment
+
+Check out Paco Tomas-Valiente's [testsampler package](https://github.com/pacotvj99/testsampleR) (forthcoming Political Analysis) on optimal test set selection.
+
+:::
 
 ## 2. Transformation
 
@@ -207,7 +283,7 @@ knitr::kable(table(pred, actual))
 
 ::::: columns
 ::: {.column width="30%"}
-![](https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Precisionrecall.svg/525px-Precisionrecall.svg.png)
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Precisionrecall.svg/500px-Precisionrecall.svg.png)
 :::
 
 ::: {.column width="70%"}
@@ -236,11 +312,11 @@ accuracy <- function(base_rate, pred_rate) {
 }
 
 df <- expand.grid(base_rate = base_rate)
-df$pred_rate <- df$base_rate
+df$pred_rate <- ifelse(df$base_rate > 0.5, 1, 0)
 df$accuracy <- accuracy(df$base_rate, df$pred_rate)
 
-ggplot(df, aes(x = base_rate, y = accuracy)) +
-    geom_line() +
+ggplot(df, aes(x = base_rate)) +
+    geom_line(aes(y = accuracy)) +
     labs(title = "Accuracy of uninformative classifier as a function of prevalence",
          x = "Prevalence",
          y = "Accuracy") +
@@ -249,7 +325,7 @@ ggplot(df, aes(x = base_rate, y = accuracy)) +
 ```
 
 ::: aside
-Optimal random guess is random guess using base rate as prediction probability.
+Optimal random guess is majority class
 :::
 
 
@@ -281,7 +357,7 @@ f1_wtd <- function(base_rate, pred_rate) {
     (base_rate * f1_pos + (1 - base_rate) * f1_neg)
 }
 
-df <- expand.grid(base_rate = base_rate, pred_rate = seq(0.25, 0.75, 0.25))
+df <- expand.grid(base_rate = base_rate, pred_rate = seq(0.5, 1, 0.25))
 
 df$Precision <- precision(df$base_rate, df$pred_rate)
 df$Recall <- recall(df$base_rate, df$pred_rate)
@@ -302,6 +378,8 @@ df %>%
     facet_grid(pred_rate~metric)
 
 ```
+
+
 
 ## Issues with Common Metrics
 
@@ -344,102 +422,345 @@ df %>%
 
 :::
 
+::: fragment
+
+### More on validation tomorrow!
+
+:::
 
 # Tutorial I
 
 [Training a simple text classifier](https://colab.research.google.com/github/nicolaiberk/Imbalanced/blob/master/01_IntroSML_Solution.ipynb)
 
-# Finding the perfect match
 
-## Mean Squared Error (MSE)
+# The perfect fit
+
+## The Signal and the Noise
+
+<br>
+
+$$DGP: f(x) + \epsilon$$
+
+<br>
+
+::: fragment
+
+> $f(x)$: the underlying function that describes the true relationship of the outcome variable $y$ with the predictor variable $x$.
+
+> $\epsilon$: random deviation of a realized observation from this underlying function (noise).
+
+:::
+
+## Mean Squared Error
+
 
 ![](vis/mse.png)
 
-## Mean Squared Error (MSE)
+$$MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2$$
+
+> deviation of the predicted value $\hat{y}_i$ from the realized observation $y_i$.
+
+
+## Error decomposition
+
+<br>
+
+$$MSE = \underbrace{(E[\hat{f}(x)]-f(x))^2}_{\text{expected prediction - expected truth (bias)}} + \\
+\underbrace{E[(\hat{f}(x)-E[\hat{f}(x)])^2]}_{\text{individual prediction - expected prediction (variance)}} + \\
+\underbrace{E[(y-f(x))^2]}_{\text{realised observation - expected truth (noise)}}$$
+
+
+
+
+## What is an `<mark-cyan>expected prediction</mark-cyan>'?
+
+> Noise creates variation in realized observations. If we fit a model to many different samples, we will get different predictions for the same $x$.
+
+```{r}
+#| fig-width: 6.25
+#| fig-height: 4.17
+#| fig-align: "center"
+
+set.seed(123)
+library(tidyverse)
+
+n_obs <- 25
+
+dta <- data.frame(
+    x = rnorm(n_obs)
+) %>% 
+mutate(
+    y_true = 2 - 1.5 * x^2 + 1.5 * x
+)
+
+sampler_y <- function(dta, n_obs = 25) {
+    y_real <- dta$y_true + 2 * rnorm(n_obs)
+    return(y_real)
+}
+
+fit_and_predict <- function(dta, y_col, poly = 1) {
+    fit <- lm(as.formula(paste(y_col, "~ poly(x, ", poly, ")")), data = dta)
+    dta[[paste0("yhat", gsub("yreal", "", y_col))]] <- predict(fit, newdata = dta)
+    return(dta)
+}
+
+for (i in 1:10) {
+    dta[[paste0("yreal", i)]] <- sampler_y(dta, n_obs = n_obs)
+    dta <- fit_and_predict(dta, paste0("yreal", i))
+}
+
+dta$mean_yhat <- rowMeans(dta[, paste0("yhat", 1:10)])
+
+
+dta %>% 
+    ggplot(aes(x = x, y = yreal1)) +
+    geom_point() +
+    geom_smooth(method = "lm", formula = y ~ x, se = FALSE) +
+    labs(title = "",
+         x = "Predictor (x)",
+         y = "Outcome (y)") +
+    theme_minimal() +
+    ylim(c(-5, 5)) + xlim(c(-2, 2))
+
+```
+
+## What is an `<mark-cyan>expected prediction</mark-cyan>'?
+
+> Noise creates variation in realized observations. If we fit a model to many different samples, we will get different predictions for the same $x$.
+
+```{r}
+#| fig-width: 6.25
+#| fig-height: 4.17
+#| fig-align: "center"
+
+dta %>% 
+    ggplot(aes(x = x, y = yreal2)) +
+    geom_point() +
+    geom_smooth(aes(y = yreal1), method = "lm", formula = y ~ x, se = FALSE, color = "gray") +
+    geom_smooth(method = "lm", formula = y ~ x, se = FALSE) +
+    labs(title = "",
+         x = "Predictor (x)",
+         y = "Outcome (y)") +
+    theme_minimal()
+
+```
+
+## What is an `<mark-cyan>expected prediction</mark-cyan>'?
+
+> Noise creates variation in realized observations. If we fit a model to many different samples, we will get different predictions for the same $x$.
+
+```{r}
+#| fig-width: 6.25
+#| fig-height: 4.17
+#| fig-align: "center"
+
+dta %>% 
+    ggplot(aes(x = x, y = yreal3)) +
+    geom_point() +
+    geom_smooth(aes(y = yreal1), method = "lm", formula = y ~ x, se = FALSE, color = "gray") +
+    geom_smooth(aes(y = yreal2), method = "lm", formula = y ~ x, se = FALSE, color = "gray") +
+    geom_smooth(method = "lm", formula = y ~ x, se = FALSE) +
+    labs(title = "",
+         x = "Predictor (x)",
+         y = "Outcome (y)") +
+    theme_minimal()
+
+```
+
+## Variance
+
+$Var(f(x)) = E[($<mark-gray>$f(x)$</mark-gray> - <mark-cyan>$E[f(x)]$</mark-cyan>$)^2]$
+
+> Difference between <mark-gray>individual predictions</mark-gray> and the <mark-cyan>expected prediction of our model</mark-cyan>.
+
+```{r}
+#| fig-width: 6.25
+#| fig-height: 4.17
+#| fig-align: "center"
+
+dta %>% 
+    ggplot(aes(x = x)) +
+    geom_smooth(aes(y = yhat1), method = "lm", formula = y ~ x, se = FALSE, color = "gray") +
+    geom_smooth(aes(y = yhat2), method = "lm", formula = y ~ x, se = FALSE, color = "gray") +
+    geom_smooth(aes(y = yhat3), method = "lm", formula = y ~ x, se = FALSE, color = "gray") +
+    geom_smooth(aes(y = yhat4), method = "lm", formula = y ~ x, se = FALSE, color = "gray") +
+    geom_smooth(aes(y = yhat5), method = "lm", formula = y ~ x, se = FALSE, color = "gray") +
+    geom_smooth(aes(y = yhat6), method = "lm", formula = y ~ x, se = FALSE, color = "gray") +
+    geom_smooth(aes(y = yhat7), method = "lm", formula = y ~ x, se = FALSE, color = "gray") +
+    geom_smooth(aes(y = yhat8), method = "lm", formula = y ~ x, se = FALSE, color = "gray") +
+    geom_smooth(aes(y = yhat9), method = "lm", formula = y ~ x, se = FALSE, color = "gray") +
+    geom_smooth(aes(y = yhat10), method = "lm", formula = y ~ x, se = FALSE, color = "gray") +
+    geom_smooth(aes(y = mean_yhat), method = "lm", formula = y ~ x, se = FALSE, color = "cyan", lwd = 1.5) +
+    labs(title = "",
+         x = "Predictor (x)",
+         y = "Outcome (y)") +
+    theme_minimal()
+
+```
+
+## Bias
+
+$Bias^2(x)=($<mark-cyan>$E[\hat{f}​(x)]$</mark-cyan>$-$<mark>$f(x)$</mark>$)^2$
+
+> Difference between the <mark-cyan>expected prediction of our model</mark-cyan> and <mark>average realized value</mark> (no noise)
+
+```{r}
+#| fig-width: 6.25
+#| fig-height: 4.17
+#| fig-align: "center"
+
+dta %>% 
+    ggplot(aes(x = x)) +
+    geom_point(aes(y = y_true), color = "#ccff00") +
+    geom_smooth(aes(y = y_true), method = "lm", formula = y ~ poly(x, 2), se = FALSE, color = "#ccff00", lwd = .5) +
+    geom_smooth(aes(y = mean_yhat), method = "lm", formula = y ~ x, se = FALSE, color = "cyan") +
+    labs(title = "",
+         x = "Predictor (x)",
+         y = "Outcome (y)") +
+    theme_minimal()
+
+```
+
+## Underfitting
+
+> The model is too simple to capture the underlying data generating process.
+
+::: columns
+::: column
+
+```{r}
+#| fig-width: 5
+#| fig-height: 5
+#| fig-align: "center"
+
+dta %>% 
+    ggplot(aes(x = x)) +
+    geom_smooth(aes(y = yreal1), method = "lm", formula = y ~ x, se = FALSE, color = "gray") +
+    geom_smooth(aes(y = yreal2), method = "lm", formula = y ~ x, se = FALSE, color = "gray") +
+    geom_smooth(aes(y = yreal3), method = "lm", formula = y ~ x, se = FALSE, color = "gray") +
+    geom_smooth(aes(y = yreal4), method = "lm", formula = y ~ x, se = FALSE, color = "gray") +
+    geom_smooth(aes(y = yreal5), method = "lm", formula = y ~ x, se = FALSE, color = "gray") +
+    geom_smooth(aes(y = yreal6), method = "lm", formula = y ~ x, se = FALSE, color = "gray") +
+    geom_smooth(aes(y = yreal7), method = "lm", formula = y ~ x, se = FALSE, color = "gray") +
+    geom_smooth(aes(y = yreal8), method = "lm", formula = y ~ x, se = FALSE, color = "gray") +
+    geom_smooth(aes(y = yreal9), method = "lm", formula = y ~ x, se = FALSE, color = "gray") +
+    geom_smooth(aes(y = yreal10), method = "lm", formula = y ~ x, se = FALSE, color = "gray") +
+    geom_smooth(aes(y = mean_yhat), method = "lm", formula = y ~ x, se = FALSE, color = "cyan", lwd = 1.5) +
+    geom_point(aes(y = y_true), color = "#ccff00") +
+    geom_smooth(aes(y = y_true), method = "lm", formula = y ~ poly(x, 2), se = FALSE, color = "#ccff00", lwd = .5) +
+    labs(title = "",
+         x = "Predictor (x)",
+         y = "Outcome (y)") +
+    theme_minimal()
+
+```
+
+:::
+::: {.column .fragment}
+
+### Comes with 
+
+- high bias
+- low variance.
+
+<br>
+
+::: fragment
+
+#### What happens when we increase model complexity?
+
+:::
+:::
+:::
+
+
+## Overfitting
+
+```{r}
+
+dta <- data.frame(
+    x = rnorm(n_obs)
+) %>% 
+mutate(
+    y_true = 2 - 1.5 * x^2 + 1.5 * x
+)
+
+for (i in 1:10) {
+    dta[[paste0("yreal", i)]] <- sampler_y(dta, n_obs = n_obs)
+    dta <- fit_and_predict(dta, paste0("yreal", i), poly = 5)
+}
+
+dta$mean_yhat <- rowMeans(dta[, paste0("yhat", 1:10)])
+
+dta %>% 
+    ggplot(aes(x = x)) +
+    geom_smooth(aes(y = yreal1), method = "lm", formula = y ~ poly(x, 8), se = FALSE, color = "gray") + 
+    geom_smooth(aes(y = yreal2), method = "lm", formula = y ~ poly(x, 8), se = FALSE, color = "gray") + 
+    geom_smooth(aes(y = yreal3), method = "lm", formula = y ~ poly(x, 8), se = FALSE, color = "gray") + 
+    geom_smooth(aes(y = yreal4), method = "lm", formula = y ~ poly(x, 8), se = FALSE, color = "gray") + 
+    geom_smooth(aes(y = yreal5), method = "lm", formula = y ~ poly(x, 8), se = FALSE, color = "gray") + 
+    geom_smooth(aes(y = yreal6), method = "lm", formula = y ~ poly(x, 8), se = FALSE, color = "gray") + 
+    geom_smooth(aes(y = yreal7), method = "lm", formula = y ~ poly(x, 8), se = FALSE, color = "gray") + 
+    geom_smooth(aes(y = yreal8), method = "lm", formula = y ~ poly(x, 8), se = FALSE, color = "gray") + 
+    geom_smooth(aes(y = yreal9), method = "lm", formula = y ~ poly(x, 8), se = FALSE, color = "gray") + 
+    geom_smooth(aes(y = yreal10), method = "lm", formula = y ~ poly(x, 8), se = FALSE, color = "gray") + 
+    geom_smooth(aes(y = y_true, color = "True DGP"), method = "lm", formula = y ~ poly(x, 2), se = FALSE, lwd = 1.5) +
+    geom_line(aes(y = mean_yhat, color = "Mean Prediction"), lwd = 1.5) +
+    labs(title = "",
+         x = "Predictor (x)",
+         y = "Outcome (y)",
+         color = "") +
+    scale_color_manual(values = c("True DGP" = "#ccff00", "Mean Prediction" = "cyan")) +
+    theme_minimal() +
+    theme(legend.position = "bottom")
+
+```
+
+## Overfitting
 
 <br><br>
 
-$$MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2$$
+### Too complex models lead to <mark>overfitting</mark>, resulting in
 
-
-## The bias-variance tradeoff
-
-- Read [this short explainer](https://mlu-explain.github.io/bias-variance/) (stop when you reach LOESS)
-- Together with 1-2 colleagues, explain to each other
-  - What is underfitting?
-  - What is overfitting?
-  - What is bias?
-  - What is variance?
-  - How do you balance bias and variance in ML?
-
-
-## The bias-variance tradeoff
-
-![](vis/bvt1.png)
-
-## The bias-variance tradeoff
-
-![](vis/bvt2.png)
-
-## The bias-variance tradeoff
-
-![](vis/bvt3.png)
-
-# What is a Neural Network?
-
-## Deep Neural Networks
-
-![Source: [IBM](https://www.ibm.com/think/topics/neural-networks)](vis/deep_neural_network.png)
-
-
-## A Single Node
-
-![](vis/perceptron.png)
-
-## A Single Node
-
-![](vis/perceptron.png)
-
-$$\hat{y} = g(w_0 + \sum_{i=1}^{m} w_i x_i)$$
-
-## A Single Node
-
-![](vis/perceptron_example.png)
-
-## Deep Neural Networks
-
-![Source: [IBM](https://www.ibm.com/think/topics/neural-networks)](vis/deep_neural_network.png)
-
-## The Activation Function
-
-![](vis/activation_functions.png)
-
-## The Activation Function
-
-![](vis/activation_functions.png)
-
-**Important: non-linear!** (why do you think that is?)
-
-# Training Deep Learning Models
-
-## What is "Training" ?
+- oversensitive predictions 
+- that do not generalize well to new data
+- $\rightarrow$ <mark>high variance, low bias<mark>
 
 <br>
 
-- Remember from ML course: **Training** is the process of optimizing a model's parameters on a specific task using labeled data.
-- In regression framework, this is called **fitting** the model to the training data.
+## The Bias-Variance <mark>Tradeoff</mark>
 
-## Training Deep Learning Models
+
+![Source: [Machine Learning University](https://mlu-explain.github.io/bias-variance/)](vis/bvt.png)
+
+### The art of machine learning is to find the right balance between bias and variance/under- and overfitting.
+
+
+## Classic ML vs. LLMs
 
 <br>
 
-- Read the section on backpropagation (black background) in [this brief explainer](https://mlu-explain.github.io/neural-networks/)
-- Together with your partner, explain to each other:
-  - What is a **forward pass**?
-  - What is **loss**?
-  - What is a **backward pass**?
+::: columns
+::: {.column .callout-note .incremental}
+
+### Advantages of 'simple' ML using bag-of-words
+
+- <mark>Interpretable</mark>: which words are predictive?
+- Fast & <mark>efficient</mark> to train and predict
+- (Can be trained on <mark>small data</mark>sets)
+
+:::
+::: {.column .callout-important .fragment .incremental}
+
+### Disadvantages compared to LLMs
 
 
-# [Hackathon!](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/03b_hackathon.ipynb)
 
-Who gets the best F1 score?
+- <mark>No semantic understanding</mark> of text
+- <mark>Worse performance</mark> on large data
+- <mark>Task-specific</mark>, not generalizable
+
+::: 
+::::
+
+# Break
