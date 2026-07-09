@@ -313,7 +313,7 @@ Bern has roughly 135,000 inhabitants in the city proper.<|im_end|>
 
 - Humans rank model outputs 
 - Model optimized to produce outputs that align with human preferences
-- Aiming for more helpful, less harmful, more truthful responses and a happy, sycophantic character (or sometimes a chinese party member)
+- Aiming for more helpful, less harmful, more truthful responses and a happy, sycophantic character (or sometimes a CCP member)
 - Also: RL with verifiable rewards (RLVR), like math answers or code
 
 :::
