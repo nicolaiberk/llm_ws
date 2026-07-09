@@ -15,10 +15,6 @@ bibliography: "../references.bib"
 
 ## Recap: Decoder vs. Encoder
 
-![](vis/transformers.png)
-
-## Recap: Decoder vs. Encoder
-
 ::: callout-note
 
 ### Encoder (e.g. BERT)
@@ -60,6 +56,25 @@ bibliography: "../references.bib"
 ::::
 :::
 :::
+
+## The Encoder Architecture (e.g. BERT)
+
+![Source: @tunstall2022natural, Ch. 2](vis/encoder_full.png)
+
+## The Huggingface Ecosystem
+
+<br>
+
+### [The Model Hub](https://huggingface.co/models)
+
+### [Datasets](https://huggingface.co/datasets)
+
+
+# Tutorial
+
+**Tokenization and Inference**
+
+[Notebook](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/dimes26/notebooks/05_tokens_attention.ipynb)
 
 
 # The Decoder
@@ -317,14 +332,6 @@ Bern has roughly 135,000 inhabitants in the city proper.<|im_end|>
 - Also: RL with verifiable rewards (RLVR), like math answers or code
 
 :::
-
-## The Huggingface Ecosystem
-
-<br>
-
-### [The Model Hub](https://huggingface.co/models)
-
-### [Datasets](https://huggingface.co/datasets)
 
 
 # Tutorial: Generative LLMs
