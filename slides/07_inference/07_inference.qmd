@@ -26,7 +26,7 @@ bibliography: "../references.bib"
 about relevant program docs]. *Limit to bullet points.*
 
 ::: aside
-[Google prompting guide](https://services.google.com/fh/files/misc/gemini-for-google-workspace-prompting-guide-101.pdf)
+[Google prompting guide](https://services.google.com/fh/files/misc/gemini_for_workspace_prompt_guide_october_2024_digital_final.pdf)
 :::
 
 ## Prompting
@@ -252,7 +252,7 @@ print(result.output)
 
 ## Tool use
 
-![LLMs + Tool Use = Agents](vis/taylor_eras.png)
+![LLMs + Tool Use = Agents](vis/taylor_eras.jpg)
 
 
 ## Tool use
