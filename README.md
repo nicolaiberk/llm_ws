@@ -22,9 +22,9 @@ This workshop provides an introduction to fundamentals of natural language proce
 | **Friday, July 10** | **Working with LLMs** |
 | 9:00–11:00 | 6: Generative LLMs & Training |
 | 11:00–12:00 | 7: Inference, APIs & Hosting |
-| 12:00–13:30 | *Lunch* |
-| 13:30–15:00 | 8: Measuring Concepts in Text |
-| 15:15–16:15 | 9: Validation, Debiasing, and more |
+| 12:00–13:15 | *Lunch* |
+| 13:15–14:45 | 8: Measuring Concepts in Text |
+| 15:00–16:00 | 9: Validation, Debiasing, and more |
 
 ## Day 1 (Thursday, July 9)
 
