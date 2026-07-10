@@ -151,6 +151,6 @@ When you're done, **discuss and refine** your answers with your neighbor.
 
 Let's see what we can measure!
 
-[Notebook](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/08_application.ipynb)
+[Notebook](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/dimes26/notebooks/08_application.ipynb)
 
 ## Resources

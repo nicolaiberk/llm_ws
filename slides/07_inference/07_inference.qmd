@@ -325,7 +325,7 @@ print("On June 14, 2026, NASA's Perseverance rover completed the equivalent of a
 
 API calls, Structured Output
 
-[Notebook](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/main/notebooks/05b_api.ipynb)
+[Notebook](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/dimes26/notebooks/07_api.ipynb)
 
 
 

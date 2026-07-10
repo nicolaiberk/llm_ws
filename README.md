@@ -20,11 +20,11 @@ This workshop provides an introduction to fundamentals of natural language proce
 | 15:00–15:45 | 5: Transformer Models (short session) |
 | 16:00 | *Inaugural lecture Christian von Sikorski* |
 | **Friday, July 10** | **Working with LLMs** |
-| 9:00–10:30 | 6: Generative LLMs & Training |
-| 10:30–12:00 | 7: Inference, APIs & Hosting |
+| 9:00–11:00 | 6: Generative LLMs & Training |
+| 11:00–12:00 | 7: Inference, APIs & Hosting |
 | 12:00–13:30 | *Lunch* |
 | 13:30–15:00 | 8: Measuring Concepts in Text |
-| 15:15–16:45 | 9: Validation, Debiasing, and more |
+| 15:15–16:15 | 9: Validation, Debiasing, and more |
 
 ## Day 1 (Thursday, July 9)
 
@@ -142,6 +142,11 @@ How decoder models generate text, and how they differ from encoders. We cover th
 
 Using LLMs for annotation in practice: prompting, zero-/few-/dynamic few-shot labelling, retrieval-augmented generation, and synthetic annotation. We cover zero-shot classification with NLI encoder models, hosting options (Hugging Face inference endpoints, local hosting), commercial APIs (OpenAI, Anthropic, Azure), structured output, and tool use.
 
+🖥️ [Lecture Slides](https://nicoberk.quarto.pub/inference/)
+
+🧑‍💻 [Tutorial: Generative Models](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/dimes26/notebooks/07_api.ipynb)
+
+
 #### Further Reading
 
 - Laurer, M., van Atteveldt, W., Casas, A., & Welbers, K. (2024). Less annotating, more classifying: Addressing the data scarcity issue of supervised machine learning with deep transfer learning and BERT-NLI. *Political Analysis*, 32(1), 84–100.
@@ -154,11 +159,18 @@ Using LLMs for annotation in practice: prompting, zero-/few-/dynamic few-shot la
 
 How to get from a social science concept to a measurement: conceptualization, operationalization, and method choice. Using framing as a case study, we compare how different definitions imply different measurement strategies. In the interactive part, participants develop a measurement strategy for a concept from their own research with their neighbors, pitch it to the group, and collect feedback — before prototyping their measure in the tutorial.
 
+🖥️ [Lecture Slides](https://nicoberk.quarto.pub/measuring-concepts-in-text/)
+
+🧑‍💻 [Tutorial: Generative Models](https://colab.research.google.com/github/nicolaiberk/llm_ws/blob/dimes26/notebooks/08_application.ipynb)
+
 
 
 ### Session 9: Validation, Debiasing, Security, Privacy, Reproducibility
 
 What makes a measure valid, and how do we show it? We cover convergent, content, and hypothesis-based validation, best practices for validating LLM annotations, bias in LLM predictions and design-based supervised learning (DSL) for debiasing downstream analyses, as well as reproducibility, research ethics, security, and data protection when working with LLMs.
+
+🖥️ [Lecture Slides](https://nicoberk.quarto.pub/working-accurately-with-llms/)
+
 
 **Literature**
 
